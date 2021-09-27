@@ -192,20 +192,32 @@ During the final exam students are expected:
 * to pass an oral examination about the Java and Python languages. Quizzes and short written exercises will be also used for assessing actual programming skills. 
 
 ## FAQ
-Can we develop the project in groups of 1 or 3 people?
-> No, groups must be composed of two 2 people. There are no exceptions. The use of git for developing and sharing code is mandatory. People unable to find a teammate should contact me. Groups should be composed by teammates with similar skills and desire to code. Exceptions to this rule will be negatively evaluated.
+Should I carefully read and understand this FAQ?
+> Yes!
 
-Can we use Unity, JavaScript, TypeScript, Flutter, Swift, C++, C#?
-> No! Only Java and Python are allowed.
+Developing a project at home is the goal of the course?
+> **No! The goal is not developing a home project! The goal of the course is learning how to code in Java and Python**. Developing a project is only a (hopefully fun) way to do it.
+
+Can we develop the project in groups of 1 or 3 people?
+> No, groups must be composed of two 2 people. There are no exceptions. The use of github for sharing code is mandatory. People unable to find a teammate should post a message on Teams (*Ricerca compagni* channel). Groups should be composed of teammates with comparable coding skills. Exceptions to this rule will be negatively evaluated.
+
+Can we use JavaScript, TypeScript, Kotlin, Dart, Swift, C++, C#?
+> No! Only Java and Python are allowed. If you learn properly Java and Python, you will be able to switch to any modern object-oriented language pretty quickly. 
 
 Which kind of project can we do?
-> You can code a video game, a mobile app, a managing software. See examples in the repository as a reference.
+> You can code a video game, a managing software, an Android app. See examples in the repository as a reference.
 
-Which IDE should I use for developing a mobile app?
-> Android Studio is a version of IntelliJ tuned for Android development.
+Which IDE should I use for developing an Android app?
+> Android Studio is perfect. It is a version of IntelliJ specifically tuned for Android development.
+
+Can we use external libraries?
+> Sure! The object oriented paradigm has been initially proposed for promoting the reuse of existing code and building large projects! For example, for developing game [LibGDX](https://libgdx.com/), [Slick2D](https://slick.ninjacave.com/), or [Tiled](https://www.mapeditor.org/) are useful. Conversely, for a managing software use can use [JavaFX](https://openjfx.io/), [Spark](https://sparkjava.com/), [Spring](https://spring.io/).
+
+Can we use a GUI designer?
+> Yes, of course! During the course we discussed GUIs in terms of source code only for understanding how they work internally.
 
 How big the project has to be?
-> A project comprised of 1000-3000 source lines of code is enough to grasp the feeling of what developing software means.
+> A project comprised of 1000-3000 source lines of code is enough to grasp the feeling of what developing software means. Projects bigger than 5000 lines are not advised.
 
 What is the best moment for starting the project?
 > The first half of the course concerns basic topics that must be assimilated before starting. My personal suggestion is to start the project around midterm and use the second part of the course to sketch out the main design.
@@ -217,5 +229,11 @@ If I need help, should I write an email to book an appointment?
 > Yes, I will be available every Wednesday morning for chatting.
 
 How does the exam is evaluated?
-> The final grade is a subjectively-weighted (Prof. Bicocchi is the subject) average between the home project and the oral examination. 
+> The final grade is a subjectively-weighted (Dr. Bicocchi is the subject) average between the home project and the oral examination. 
 > The oral examination is composed of theoretical questions about Java and Python and simple quizzes and exercises that anyone that developed a 2000 lines software project is quickly able to solve. The websites reported above, in particular https://www.w3resource.com/ and https://exercism.io/ provide plenty of examples.
+
+Can I get extra bonuses for good behaviours during the course?
+> Yes! Even though this repository is maintained mostly by Dr. Bicocchi, it embeds ideas and suggestions that came from students over the years. The best way to propose a change is a **git pull request**. We will see to make them in class. 1 accepted **git pull requests** is worth 0.5 points. No more than 3 points can be accumulated in this way.
+
+Can I get punishments for bad behaviours during the course?
+> Of course! The best way to generate suspects on your integrity is showing up at the exam with a nice home project while being unable to answer to basic questions about the studied languages! Asking questions which are listed above is not advised as well.
