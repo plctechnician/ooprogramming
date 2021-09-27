@@ -17,21 +17,20 @@ More specifically, the course introduces the fundamentals of Object Oriented Pro
 * [Anaconda](https://www.anaconda.com/products/individual)
 
 ### Misc
-* https://git-scm.com/
-* http://www.pythontutor.com/
 * https://www.w3resource.com/
 * https://www.programiz.com/
-* https://www.baeldung.com/
-* https://pynative.com/
 * https://exercism.io/
+* https://www.baeldung.com/
+* http://www.pythontutor.com/
+* https://pynative.com/
 * https://github.com/mtdvio/every-programmer-should-know
 * https://github.com/charlax/professional-programming
 * https://github.com/sindresorhus/awesome
 
 ## Books
-* Head First Java; Sierra, Bates; O'Reilly (beginner)
+* Head First Java; Sierra, Bates; O'Reilly (intermediate)
 * Effective Java; Bloch; O'Reilly (advanced)
-* Head First Python; Barry; O'Reilly (beginner)
+* Head First Python; Barry; O'Reilly (intermediate)
 * Fluent Python; Ramalho; O'Reilly (advanced)
 
 ## Videos
