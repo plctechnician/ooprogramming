@@ -217,7 +217,7 @@ Can we use a GUI designer?
 > Yes, of course! During the course we discussed GUIs in terms of source code only for understanding how they work internally.
 
 How big the project has to be?
-> A project comprised of 1000-3000 source lines of code is enough to grasp the feeling of what developing software means. Projects bigger than 5000 lines are not advised.
+> A project comprised of 1000-3000 source lines of code (excluding GUI XML if present) is enough to grasp the feeling of what developing software means. Projects bigger than 5000 lines (excluding GUI XML if present) are not advised.
 
 What is the best moment for starting the project?
 > The first half of the course concerns basic topics that must be assimilated before starting. My personal suggestion is to start the project around midterm and use the second part of the course to sketch out the main design.
