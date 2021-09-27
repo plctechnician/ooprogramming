@@ -233,7 +233,7 @@ How does the exam is evaluated?
 > The oral examination is composed of theoretical questions about Java and Python and simple quizzes and exercises that anyone that developed a 2000 lines software project is quickly able to solve. The websites reported above, in particular https://www.w3resource.com/ and https://exercism.io/ provide plenty of examples.
 
 Can I get extra bonuses for good behaviours during the course?
-> Yes! Even though this repository is maintained mostly by Dr. Bicocchi, it embeds ideas and suggestions that came from students over the years. The best way to propose a change is a **git pull request**. We will see to make them in class. 1 accepted **git pull requests** is worth 0.5 points. No more than 3 points can be accumulated in this way.
+> Yes! Even though this repository is maintained mostly by Dr. Bicocchi, it embeds ideas and suggestions that came from students over the years. The best way to propose a change is a **pull request**. 1 accepted **pull request** is worth 0.5 points. No more than 3 points can be accumulated in this way.
 
 Can I get punishments for bad behaviours during the course?
 > Of course! The best way to generate suspects on your integrity is showing up at the exam with a nice home project while being unable to answer to basic questions about the studied languages! Asking questions which are listed above is not advised as well.
