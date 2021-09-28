@@ -186,9 +186,9 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 ## Exam
 During the final exam students are expected:
 
-* to discuss about the structure, the internals and engineering choices of their home project (could be developed either in Java or Python). It is worth noticing that the project is not supposed to be developed alone without supervision, but mostly during the course. The whole development process and related discussions with Prof. Bicocchi will be evaluated.
+* to discuss the structure and engineering choices of the home project. It is worth noticing that the project is not supposed to be developed alone without supervision, but mostly during the course. The whole development process and discussions with Dr. Bicocchi will be evaluated.
 
-* to pass an oral examination about the Java and Python languages. Quizzes and short written exercises will be also used for assessing actual programming skills. 
+* to pass an oral examination about Java and Python. Quizzes and short written exercises will be also used for assessing programming skills. 
 
 ## FAQ
 Should I carefully read and understand this FAQ?
@@ -198,7 +198,7 @@ Developing a project at home is the goal of the course?
 > **No! The goal is not developing a home project! The goal of the course is learning how to code in Java and Python**. Developing a project is only a (hopefully fun) way to do it.
 
 Can we develop the project in groups of 1 or 3 people?
-> No, groups must be composed of two 2 people. There are no exceptions. The use of github for sharing code is mandatory. People unable to find a teammate should post a message on Teams (*Ricerca compagni* channel). Groups should be composed of teammates with comparable coding skills. Exceptions to this rule will be negatively evaluated.
+> No, groups must be composed of 2 people. There are no exceptions. The use of Github for sharing code is mandatory. People unable to find a teammate should post a message on Teams (*Ricerca compagni* channel). Groups should be composed of teammates with comparable coding skills. Exceptions to this rule will be negatively evaluated.
 
 Can we use JavaScript, TypeScript, Kotlin, Dart, Swift, C++, C#?
 > No! Only Java and Python are allowed. If you learn properly Java and Python, you will be able to switch to any modern object-oriented language pretty quickly. 
@@ -216,7 +216,7 @@ Can we use a GUI designer?
 > Yes, of course! During the course we discussed GUIs in terms of source code only for understanding how they work internally.
 
 How big the project has to be?
-> A project comprised of 1000-3000 source lines of code (excluding GUI XML if present) is enough to grasp the feeling of what developing software means. Projects bigger than 5000 lines (excluding GUI XML if present) are not advised.
+> A project comprised of 1000-3000 source lines of code (excluding GUI XML if present) is enough to get the feeling of what developing software means. Projects bigger than 5000 lines (excluding GUI XML if present) are not advised.
 
 What is the best moment for starting the project?
 > The first half of the course concerns basic topics that must be assimilated before starting. My personal suggestion is to start the project around midterm and use the second part of the course to sketch out the main design.
