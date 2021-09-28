@@ -42,7 +42,6 @@ public class PalindromeDiscoverer {
      * @return true if the string is a palindrome
      */
     public static boolean isPalindrome(String str) {
-
         if (str.length() <= 1) {
             return true;
         } else {

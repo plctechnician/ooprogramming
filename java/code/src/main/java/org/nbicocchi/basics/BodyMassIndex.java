@@ -14,13 +14,11 @@ import java.util.Scanner;
  * @author Justin Musgrove
  */
 public class BodyMassIndex {
-
     public static void main(String[] args) {
-
         // Variables
-        double weight; // The user's weight
-        double height; // The user's height
-        double bmi; // The user's BMI
+        double weight;
+        double height;
+        double bmi;
 
         // Create a Scanner object for keyboard input.
         Scanner keyboard = new Scanner(System.in);
@@ -67,12 +65,10 @@ public class BodyMassIndex {
     static String bmiDescription(double bmi) {
         if (bmi < 18.5) {
             return "You are underweight.";
+        } else if (bmi > 25) {
+            return "You are overweight.";
         } else {
-            if (bmi > 25) {
-                return "You are overweight.";
-            } else {
-                return "Your weight is optimal.";
-            }
+            return "Your weight is optimal.";
         }
     }
 }

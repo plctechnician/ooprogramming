@@ -1,5 +1,6 @@
 package org.nbicocchi.basics;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,16 @@ import java.util.Scanner;
  * @author Nicola Bicocchi
  */
 public class NumberSplitter {
+    public static int[] splitter(int input) {
+        int n = Integer.toString(input).length();
+        int[] digits = new int[n];
+
+        for (int d = n - 1; d >= 0; d--) {
+            digits[digits.length - 1 - d] = input / ((int) Math.pow(10, d)) % 10;
+        }
+        return digits;
+    }
+
     public static void main(String[] args) {
         System.out.print("Input a number: ");
 
@@ -20,10 +31,7 @@ public class NumberSplitter {
         int input = in.nextInt();
         in.close();
 
-        int digits = Integer.toString(input).length();
-        for (int d = digits - 1; d >= 0; d--) {
-            int n = input / ((int) Math.pow(10, d)) % 10;
-            System.out.print(n + " ");
-        }
+        int[] digits = splitter(input);
+        System.out.println(Arrays.toString(digits));
     }
 }

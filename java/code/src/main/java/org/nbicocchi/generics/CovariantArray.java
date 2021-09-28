@@ -10,6 +10,6 @@ public class CovariantArray {
         }
 
         // Compiles but fails at runtime!
-        ol[0] = new String("Hello World!");
+        ol[0] = "Hello World!";
     }
 }

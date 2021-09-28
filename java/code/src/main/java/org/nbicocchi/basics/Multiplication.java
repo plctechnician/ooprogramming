@@ -5,19 +5,12 @@ import java.util.Scanner;
 /**
  * Write a program in Java to display the multiplication table of a given
  * integer. n = 5, expected Output:
- * <p>
  * 5 X 0 = 0
- * <p>
  * 5 X 1 = 5
- * <p>
  * 5 X 2 = 10
- * <p>
  * 5 X 3 = 15
- * <p>
  * 5 X 4 = 20
- * <p>
  * 5 X 5 = 25
- * <p>
  * …
  *
  * @author Nicola Bicocchi

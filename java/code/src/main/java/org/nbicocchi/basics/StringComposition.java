@@ -6,15 +6,17 @@ package org.nbicocchi.basics;
  * @author Nicola Bicocchi
  */
 public class StringComposition {
-    public static void main(String[] args) {
-        String[] strings = {"Hello", " ", "World", "!"};
-
+    public static String compose(String[] strings) {
         StringBuilder sb = new StringBuilder();
         for (String s : strings) {
             sb.append(s);
         }
+        return sb.toString();
+    }
 
-        System.out.println(sb.toString());
+    public static void main(String[] args) {
+        String[] strings = {"Hello", " ", "World", "!"};
+        System.out.println(compose(strings));
     }
 
 }

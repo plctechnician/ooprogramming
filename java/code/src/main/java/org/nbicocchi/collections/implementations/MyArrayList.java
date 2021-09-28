@@ -21,7 +21,7 @@ public class MyArrayList implements MyList {
         StringBuilder output = new StringBuilder();
         for (Object o : elements) {
             if (o != null) {
-                output.append("[").append(o.toString()).append("]");
+                output.append("[").append(o).append("]");
             }
         }
         return output.toString();

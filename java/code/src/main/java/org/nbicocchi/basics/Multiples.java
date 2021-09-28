@@ -1,14 +1,26 @@
 package org.nbicocchi.basics;
 
+import java.util.Scanner;
+
 /**
- * Write a program printing integers (1 < n < 100) divisible by 3 and 5
+ * Write a program accepting 3 integer parameters: x, y, n.
+ * The program shows all the integers numbers in the range [1, n] divisible by x and y
  *
  * @author Nicola Bicocchi
  */
 public class Multiples {
     public static void main(String[] args) {
-        for (int i = 1; i < 100; i++) {
-            if (i % 3 == 0 && i % 5 == 0) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("x: ");
+        int x = in.nextInt();
+        System.out.print("y: ");
+        int y = in.nextInt();
+        System.out.print("n: ");
+        int n = in.nextInt();
+        in.close();
+
+        for (int i = 1; i <= n; i++) {
+            if (i % x == 0 && i % y == 0) {
                 System.out.println(i);
             }
         }
