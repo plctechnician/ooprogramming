@@ -10,9 +10,9 @@ public class TestApp {
     public static void main(String[] args) {
         /* Implicit form of upcasting */
         Car[] garage = new Car[3];
-        garage[0] = new Car(false, "AA456YY");
-        garage[1] = new Car(false,"YY555WW");
-        garage[2] = new SDCar(false,"TT543EE", false);
+        garage[0] = new Car(false, "Fiat", "Red");
+        garage[1] = new Car(false,"BWM", "M6");
+        garage[2] = new SDCar(false,"Rimac", "Concept One", false);
 
         for (Car c : garage) {
             System.out.println(c);

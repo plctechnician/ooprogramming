@@ -3,8 +3,8 @@ package org.nbicocchi.oopinheritance.car;
 public class SDCar extends Car {
     boolean isSelfDriving;
 
-    public SDCar(boolean isOn, String licensePlate, boolean isSelfDriving) {
-        super(isOn, licensePlate);
+    public SDCar(boolean isOn, String brand, String color, boolean isSelfDriving) {
+        super(isOn, brand, color);
         this.isSelfDriving = isSelfDriving;
     }
 
@@ -32,7 +32,8 @@ public class SDCar extends Car {
     public String toString() {
         return "SDCar{" +
                 "isOn=" + isOn +
-                ", licensePlate='" + licensePlate + '\'' +
+                ", brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
                 ", isSelfDriving=" + isSelfDriving +
                 '}';
     }
