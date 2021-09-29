@@ -18,6 +18,7 @@ public class Vector {
 
     public Vector(int capacity) {
         this.v = new int[capacity];
+        init();
     }
 
     void init() {
@@ -60,7 +61,6 @@ public class Vector {
 
     public static void main(String[] args) {
         Vector v = new Vector(20);
-        v.init();
         v.sort();
         v.show();
         System.out.printf("%d index = %d\n", 10, v.search(10));
