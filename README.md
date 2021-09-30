@@ -54,16 +54,16 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 ## Java Modules
 [M1] From Functions to Objects
 
-* The software crisis
-* Spaghetti code
-* Modularization principles
-* Variables, Functions, and Classes
+* Evolution of programming languages
+* Limits of procedural programming
+* Modularization, reuse of code, and object-oriented programming
+* Object-oriented programming key features
 
 [M2] Basics
 
-* The Java environment
+* Java development environment
 * Variable, constants, parameter passing
-* Control statements
+* Flow control statements
 * Strings
 * Arrays
 

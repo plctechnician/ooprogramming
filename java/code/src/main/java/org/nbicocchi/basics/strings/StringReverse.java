@@ -1,4 +1,4 @@
-package org.nbicocchi.basics;
+package org.nbicocchi.basics.strings;
 
 /**
  * Write a Java function accepting a String as a parameter and returning the inverted String

@@ -1,4 +1,4 @@
-package org.nbicocchi.basics;
+package org.nbicocchi.basics.arrays;
 
 /**
  * Write a program that creates a two-dimensional array initialized with test

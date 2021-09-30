@@ -1,4 +1,4 @@
-package org.nbicocchi.basics;
+package org.nbicocchi.basics.strings;
 
 /**
  * Write a program to find all duplicates characters in a given string

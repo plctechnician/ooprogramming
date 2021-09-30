@@ -1,4 +1,4 @@
-package org.nbicocchi.basics;
+package org.nbicocchi.basics.flowcontrol;
 
 /**
  * Write a program to display the first n numbers of the Fibonacci series
