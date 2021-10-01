@@ -45,23 +45,10 @@ public class BodyMassIndex {
         keyboard.close();
     }
 
-    /**
-     * Method should calculate bmi
-     *
-     * @param height height of the person
-     * @param weight weight of the person
-     * @return bmi of the person
-     */
     static double calculateBMI(double height, double weight) {
         return weight / (height * height);
     }
 
-    /**
-     * Method should return description based on bmi
-     *
-     * @param bmi bmi of the person
-     * @return human readable description of bmi
-     */
     static String bmiDescription(double bmi) {
         if (bmi < 18.5) {
             return "You are underweight.";

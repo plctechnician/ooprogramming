@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class PalindromeDiscoverer {
 
     public static void main(String[] args) {
-
         // Create a Scanner object for keyboard input.
         Scanner keyboard = new Scanner(System.in);
 
@@ -21,26 +20,14 @@ public class PalindromeDiscoverer {
         System.out.print("Enter a word or phrase: ");
         String userInput = keyboard.nextLine();
 
-        boolean isAPalindrome = isPalindrome(userInput);
-
-        if (isAPalindrome) {
+        if (isPalindrome(userInput)) {
             System.out.print("The word or phrase is a palindrome");
         } else {
             System.out.print("Sorry the word or phrase is NOT a palindrome");
         }
-
         keyboard.close();
     }
 
-    /**
-     * Method should return true if a string is identified as a palindrome.
-     * There are many ways to do a palindrome check, this is just one of them.
-     * If you are performing checks on very, very long strings you may want to
-     * consider another algorithm.
-     *
-     * @param str the string to be verified
-     * @return true if the string is a palindrome
-     */
     public static boolean isPalindrome(String str) {
         if (str.length() <= 1) {
             return true;
@@ -53,5 +40,4 @@ public class PalindromeDiscoverer {
             return reversedString.equalsIgnoreCase(toCompare);
         }
     }
-
 }

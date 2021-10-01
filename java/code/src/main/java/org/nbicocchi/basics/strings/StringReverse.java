@@ -32,8 +32,9 @@ public class StringReverse {
 
     public static void main(String[] args) {
         String input = "String test";
-        String output = reverse3(input);
         System.out.println(input);
-        System.out.println(output);
+        System.out.println(reverse1(input));
+        System.out.println(reverse2(input));
+        System.out.println(reverse3(input));
     }
 }

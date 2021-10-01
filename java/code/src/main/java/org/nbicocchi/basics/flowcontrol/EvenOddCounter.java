@@ -34,10 +34,6 @@ public class EvenOddCounter {
         System.out.println("Number of odd numbers: " + oddNumberCount);
     }
 
-    /**
-     * @param num to check
-     * @return true if the num is true otherwise false
-     */
     public static boolean isEven(int num) {
         return num % 2 == 0;
     }

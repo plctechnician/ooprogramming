@@ -44,7 +44,6 @@ public class DiceGame {
             }
         }
 
-        // Display the results.
         System.out.println("Computer...." + computerWins);
         System.out.println("User........" + userWins);
         System.out.println("Ties........" + tiedGames);
