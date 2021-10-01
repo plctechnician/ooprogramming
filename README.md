@@ -71,14 +71,14 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 * Classes and objects 
 * Constructors, getters, setters, toString()
-* Method overloading
+* Method overloading and polymorphism
 * Scope and visibility
 * Static attributes and methods
 * Wrapper classes
 * Packages 
 * Inheritance
 * Upcasting and downcasting 
-* Method overriding 
+* Method overriding and polymorphism
 * Abstract methods and classes
 * Interfaces
 * UML class diagrams
