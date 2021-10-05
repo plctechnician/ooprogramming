@@ -30,21 +30,23 @@ public class StringProcessor {
     }
 
     public int findShortest() {
-        int min_pos = 0;
-        int min_length = 128;
+        if (v.length == 0) {
+            return -1;
+        }
+
+        int shortestIndex = 0;
+        int shortestLength = v[0].length();
         for (int i = 0; i < v.length; i++) {
-            if (v[i].length() < min_length) {
-                min_pos = i;
-                min_length = v[i].length();
+            if (v[i].length() < shortestLength) {
+                shortestIndex = i;
+                shortestLength = v[i].length();
             }
         }
-        return min_pos;
+        return shortestIndex;
     }
 
     public int search(String key) {
-        int i;
-
-        for (i = 0; i < v.length; i++) {
+        for (int i = 0; i < v.length; i++) {
             if (v[i].equals(key))
                 return i;
         }
@@ -60,15 +62,11 @@ public class StringProcessor {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        StringProcessor other = (StringProcessor) obj;
-        return Arrays.equals(v, other.v);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StringProcessor)) return false;
+        StringProcessor that = (StringProcessor) o;
+        return Arrays.equals(v, that.v);
     }
 
     public static void main(String[] args) {

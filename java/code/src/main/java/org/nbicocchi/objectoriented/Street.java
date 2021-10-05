@@ -28,11 +28,6 @@ public class Street {
         return cars;
     }
 
-    @Override
-    public String toString() {
-        return "Street [cars=" + Arrays.toString(cars) + "]";
-    }
-
     public void insertCar(int km) {
         cars[km]++;
     }
@@ -46,6 +41,13 @@ public class Street {
             cars[i] = cars[i - 1];
         }
         cars[0] = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Street{" +
+                "cars=" + Arrays.toString(cars) +
+                '}';
     }
 
     public static void main(String[] args) {

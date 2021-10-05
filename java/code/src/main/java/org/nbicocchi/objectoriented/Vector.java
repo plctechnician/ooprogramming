@@ -3,22 +3,25 @@ package org.nbicocchi.objectoriented;
 import java.util.Random;
 
 /**
+ * Write a class named Vector representing a vector of integers with additional features.
  *
- * Implementare una classe Vector che rappresenta un vettore di interi dotato di funzioalità (metodi) aggiuntive.
- * In particolare:
- * void init() inizializza il vettore con numeri interi randomici compresi fra 0 e 100.
- * void sort() ordina il vettore in modo crescente utilizzando l'algoritmo Bubble Sort.
- * void show() mostra il contenuto del vettore a video.
- * int search(int value) ritorna l'indice di value all'interno del vettore, -1 in caso non sia presente.
+ * Supported methods:
+ * void init() initialize the vector with random numbers [0, 100]
+ * void sort() sorts the vector in ascending order
+ * void show() shows the content of the vector
+ * int search(int value) returns the index in which "value" is stored. -1 if "value" is missing.
  *
  * @author Nicola Bicocchi
  */
 public class Vector {
     int[] v;
 
+    public Vector(int[] v) {
+        this.v = v;
+    }
+
     public Vector(int capacity) {
         this.v = new int[capacity];
-        init();
     }
 
     void init() {
@@ -60,9 +63,10 @@ public class Vector {
     }
 
     public static void main(String[] args) {
-        Vector v = new Vector(20);
+        int[] values = {7, 5, 34, 23, 99};
+        Vector v = new Vector(values);
         v.sort();
         v.show();
-        System.out.printf("%d index = %d\n", 10, v.search(10));
+        System.out.printf("%d index = %d\n", 7, v.search(7));
     }
 }

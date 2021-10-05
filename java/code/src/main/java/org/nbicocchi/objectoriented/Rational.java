@@ -35,9 +35,21 @@ public class Rational implements Comparable<Rational> {
         this.denominator = denominator;
     }
 
+    public Rational plus(Rational o) {
+        int num = this.numerator * o.denominator + o.numerator * this.denominator;
+        int den = this.denominator * o.denominator;
+        return new Rational(num, den);
+    }
+
+    public Rational times(Rational o) {
+        int num = this.numerator * o.numerator;
+        int den = this.denominator * o.denominator;
+        return new Rational(num, den);
+    }
+
     @Override
     public int compareTo(Rational o) {
-        return Double.compare(numerator / (double) denominator, o.getNumerator() / (double) o.getDenominator());
+        return Double.compare(numerator / (double) denominator, o.numerator / (double) o.denominator);
     }
 
     @Override
@@ -46,34 +58,6 @@ public class Rational implements Comparable<Rational> {
                 "numerator=" + numerator +
                 ", denominator=" + denominator +
                 '}';
-    }
-
-    public Rational plus(Rational o) {
-        int num = this.numerator * o.getDenominator() + o.getNumerator() * this.denominator;
-        int den = this.denominator * o.getDenominator();
-        return new Rational(num, den);
-    }
-
-    public Rational times(Rational o) {
-        int num = this.numerator * o.getNumerator();
-        int den = this.denominator * o.getDenominator();
-        return new Rational(num, den);
-    }
-
-    public int getDenominator() {
-        return denominator;
-    }
-
-    public void setDenominator(int denominator) {
-        this.denominator = denominator;
-    }
-
-    public int getNumerator() {
-        return numerator;
-    }
-
-    public void setNumerator(int numerator) {
-        this.numerator = numerator;
     }
 
     public static void main(String[] args) {
