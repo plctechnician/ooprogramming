@@ -20,6 +20,6 @@ public class FindDuplicates {
                 seen.append(tmp);
             }
         }
-        System.out.println(duplicates.toString());
+        System.out.println(duplicates);
     }
 }

@@ -14,13 +14,10 @@ import java.io.IOException;
  */
 public class LineCounter {
     public static void main(String[] args) throws IOException {
-        BufferedReader in = null;
+        int lines = 0, chars = 0;
         String s;
-        int lines = 0;
-        int chars = 0;
 
-        try {
-            in = new BufferedReader(new FileReader("src/main/resources/text/webpage.html"));
+        try (BufferedReader in = new BufferedReader(new FileReader("src/main/resources/text/webpage.html"))) {
             while ((s = in.readLine()) != null) {
                 chars += s.length();
                 lines++;
@@ -29,8 +26,6 @@ public class LineCounter {
             System.out.println("chars: " + chars);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            in.close();
         }
     }
 }
