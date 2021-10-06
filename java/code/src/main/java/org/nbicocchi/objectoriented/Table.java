@@ -1,20 +1,20 @@
 package org.nbicocchi.objectoriented;
 
 /**
- * Scrivere una classe "Table" per rappresentare tavole pitagoriche. In
- * particolare, la classe è dotata: (a) di un costruttore senza parametri che
- * configura una tavola 10x10, (b) un costruttore che accetta due parametri
- * interi (a, b) che configura una tavola axb, (c) un metodo toString() che
- * ritorna una stringa che rappresenta la tavola, e (d) un metodo sum() che
- * ritorna un numero intero che rappresenta la somma di tutti i numeri presenti
- * nella tavola.
+ * Scrivere una classe Table per rappresentare tavole pitagoriche. In
+ * particolare. Metodi:
+ * Table()      costruttore senza parametri che configura una tavola 10x10
+ * Table(a, b)  costruttore che configura una tavola axb
+ * toString()   ritorna una stringa che rappresenta la tavola
+ * double sum() ritorna la somma di tutti i numeri presenti nella tavola
+ * double avg() ritorna la media di tutti i numeri presenti nella tavola
  *
  * @author Nicola Bicocchi
  */
 public class Table {
     int a, b;
     boolean ready = false;
-    int sum;
+    double sum;
     String table;
 
     public Table() {
@@ -36,10 +36,16 @@ public class Table {
         return table;
     }
 
-    public int sum() {
+    public double sum() {
         if (!ready)
             compute();
         return sum;
+    }
+
+    public double avg() {
+        if (!ready)
+            compute();
+        return sum / (a * b);
     }
 
     private void compute() {
@@ -60,5 +66,6 @@ public class Table {
         Table t = new Table(8, 8);
         System.out.println(t);
         System.out.println(t.sum());
+        System.out.println(t.avg());
     }
 }

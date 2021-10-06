@@ -32,7 +32,7 @@ public class Polygon {
 
     public void move(Point movement) {
         for (Point vertex : vertices) {
-            vertex.move(movement.x, movement.y);
+            vertex.translate(movement.x, movement.y);
         }
     }
 

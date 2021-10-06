@@ -1,34 +1,15 @@
 package org.nbicocchi.objectoriented.shape;
 
+import java.awt.*;
+
 public class Circle extends Shape {
+    Point center;
     double radius;
 
-    public Circle() {
+    public Circle(Point center, double radius) {
         super();
-        this.radius = 10;
-    }
-
-    public Circle(double radius) {
-        super();
+        this.center = center;
         this.radius = radius;
-    }
-
-    public Circle(String color, boolean filled, double radius) {
-        super(color, filled);
-        this.radius = radius;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    public double getArea() {
-        return Math.pow(radius, 2) * Math.PI;
     }
 
     @Override
@@ -37,9 +18,15 @@ public class Circle extends Shape {
     }
 
     @Override
+    public double getArea() {
+        return Math.pow(radius, 2) * Math.PI;
+    }
+
+    @Override
     public String toString() {
         return "Circle{" +
-                "radius=" + radius +
+                "center=" + center +
+                ", radius=" + radius +
                 ", color='" + color + '\'' +
                 ", filled=" + filled +
                 '}';

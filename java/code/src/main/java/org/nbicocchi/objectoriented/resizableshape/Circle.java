@@ -1,20 +1,19 @@
 package org.nbicocchi.objectoriented.resizableshape;
 
-public class Circle implements GeometricObject, Resizable {
-    protected double radius;
+import java.awt.*;
 
-    public Circle(double radius) {
+public class Circle implements GeometricObject, Resizable {
+    Point center;
+    double radius;
+
+    public Circle(Point center, double radius) {
+        this.center = center;
         this.radius = radius;
     }
 
     @Override
-    public void resize(int percent) {
-        radius *= percent;
-    }
-
-    @Override
-    public String toString() {
-        return "Circle [radius=" + radius + ", getArea()=" + getArea() + ", getPerimeter()=" + getPerimeter() + "]";
+    public void resize(double scale) {
+        radius *= scale;
     }
 
     @Override
@@ -25,5 +24,13 @@ public class Circle implements GeometricObject, Resizable {
     @Override
     public double getArea() {
         return Math.pow(radius, 2) * Math.PI;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "center=" + center +
+                ", radius=" + radius +
+                '}';
     }
 }

@@ -1,13 +1,12 @@
-package org.nbicocchi.objectoriented.shape;
+package org.nbicocchi.objectoriented.resizableshape;
 
 import java.awt.*;
 
-public class Rectangle extends Shape {
+public class Rectangle implements GeometricObject, Resizable {
     Point upperLeft;
     Point bottomRight;
 
     public Rectangle(Point upperLeft, Point bottomRight) {
-        super();
         this.upperLeft = upperLeft;
         this.bottomRight = bottomRight;
     }
@@ -23,12 +22,16 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public void resize(double scale) {
+        bottomRight.x = (int) (upperLeft.x + ((bottomRight.x - upperLeft.x) * scale));
+        bottomRight.y = (int) (upperLeft.y - ((upperLeft.y - bottomRight.y) * scale));
+    }
+
+    @Override
     public String toString() {
         return "Rectangle{" +
                 "upperLeft=" + upperLeft +
                 ", bottomRight=" + bottomRight +
-                ", color='" + color + '\'' +
-                ", filled=" + filled +
                 '}';
     }
 }

@@ -6,74 +6,57 @@ package org.nbicocchi.objectoriented;
  * Circle.
  * <p>
  * Verify what happens when PI is accessed as a class attribute or, instead, as
- * an instance attribute (using c1 or c2). What happens when an instance (e.g.,
- * c1) modifies the value of PI? What happens when PI is defined final?
+ * an object attribute (using c1 or c2).
  *
  * @author Nicola Bicocchi
  */
 
 public class Circle {
-    public static double PI = 3.14;
-    private double x;
-    private double y;
-    private double r;
+    public static double PI = 3.14159;
+    double center_x;
+    double center_y;
+    double radius;
 
-    public Circle(double x, double y, double r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
+    public Circle(double center_x, double center_y, double radius) {
+        this.center_x = center_x;
+        this.center_y = center_y;
+        this.radius = radius;
     }
 
-    public double getX() {
-        return x;
+    public double getCenter_x() {
+        return center_x;
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public void setCenter_x(double center_x) {
+        this.center_x = center_x;
     }
 
-    public double getY() {
-        return y;
+    public double getCenter_y() {
+        return center_y;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public void setCenter_y(double center_y) {
+        this.center_y = center_y;
     }
 
-    public double getR() {
-        return r;
+    public double getRadius() {
+        return radius;
     }
 
-    public void setR(double r) {
-        this.r = r;
-    }
-
-    @Override
-    public String toString() {
-        return "Circle{" +
-                "x=" + x +
-                ", y=" + y +
-                ", r=" + r +
-                '}';
-    }
-
-    public static double getPI() {
-        return PI;
-    }
-
-    public static void setPI(double PI) {
-        Circle.PI = PI;
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 
     public static void main(String[] args) {
         Circle c1 = new Circle(2, 2, 4);
         Circle c2 = new Circle(2, 2, 4);
 
-        System.out.println(PI);
-        System.out.println(PI);
+        System.out.println(c1.PI);
+        System.out.println(c2.PI);
 
-        Circle.PI = 4;
-        System.out.println(PI);
-        System.out.println(PI);
+        Circle.PI = 3.2;
+
+        System.out.println(c1.PI);
+        System.out.println(c2.PI);
     }
 }

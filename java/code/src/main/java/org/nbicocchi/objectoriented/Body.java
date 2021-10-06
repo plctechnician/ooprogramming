@@ -4,13 +4,15 @@ package org.nbicocchi.objectoriented;
  * Implement a Body class representing a two-dimensional point (x, y) capable of
  * moving with a certain speed (vx, vy).
  * <p>
- * The class have to implement three constructors: Body() - Setting x = y = vy =
- * vy = 0 Body(x, y) Setting x, y as parameters and vx = vy = 0 Body(x, y, vx,
- * vy) Setting x, y, vx, vy
+ * The class have to implement three constructors:
+ * Body() - Setting x = y = vy = vy = 0
+ * Body(x, y) Setting x, y as parameters and vx = vy = 0
+ * Body(x, y, vx, vy) Setting x, y, vx, vy
  * <p>
- * The class have also to implement the following methods: getters and setters
- * for x, y, vx, vy progress(t) updating coordinates x, y by considering a
- * steady movement at velocity vx, vy toString() printing x, y, vx, vy
+ * The class have also to implement the following methods:
+ * getters and setters for x, y, vx, vy
+ * progress(t) updating coordinates x, y by considering a constant movement at velocity vx, vy for t seconds
+ * toString() printing x, y, vx, vy
  * <p>
  * Also, a demonstrative main() function have to be implemented.
  *

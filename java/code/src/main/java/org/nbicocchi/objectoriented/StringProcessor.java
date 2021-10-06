@@ -5,18 +5,11 @@ import java.util.Arrays;
 /**
  * Implementare una classe StringProcessor per effettuare operazioni su array di
  * stringhe. Metodi:
- * <p>
+ *
  * public StringProcessor(String[] v): Costruttore
- * <p>
- * public int findShortest(): ritorna l'indice della stringa più corta contenuta
- * nello StringProcessor
- * <p>
- * public int search(String key): ritorna l'indice dell'elemento key all'interno
- * dello StringProcessor. -1 se non trovato.
- * <p>
- * public void reverse(): capovolge l'ordine delle stringhe contenute nello
- * StringProcessor.
- * <p>
+ * public int findShortest(): ritorna l'indice della stringa più corta
+ * public int search(String key): ritorna l'indice dell'elemento key. -1 se non trovato.
+ * public void reverse(): capovolge l'ordine delle stringhe
  * public boolean equals(Object obj)
  *
  * @author Nicola Bicocchi
