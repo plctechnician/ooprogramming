@@ -3,8 +3,8 @@ package org.nbicocchi.objectoriented.movableshape;
 import java.awt.*;
 
 public class MovableRectangle implements Movable {
-    private final Point topLeft;
-    private final Point bottomRight;
+    Point topLeft;
+    Point bottomRight;
 
     public MovableRectangle(Point topLeft, Point bottomRight) {
         this.topLeft = topLeft;
