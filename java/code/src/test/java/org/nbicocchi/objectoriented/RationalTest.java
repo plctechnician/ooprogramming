@@ -17,8 +17,8 @@ public class RationalTest {
         Rational r1 = new Rational(1, 2);
         Rational r2 = new Rational(1, 2);
         Rational r3 = r1.plus(r2);
-        assertEquals(4.0, r3.getNumerator(), 0);
-        assertEquals(4.0, r3.getDenominator(), 0);
+        assertEquals(4.0, r3.numerator, 0);
+        assertEquals(4.0, r3.denominator, 0);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class RationalTest {
         Rational r1 = new Rational(1, 2);
         Rational r2 = new Rational(1, 2);
         Rational r3 = r1.times(r2);
-        assertEquals(1.0, r3.getNumerator(), 0);
-        assertEquals(4.0, r3.getDenominator(), 0);
+        assertEquals(1.0, r3.numerator, 0);
+        assertEquals(4.0, r3.denominator, 0);
     }
 }

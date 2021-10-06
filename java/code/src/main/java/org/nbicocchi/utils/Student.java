@@ -3,11 +3,6 @@ package org.nbicocchi.utils;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * Class representing a student
- *
- * @author Nicola Bicocchi
- */
 public class Student implements Comparable<Student>, Serializable {
     private static final long serialVersionUID = 1L;
     String name;

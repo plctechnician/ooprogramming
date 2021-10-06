@@ -6,7 +6,8 @@ import java.io.IOException;
 
 /**
  * Write a program for reading a text file and counting the total number of both
- * lines and chars. The program should output two lines as per below: lines: x
+ * lines and chars. The program should output two lines as per below:
+ * lines: x
  * chars: y
  *
  * @author Nicola Bicocchi
@@ -26,7 +27,6 @@ public class LineCounter {
             }
             System.out.println("lines: " + lines);
             System.out.println("chars: " + chars);
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

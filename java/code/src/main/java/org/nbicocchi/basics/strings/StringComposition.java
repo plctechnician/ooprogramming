@@ -1,7 +1,8 @@
 package org.nbicocchi.basics.strings;
 
 /**
- * Write a program for composing a String using StringBuilder
+ * Write a program for transforming a String[]
+ * into a single String using StringBuilder
  *
  * @author Nicola Bicocchi
  */

@@ -21,7 +21,7 @@ public class MouseDrag extends JFrame {
         SwingUtilities.invokeLater(MouseDrag::new);
     }
 
-    private class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
+    private static class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
         private static final long serialVersionUID = 1L;
         int startX, startY, endX, endY;
         private Color color = Color.RED;

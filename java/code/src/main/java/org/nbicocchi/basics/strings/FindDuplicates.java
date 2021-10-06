@@ -9,17 +9,17 @@ public class FindDuplicates {
 
     public static void main(String[] args) {
         String input = "Attaccapanni";
-        String seen = "";
-        String duplicates = "";
+        StringBuilder seen = new StringBuilder();
+        StringBuilder duplicates = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
             String tmp = String.valueOf(input.charAt(i));
-            if (seen.contains(tmp) && !duplicates.contains(tmp)) {
-                duplicates += tmp;
+            if (seen.toString().contains(tmp) && !duplicates.toString().contains(tmp)) {
+                duplicates.append(tmp);
             } else {
-                seen += tmp;
+                seen.append(tmp);
             }
         }
-        System.out.println(duplicates);
+        System.out.println(duplicates.toString());
     }
 }

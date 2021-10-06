@@ -46,29 +46,27 @@ public class URLReader {
     }
 
     public void savePage(String filename) throws IOException {
-        if (lastPage.isEmpty())
+        if (lastPage.isEmpty()) {
             return;
+        }
         PrintWriter out = new PrintWriter(new FileWriter(filename));
-
         for (String l : lastPage) {
             out.println(l);
         }
-
         out.close();
     }
 
     public static void main(String[] args) {
-        URLReader ur = new URLReader();
+        URLReader urlReader = new URLReader();
         try {
             System.out.println("Downloading page...");
-            ur.readPage("http://www.google.it");
+            urlReader.readPage("https://www.google.it");
 
             System.out.println("Saving page...");
-            ur.savePage(Paths.get(Utils.ooprogrammingdir(), "www.google.it.html").toString());
+            urlReader.savePage(Paths.get(Utils.ooprogrammingdir(), "www.google.it.html").toString());
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Something went wrong with I/O...");
         }
-
     }
 }

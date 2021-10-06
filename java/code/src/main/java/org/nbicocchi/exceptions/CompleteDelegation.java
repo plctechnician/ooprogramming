@@ -2,8 +2,6 @@ package org.nbicocchi.exceptions;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CompleteDelegation {
     public void f() throws IOException {

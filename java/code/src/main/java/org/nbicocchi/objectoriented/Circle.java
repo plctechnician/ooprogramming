@@ -54,7 +54,7 @@ public class Circle {
         System.out.println(c1.PI);
         System.out.println(c2.PI);
 
-        Circle.PI = 3.2;
+        Circle.PI = 3.1;
 
         System.out.println(c1.PI);
         System.out.println(c2.PI);

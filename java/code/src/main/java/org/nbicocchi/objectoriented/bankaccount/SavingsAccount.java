@@ -18,8 +18,8 @@ public class SavingsAccount extends BankAccount {
         this.interestRate = interestRate;
     }
 
-    public double payInterest() {
-        return balance += balance * interestRate;
+    public void payInterest() {
+        balance += balance * interestRate;
     }
 
     @Override
