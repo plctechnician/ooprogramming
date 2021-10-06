@@ -1,37 +1,41 @@
 package org.nbicocchi.objectoriented.movableshape;
 
-public class MovableCircle implements Movable {
-    private final int radius;
-    private final MovablePoint center;
+import java.awt.*;
 
-    public MovableCircle(int x, int y, int radius) {
+public class MovableCircle implements Movable {
+    int radius;
+    Point center;
+
+    public MovableCircle(int radius, Point center) {
         this.radius = radius;
-        this.center = new MovablePoint(x, y);
+        this.center = center;
     }
 
     @Override
     public void moveUp() {
-        center.moveUp();
+        center.translate(0, 1);
     }
 
     @Override
     public void moveDown() {
-        center.moveDown();
+        center.translate(0, -1);
     }
 
     @Override
     public void moveLeft() {
-        center.moveLeft();
+        center.translate(-1, 0);
     }
 
     @Override
     public void moveRight() {
-        center.moveRight();
+        center.translate(1, 0);
     }
 
     @Override
     public String toString() {
-        return "MovableCircle [radius=" + radius + ", center=" + center + "]";
+        return "MovableCircle{" +
+                "radius=" + radius +
+                ", center=" + center +
+                '}';
     }
-
 }

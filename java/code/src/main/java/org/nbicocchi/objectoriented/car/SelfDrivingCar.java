@@ -1,11 +1,11 @@
 package org.nbicocchi.objectoriented.car;
 
-public class SDCar extends Car {
+public class SelfDrivingCar extends Car {
     boolean isSelfDriving;
 
-    public SDCar(boolean isOn, String brand, String color, boolean isSelfDriving) {
-        super(isOn, brand, color);
-        this.isSelfDriving = isSelfDriving;
+    public SelfDrivingCar(String brand, String model) {
+        super(brand, model);
+        this.isSelfDriving = false;
     }
 
     @Override
@@ -20,20 +20,20 @@ public class SDCar extends Car {
         super.turnOff();
     }
 
-    void turnSDOn() {
+    void turnSelfDrivingOn() {
         isSelfDriving = true;
     }
 
-    void turnSDOff() {
+    void turnSelfDrivingOff() {
         isSelfDriving = false;
     }
 
     @Override
     public String toString() {
-        return "SDCar{" +
+        return "SelfDrivingCar{" +
                 "isOn=" + isOn +
                 ", brand='" + brand + '\'' +
-                ", color='" + color + '\'' +
+                ", model='" + model + '\'' +
                 ", isSelfDriving=" + isSelfDriving +
                 '}';
     }

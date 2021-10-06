@@ -1,32 +1,25 @@
 package org.nbicocchi.objectoriented.bankaccount;
 
 /**
- * A class representing a particular bank account with interests on deposits
+ * A bank account paying interests on deposits
  *
  * @author Nicola Bicocchi
  */
 public class SavingsAccount extends BankAccount {
-    /**
-     * The interest rate applied
-     */
     double interestRate;
 
-    /**
-     * Creates a saving account with specified initial balance and interst rate
-     *
-     * @param balance      The initial balance
-     * @param interestRate Interest rate to be applied ()
-     */
+    public SavingsAccount(double interestRate) {
+        super();
+        this.interestRate = interestRate;
+    }
+
     public SavingsAccount(double balance, double interestRate) {
         super(balance);
         this.interestRate = interestRate;
     }
 
-    /**
-     * Calculate yearly interest for the account
-     */
-    public double calculateInterest() {
-        return balance * interestRate;
+    public double payInterest() {
+        return balance += balance * interestRate;
     }
 
     @Override

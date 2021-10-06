@@ -1,8 +1,8 @@
 package org.nbicocchi.objectoriented.resizableshape;
 
 /**
- * Implementare le classi rappresentate in UML all'interno del file .png
- * presente nel package e testarle con il main() sottostante.
+ * Implement the classes described in UML inside the png file contained in this package.
+ * Test them with the following main.
  *
  * @author Nicola Bicocchi
  */

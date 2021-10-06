@@ -1,13 +1,19 @@
 package org.nbicocchi.objectoriented.anphibious;
 
 /**
- * Implementare le classi rappresentate in UML all'interno del file .png
- * presente nel package e testarle con il main() sottostante.
+ * Implement the classes described in UML inside the png file contained in this package.
+ * Test them with the following main.
  *
  * @author Nicola Bicocchi
  */
 public class TestApp {
     public static void main(String[] args) {
+        LandVehicle l = new Car();
+        l.run();
+
+        WaterVehicle w = new Boat();
+        w.sail();
+
         Anphibious a = new Anphibious();
         a.run();
         a.sail();

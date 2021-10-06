@@ -1,26 +1,21 @@
 package org.nbicocchi.objectoriented.bankaccount;
 
 /**
- * Implementare le classi rappresentate in UML all'interno del file .png
- * presente nel package e testarle con il main() sottostante.
+ * Implement the classes described in UML inside the png file contained in this package.
+ * Test them with the following main.
  *
  * @author Nicola Bicocchi
  */
 public class TestApp {
     public static void main(String[] args) {
-        SavingsAccount ac01 = new SavingsAccount(5000, 0.01);
-        SavingsAccount ac02 = new SavingsAccount(10000, 0.02);
+        SavingsAccount a1 = new SavingsAccount(0, 0.01);
+        SavingsAccount a2 = new SavingsAccount(0, 0.02);
 
-        ac01.deposit(1000);
-        ac01.transfer(1000, ac02);
+        a1.deposit(1000);
+        a1.transfer(1000, a2);
+        a2.payInterest();
 
-        ac01.withdraw(500);
-        ac02.withdraw(500);
-
-        ac01.deposit(ac01.calculateInterest());
-        ac02.deposit(ac02.calculateInterest());
-
-        System.out.println(ac01);
-        System.out.println(ac02);
+        System.out.println(a1);
+        System.out.println(a2);
     }
 }

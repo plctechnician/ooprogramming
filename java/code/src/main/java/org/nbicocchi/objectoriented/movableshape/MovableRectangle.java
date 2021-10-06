@@ -1,40 +1,45 @@
 package org.nbicocchi.objectoriented.movableshape;
 
-public class MovableRectangle implements Movable {
-    private final MovablePoint topLeft;
-    private final MovablePoint bottomRight;
+import java.awt.*;
 
-    public MovableRectangle(int x1, int y1, int x2, int y2) {
-        this.topLeft = new MovablePoint(x1, y1);
-        this.bottomRight = new MovablePoint(x2, y2);
+public class MovableRectangle implements Movable {
+    private final Point topLeft;
+    private final Point bottomRight;
+
+    public MovableRectangle(Point topLeft, Point bottomRight) {
+        this.topLeft = topLeft;
+        this.bottomRight = bottomRight;
     }
 
     @Override
     public void moveUp() {
-        topLeft.moveUp();
-        bottomRight.moveUp();
+        topLeft.translate(0, 1);
+        bottomRight.translate(0, 1);
     }
 
     @Override
     public void moveDown() {
-        topLeft.moveDown();
-        bottomRight.moveDown();
+        topLeft.translate(0, -1);
+        bottomRight.translate(0, -1);
     }
 
     @Override
     public void moveLeft() {
-        topLeft.moveLeft();
-        bottomRight.moveLeft();
+        topLeft.translate(-1, 0);
+        bottomRight.translate(-1,0);
     }
 
     @Override
     public void moveRight() {
-        topLeft.moveRight();
-        bottomRight.moveRight();
+        topLeft.translate(1,0);
+        bottomRight.translate(1,0);
     }
 
     @Override
     public String toString() {
-        return "MovableRectangle [topLeft=" + topLeft + ", bottomRight=" + bottomRight + "]";
+        return "MovableRectangle{" +
+                "topLeft=" + topLeft +
+                ", bottomRight=" + bottomRight +
+                '}';
     }
 }

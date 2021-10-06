@@ -3,36 +3,20 @@ package org.nbicocchi.objectoriented.car;
 public class Car {
     boolean isOn;
     String brand;
-    String color;
+    String model;
 
-    public Car(boolean isOn, String brand, String color) {
-        this.isOn = isOn;
+    public Car(String brand, String model) {
+        this.isOn = false;
         this.brand = brand;
-        this.color = color;
+        this.model = model;
     }
 
     void turnOn() {
-        isOn = false;
+        isOn = true;
     }
 
     void turnOff() {
         isOn = false;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     @Override
@@ -40,7 +24,7 @@ public class Car {
         return "Car{" +
                 "isOn=" + isOn +
                 ", brand='" + brand + '\'' +
-                ", color='" + color + '\'' +
+                ", model='" + model + '\'' +
                 '}';
     }
 }
