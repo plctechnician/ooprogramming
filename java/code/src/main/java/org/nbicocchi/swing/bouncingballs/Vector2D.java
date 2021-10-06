@@ -1,8 +1,8 @@
 package org.nbicocchi.swing.bouncingballs;
 
 public class Vector2D {
-    public double x;
-    public double y;
+    double x;
+    double y;
 
     public Vector2D(double x, double y) {
         this.x = x;
@@ -39,7 +39,11 @@ public class Vector2D {
         return Math.sqrt((x * x) + (y * y));
     }
 
-    public double lengthSquared() {
-        return (x * x) + (y * y);
+    @Override
+    public String toString() {
+        return "Vector2D{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

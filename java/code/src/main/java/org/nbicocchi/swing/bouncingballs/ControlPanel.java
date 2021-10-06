@@ -9,20 +9,13 @@ import java.util.Properties;
 
 public class ControlPanel extends JPanel implements ChangeListener, ActionListener {
     private static final long serialVersionUID = 1L;
-    private final JCheckBox pause;
-    private final JCheckBox sounds;
-    private final JSlider slider;
+    final JCheckBox pause;
+    final JSlider slider;
+    Properties properties;
 
-    GamePanel gamePanel;
-    Properties props;
-
-    public ControlPanel(Properties props) {
+    public ControlPanel(Properties properties) {
         super();
-        this.props = props;
-
-        sounds = new JCheckBox("sounds");
-        sounds.addActionListener(this);
-        add(sounds);
+        this.properties = properties;
 
         pause = new JCheckBox("pause");
         pause.addActionListener(this);
@@ -35,40 +28,19 @@ public class ControlPanel extends JPanel implements ChangeListener, ActionListen
         slider.addChangeListener(this);
         add(slider);
 
-        // sync with received props
-        sounds.setSelected(false);
-        if (props.getProperty("sounds").equals("on")) sounds.setSelected(true);
-
-        pause.setSelected(false);
-        if (props.getProperty("pause").equals("on")) pause.setSelected(true);
-
-        slider.setValue(Integer.parseInt(props.getProperty("fps")));
-    }
-
-    public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+        pause.setSelected(properties.getProperty("pause").equals("on"));
+        slider.setValue(Integer.parseInt(properties.getProperty("fps")));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (pause.isSelected()) {
-            props.setProperty("pause", "on");
-        } else {
-            props.setProperty("pause", "off");
-        }
-
-        if (sounds.isSelected()) {
-            props.setProperty("sounds", "on");
-        } else {
-            props.setProperty("sounds", "off");
-        }
+        properties.setProperty("pause", pause.isSelected() ? "on" : "off");
     }
 
     @Override
     public void stateChanged(ChangeEvent e) {
         if (e.getSource() == this.slider) {
-            props.setProperty("fps", Integer.toString(slider.getValue()));
+            properties.setProperty("fps", Integer.toString(slider.getValue()));
         }
     }
-
 }
