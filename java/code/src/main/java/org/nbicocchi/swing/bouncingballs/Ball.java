@@ -11,11 +11,16 @@ public class Ball {
     public Ball(double width, double height) {
         Random rnd = new Random();
         this.radius = Math.max(width / 50, (width / 20) * rnd.nextDouble());
-        this.position = new Vector2D(width * rnd.nextDouble() * 0.7 + radius,
+        this.position = new Vector2D(
+                width * rnd.nextDouble() * 0.7 + radius,
                 height * rnd.nextDouble() * 0.7 + radius);
-        this.velocity = new Vector2D((width / 30) * rnd.nextDouble(),
+        this.velocity = new Vector2D(
+                (width / 30) * rnd.nextDouble(),
                 (height / 30) * rnd.nextDouble());
-        this.color = new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
+        this.color = new Color(
+                (int) scale(radius, width/50, width/20, 0, 255),
+                0,
+                0);
 
     }
 
@@ -26,20 +31,24 @@ public class Ball {
         this.color = color;
     }
 
+    public static double scale(final double valueIn, final double baseMin, final double baseMax, final double limitMin, final double limitMax) {
+        return ((limitMax - limitMin) * (valueIn - baseMin) / (baseMax - baseMin)) + limitMin;
+    }
+
     public void move() {
         position.x += velocity.x;
         position.y += velocity.y;
     }
 
-    public boolean collideHorizontalWall(int w, int h) {
-        if (position.y - radius < 0 || position.y + radius > h) {
+    public boolean collideHorizontalWall(Dimension d) {
+        if (position.y - radius < 0 || position.y + radius > d.height) {
             return true;
         }
         return false;
     }
 
-    public boolean collideVerticalWall(int w, int h) {
-        if (position.x - radius < 0 || position.x + radius > w) {
+    public boolean collideVerticalWall(Dimension d) {
+        if (position.x - radius < 0 || position.x + radius > d.width) {
             return true;
         }
         return false;
@@ -54,6 +63,7 @@ public class Ball {
         // get the mtd
         Vector2D delta = position.sub(other.position);
         double d = delta.length();
+
         // minimum translation distance to push balls apart after intersecting
         Vector2D mtd = delta.multiply(((radius + other.radius) - d) / d);
 

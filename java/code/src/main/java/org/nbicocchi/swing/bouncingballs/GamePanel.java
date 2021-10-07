@@ -10,7 +10,6 @@ import java.util.Properties;
 
 public class GamePanel extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
-    private static final int maxBalls = 15;
     private final Properties properties;
     private List<Ball> balls;
     private Timer timer;
@@ -23,12 +22,12 @@ public class GamePanel extends JPanel implements ActionListener {
     public void init() {
         // generate balls
         balls = new ArrayList<>();
-        for (int i = 0; i < maxBalls; i++) {
+        for (int i = 0; i < Integer.parseInt(properties.getProperty("balls")); i++) {
             balls.add(new Ball(getWidth(), getHeight()));
         }
 
         // start timer
-        int delay = 1000 / Integer.valueOf(properties.getProperty("fps"));
+        int delay = 1000 / Integer.parseInt(properties.getProperty("fps"));
         timer = new Timer(delay, this);
         timer.start();
     }
@@ -49,7 +48,7 @@ public class GamePanel extends JPanel implements ActionListener {
         if (e.getSource() == timer) {
 
             // eventually update fps
-            int delay = 1000 / Integer.valueOf(properties.getProperty("fps"));
+            int delay = 1000 / Integer.parseInt(properties.getProperty("fps"));
             timer = new Timer(delay, this);
             timer.start();
 
@@ -60,10 +59,10 @@ public class GamePanel extends JPanel implements ActionListener {
 
             // main loop
             for (Ball ball : balls) {
-                if (ball.collideHorizontalWall(getWidth(), getHeight())) {
+                if (ball.collideHorizontalWall(new Dimension(getWidth(), getHeight()))) {
                     ball.velocity.y = -ball.velocity.y;
                 }
-                if (ball.collideVerticalWall(getWidth(), getHeight())) {
+                if (ball.collideVerticalWall(new Dimension(getWidth(), getHeight()))) {
                     ball.velocity.x = -ball.velocity.x;
                 }
                 for (Ball other : balls) {

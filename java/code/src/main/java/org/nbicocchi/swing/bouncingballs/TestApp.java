@@ -11,6 +11,7 @@ public class TestApp {
         Properties properties = new Properties();
         properties.setProperty("pause", "off");
         properties.setProperty("fps", "30");
+        properties.setProperty("balls", "15");
 
         GamePanel gamePanel = new GamePanel(properties);
         ControlPanel controlPanel = new ControlPanel(properties);
