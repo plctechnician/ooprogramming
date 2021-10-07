@@ -8,71 +8,54 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Puzzle extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
-    private final int XTILES = 5;
-    private final int YTILES = 10;
+    private final JMenuItem openFile, shuffleFile, closeFile;
+    private final int TILE_X = 3, TILE_Y = 3;
+    private final int TILE_WIDTH = 150, TILE_HEIGHT = 150;
 
-    private final JPanel panel;
-    private final ArrayList<ImageButton> buttons;
+    private final JPanel gamePanel;
+    private List<ImageButton> buttons;
 
     public Puzzle() {
         super("Puzzle");
-        buttons = new ArrayList<>();
 
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createLineBorder(Color.gray));
-        panel.setLayout(new GridLayout(YTILES, XTILES, 0, 0));
-        add(panel, BorderLayout.CENTER);
+        // menu
+        JMenuBar menuBar = new JMenuBar();
+        JMenu file = new JMenu("File");
+        menuBar.add(file);
 
-        Image source;
-        BufferedImage resized = null;
+        openFile = new JMenuItem("Open...");
+        openFile.addActionListener(this);
+        file.add(openFile);
 
-        int TILE_WIDTH = 100;
-        int TILE_HEIGHT = 50;
-        try {
-            String filename = "src/main/resources/images/cow.jpg";
-            source = ImageIO.read(new File(filename));
-            resized = new BufferedImage(XTILES * TILE_WIDTH, YTILES * TILE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        shuffleFile = new JMenuItem("Shuffle");
+        shuffleFile.addActionListener(this);
+        file.add(shuffleFile);
 
-            Graphics2D g = resized.createGraphics();
-            g.drawImage(source, 0, 0, XTILES * TILE_WIDTH, YTILES * TILE_HEIGHT, null);
-            g.dispose();
-        } catch (IOException ex) {
-            Logger.getLogger(Puzzle.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        closeFile = new JMenuItem("Close");
+        closeFile.addActionListener(this);
+        file.add(closeFile);
 
-        for (int i = 0; i < YTILES; i++) {
-            for (int j = 0; j < XTILES; j++) {
-                Image image = createImage(new FilteredImageSource(resized.getSource(),
-                        new CropImageFilter(j * TILE_WIDTH, i * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT)));
+        setJMenuBar(menuBar);
 
-                ImageButton button;
-                if (i == YTILES - 1 && j == XTILES - 1) {
-                    // empty tile
-                    button = new ImageButton(i, j);
-                    button.setBorderPainted(false);
-                    button.setContentAreaFilled(false);
-                    button.setEmptyButton();
-                } else {
-                    // image tiles
-                    button = new ImageButton(image, i, j);
-                }
+        // game panel
+        gamePanel = new JPanel();
+        gamePanel.setBorder(BorderFactory.createLineBorder(Color.gray));
+        gamePanel.setLayout(new GridLayout(TILE_Y, TILE_X, 0, 0));
+        setContentPane(gamePanel);
 
-                button.setBorder(BorderFactory.createLineBorder(Color.gray));
-                button.addActionListener(this);
-                panel.add(button);
-                buttons.add(button);
-            }
-        }
-        pack();
+        // buttons
+        buttons = new LinkedList<>();
+
+        // frame setup
+        setSize(TILE_X * TILE_WIDTH, TILE_Y * TILE_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -80,49 +63,107 @@ public class Puzzle extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof JMenuItem) {
+            checkMenu(e);
+        }
+        if (e.getSource() instanceof ImageButton) {
+            swapButtons(e);
+        }
+
+        updatePanel();
+
+        if (isSolved()) {
+            JOptionPane.showMessageDialog(this, "Solved!");
+        }
+    }
+
+    private void buildPuzzle(String filename) throws IOException {
+        BufferedImage source = ImageIO.read(new File(filename));
+        BufferedImage target = new BufferedImage(
+                    TILE_X * TILE_WIDTH,
+                    TILE_Y * TILE_HEIGHT,
+                    BufferedImage.TYPE_INT_ARGB);
+
+        // resize image to fit properly
+        Graphics2D g = target.createGraphics();
+        g.drawImage(source, 0, 0, TILE_X * TILE_WIDTH, TILE_Y * TILE_HEIGHT, null);
+        g.dispose();
+
+        // split image in buttons
+        for (int i = 0; i < TILE_Y; i++) {
+            for (int j = 0; j < TILE_X; j++) {
+                Image image = createImage(
+                        new FilteredImageSource(target.getSource(),
+                        new CropImageFilter(
+                                j * TILE_WIDTH,
+                                i * TILE_HEIGHT,
+                                TILE_WIDTH,
+                                TILE_HEIGHT)));
+
+                ImageButton button = new ImageButton(image, i, j);
+                button.addActionListener(this);
+                buttons.add(button);
+            }
+        }
+        buttons.get(buttons.size() - 1).setEmpty();
+        updatePanel();
+    }
+
+    private void checkMenu(ActionEvent e) {
+        if (e.getSource() == closeFile) {
+            dispose();
+        } else if (e.getSource() == this.shuffleFile) {
+            Collections.shuffle(buttons);
+            updatePanel();
+        } else if (e.getSource() == this.openFile) {
+            JFileChooser open = new JFileChooser();
+            int option = open.showOpenDialog(this);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                try {
+                    buildPuzzle(open.getSelectedFile().getAbsolutePath());
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Something went wrong...");
+                }
+            }
+        }
+    }
+
+    private void swapButtons(ActionEvent e) {
         // look for empty button
-        int lidx = 0;
+        int emptyIndex = 0;
         for (ImageButton button : buttons) {
-            if (button.isEmptyButton()) {
-                lidx = buttons.indexOf(button);
+            if (button.isEmpty()) {
+                emptyIndex = buttons.indexOf(button);
             }
         }
 
         // look for clicked button
-        JButton button = (JButton) e.getSource();
-        int bidx = buttons.indexOf(button);
+        ImageButton button = (ImageButton) e.getSource();
+        int clickedIndex = buttons.indexOf(button);
 
         // eventually swap
-        if ((bidx - 1 == lidx) || (bidx + 1 == lidx) || (bidx - XTILES == lidx) || (bidx + XTILES == lidx)) {
-            Collections.swap(buttons, bidx, lidx);
+        if ((clickedIndex - 1 == emptyIndex) || (clickedIndex + 1 == emptyIndex) || (clickedIndex - TILE_X == emptyIndex) || (clickedIndex + TILE_X == emptyIndex)) {
+            Collections.swap(buttons, clickedIndex, emptyIndex);
         }
-
-        // repaint panel
-        panel.removeAll();
-        for (JComponent btn : buttons) {
-            panel.add(btn);
-        }
-        panel.validate();
-
-        // check for end game
-        checkSolution();
     }
 
-    private void checkSolution() {
-        ArrayList<Point> current = new ArrayList<>();
+    private void updatePanel() {
+        gamePanel.removeAll();
         for (ImageButton btn : buttons) {
-            current.add(btn.getPoint());
+            gamePanel.add(btn);
         }
+        gamePanel.validate();
+    }
 
-        ArrayList<Point> solution = new ArrayList<>();
-        for (int i = 0; i < YTILES; i++) {
-            for (int j = 0; j < XTILES; j++) {
-                solution.add(new Point(i, j));
+    private boolean isSolved() {
+        for (int row = 0; row < TILE_Y; row++) {
+            for (int column = 0; column < TILE_X; column++) {
+                int index = row * TILE_X + column;
+                if (!buttons.get(index).getCorrectPosition().equals(new Point(row, column))) {
+                    return false;
+                }
             }
         }
-
-        if (current.equals(solution)) {
-            JOptionPane.showMessageDialog(this, "Finished", "Congratulation", JOptionPane.INFORMATION_MESSAGE);
-        }
+        return true;
     }
 }

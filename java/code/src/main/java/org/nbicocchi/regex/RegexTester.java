@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class RegexTester {
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(new File("src/main/resources/text/regex_examples.csv"))) {
+        try (Scanner scanner = new Scanner(new File("java/code/src/main/resources/text/regex_examples.csv"))) {
             while (scanner.hasNextLine()) {
                 process(scanner.nextLine());
             }

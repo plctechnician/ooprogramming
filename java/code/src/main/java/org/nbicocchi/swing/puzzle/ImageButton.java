@@ -7,28 +7,15 @@ import java.awt.event.MouseEvent;
 
 public class ImageButton extends JButton {
     private static final long serialVersionUID = 1L;
-    private final int x;
-    private final int y;
-    private boolean isEmptyButton;
+    private final int correctPosition_x;
+    private final int correctPosition_y;
 
-    public ImageButton(int x, int y) {
-        super();
-        this.x = x;
-        this.y = y;
-        initUI();
-    }
-
-    public ImageButton(Image image, int x, int y) {
+    public ImageButton(Image image, int correctPosition_x, int correctPosition_y) {
         super(new ImageIcon(image));
-        this.x = x;
-        this.y = y;
-        initUI();
-    }
+        this.correctPosition_x = correctPosition_x;
+        this.correctPosition_y = correctPosition_y;
 
-    private void initUI() {
-        isEmptyButton = false;
-        BorderFactory.createLineBorder(Color.gray);
-
+        setBorder(BorderFactory.createLineBorder(Color.gray));
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -42,15 +29,15 @@ public class ImageButton extends JButton {
         });
     }
 
-    public void setEmptyButton() {
-        isEmptyButton = true;
+    public void setEmpty() {
+        setIcon(null);
     }
 
-    public boolean isEmptyButton() {
-        return isEmptyButton;
+    public boolean isEmpty() {
+        return getIcon() == null;
     }
 
-    public Point getPoint() {
-        return new Point(x, y);
+    public Point getCorrectPosition() {
+        return new Point(correctPosition_x, correctPosition_y);
     }
 }

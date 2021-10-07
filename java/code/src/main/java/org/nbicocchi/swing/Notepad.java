@@ -44,10 +44,9 @@ public class Notepad extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.close)
+        if (e.getSource() == this.close) {
             dispose();
-
-        else if (e.getSource() == this.openFile) {
+        } else if (e.getSource() == this.openFile) {
             JFileChooser open = new JFileChooser();
             int option = open.showOpenDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {

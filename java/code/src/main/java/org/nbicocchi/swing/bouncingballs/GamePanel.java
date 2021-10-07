@@ -2,52 +2,60 @@ package org.nbicocchi.swing.bouncingballs;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     private static final int maxBalls = 15;
     private final Properties properties;
-    private final List<Ball> balls;
+    private List<Ball> balls;
+    private Timer timer;
 
     public GamePanel(Properties properties) {
         super();
         this.properties = properties;
-        this.balls = new ArrayList<>();
     }
 
-    @Override
-    public void run() {
-        long sleepTime, skipTicks, nextTick = System.nanoTime();
-
+    public void init() {
         // generate balls
+        balls = new ArrayList<>();
         for (int i = 0; i < maxBalls; i++) {
             balls.add(new Ball(getWidth(), getHeight()));
         }
 
-        while (true) {
-            // game pause option
-            // if paused sleeps in chunks of 100ms
-            while (properties.getProperty("pause").equals("on")) {
-                try {
-                    Thread.sleep(100);
-                    nextTick = System.nanoTime();
-                } catch (InterruptedException ignored) {
-                }
-            }
+        // start timer
+        int delay = 1000 / Integer.valueOf(properties.getProperty("fps"));
+        timer = new Timer(delay, this);
+        timer.start();
+    }
 
-            // fps manager
-            skipTicks = (long) (Math.pow(10, 9) / Integer.parseInt(properties.getProperty("fps")));
-            nextTick += skipTicks;
-            sleepTime = nextTick - System.nanoTime();
+    @Override
+    public void paintComponent(Graphics g) {
+        g.setColor(Color.white);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.setColor(Color.BLACK);
+        g.drawString("FPS:" + properties.getProperty("fps"), 4, 14);
+        for (Ball ball : balls) {
+            ball.paintComponent(g);
+        }
+    }
 
-            if (sleepTime > 0) {
-                try {
-                    Thread.sleep(sleepTime / 1000000);
-                } catch (InterruptedException ignored) {
-                }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == timer) {
+
+            // eventually update fps
+            int delay = 1000 / Integer.valueOf(properties.getProperty("fps"));
+            timer = new Timer(delay, this);
+            timer.start();
+
+            // pause
+            if (properties.getProperty("pause").equals("on")) {
+                return;
             }
 
             // main loop
@@ -66,17 +74,6 @@ public class GamePanel extends JPanel implements Runnable {
                 ball.move();
             }
             repaint();
-        }
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        g.setColor(Color.white);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(Color.BLACK);
-        g.drawString("FPS:", 4, 14);
-        for (Ball ball : balls) {
-            ball.paintComponent(g);
         }
     }
 }
