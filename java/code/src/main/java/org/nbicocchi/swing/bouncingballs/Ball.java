@@ -41,17 +41,11 @@ public class Ball {
     }
 
     public boolean collideHorizontalWall(Dimension d) {
-        if (position.y - radius < 0 || position.y + radius > d.height) {
-            return true;
-        }
-        return false;
+        return position.y - radius < 0 || position.y + radius > d.height;
     }
 
     public boolean collideVerticalWall(Dimension d) {
-        if (position.x - radius < 0 || position.x + radius > d.width) {
-            return true;
-        }
-        return false;
+        return position.x - radius < 0 || position.x + radius > d.width;
     }
 
     public boolean collideBall(Ball other) {
