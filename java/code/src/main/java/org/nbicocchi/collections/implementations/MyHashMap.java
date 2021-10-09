@@ -48,7 +48,7 @@ class MyHashMap_HashEntry {
     }
 }
 
-public class MyHashMap {
+public class MyHashMap implements MyMap {
     private final static int TABLE_SIZE = 8;
     MyHashMap_HashEntry[] table;
 

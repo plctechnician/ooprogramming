@@ -1,14 +1,13 @@
 package org.nbicocchi.basics.strings;
 
 /**
- * Write a program to find all duplicates characters in a given string
+ * Write a function accepting a String and returning
+ * all duplicate characters as a char[]
  *
  * @author Nicola Bicocchi
  */
-public class FindDuplicates {
-
-    public static void main(String[] args) {
-        String input = "Attaccapanni";
+public class DuplicateChars {
+    public static char[] duplicateChars(String input) {
         StringBuilder seen = new StringBuilder();
         StringBuilder duplicates = new StringBuilder();
 
@@ -20,6 +19,14 @@ public class FindDuplicates {
                 seen.append(tmp);
             }
         }
-        System.out.println(duplicates);
+        return duplicates.toString().toCharArray();
+    }
+
+    public static void main(String[] args) {
+        String input = "whistleblower";
+        char[] output = duplicateChars(input);
+        for (char c : output) {
+            System.out.println(c);
+        }
     }
 }

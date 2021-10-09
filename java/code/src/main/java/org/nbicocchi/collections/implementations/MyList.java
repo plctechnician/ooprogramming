@@ -7,12 +7,8 @@ package org.nbicocchi.collections.implementations;
  */
 public interface MyList {
     void add(Object data);
-
     void add(Object data, int index);
-
     Object get(int index);
-
     boolean remove(int index);
-
     int size();
 }

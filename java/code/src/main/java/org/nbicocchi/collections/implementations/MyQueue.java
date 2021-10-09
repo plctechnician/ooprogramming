@@ -7,6 +7,5 @@ package org.nbicocchi.collections.implementations;
  */
 public interface MyQueue {
     Object getFirst();
-
     Object getLast();
 }

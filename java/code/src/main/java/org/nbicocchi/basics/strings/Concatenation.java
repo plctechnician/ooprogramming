@@ -1,13 +1,14 @@
 package org.nbicocchi.basics.strings;
 
 /**
- * Write a program for transforming a String[]
- * into a single String using StringBuilder
+ * Write a function accepting a String[]
+ * and returning a single String representing
+ * the concatenation of all Strings of the array
  *
  * @author Nicola Bicocchi
  */
-public class StringComposition {
-    public static String compose(String[] strings) {
+public class Concatenation {
+    public static String concatenate(String[] strings) {
         StringBuilder sb = new StringBuilder();
         for (String s : strings) {
             sb.append(s);
@@ -17,7 +18,7 @@ public class StringComposition {
 
     public static void main(String[] args) {
         String[] strings = {"Hello", " ", "World", "!"};
-        System.out.println(compose(strings));
+        System.out.println(concatenate(strings));
     }
 
 }
