@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ImagePanel extends JPanel {
+public class ComparatorPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private BufferedImage image = null;
@@ -25,7 +25,6 @@ public class ImagePanel extends JPanel {
         if (image != null) {
             g.drawImage(image, 0, 0, null);
         }
-
     }
 
     @Override
