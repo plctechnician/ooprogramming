@@ -1,4 +1,4 @@
-package org.nbicocchi.basics.flowcontrol;
+package org.nbicocchi.basics.exercises;
 
 import java.util.Random;
 

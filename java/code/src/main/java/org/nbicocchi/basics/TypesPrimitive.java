@@ -1,6 +1,6 @@
 package org.nbicocchi.basics;
 
-public class PrimitiveTypes {
+public class TypesPrimitive {
     public static void main(String[] args) {
         byte a = 13;
         /* char is actually a 16 bit unsigned int */

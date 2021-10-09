@@ -1,6 +1,6 @@
 package org.nbicocchi.basics;
 
-public class WrapperTypes {
+public class TypesWrapper {
     public static void test_int() {
         int n = 3;
         Integer N = n;    /* autoboxing */
