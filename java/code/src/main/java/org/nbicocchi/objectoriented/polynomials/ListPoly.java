@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.polynomials;
+package org.nbicocchi.objectoriented.polynomials;
 
 import java.util.ArrayList;
 import java.util.List;

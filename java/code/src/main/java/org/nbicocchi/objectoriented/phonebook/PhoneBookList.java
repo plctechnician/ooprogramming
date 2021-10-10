@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.phonebook;
+package org.nbicocchi.objectoriented.phonebook;
 
 import org.nbicocchi.utils.Student;
 
@@ -58,16 +58,5 @@ public class PhoneBookList implements PhoneBook {
         Student p = searchByNumber(phone);
         if (p != null)
             pb.remove(p);
-    }
-
-    /**
-     * Add a person to the PhoneBook
-     *
-     * @param name    Name of the person
-     * @param surname Surname of the person
-     * @param phone   Phone of the person
-     */
-    public void addPerson(String name, String surname, String phone) {
-        pb.add(new Student(name, surname, phone));
     }
 }

@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.polynomials;
+package org.nbicocchi.objectoriented.polynomials;
 
 /**
  * Class representing a polynomial with coefficients stored as on array of

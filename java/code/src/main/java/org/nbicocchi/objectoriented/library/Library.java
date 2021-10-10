@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.library;
+package org.nbicocchi.objectoriented.library;
 
 import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormat;
@@ -11,7 +11,8 @@ public class Library {
     ArrayList<Rent> rents;
 
     public Library() {
-        rents = load();
+        rents = loadData();
+
         System.out.println("- All Rents:");
         for (Rent r : rents) {
             System.out.println(r);
@@ -21,13 +22,13 @@ public class Library {
         System.out.println(getLongestRent());
 
         System.out.println("- Faulty Rents:");
-        for (Rent r : getFaults()) {
+        for (Rent r : getFaultyRents()) {
             System.out.println(r);
         }
 
     }
 
-    private ArrayList<Rent> load() {
+    public ArrayList<Rent> loadData() {
         ArrayList<Rent> r = new ArrayList<>();
         DateTimeFormatter f = DateTimeFormat.forPattern("dd/MM/yyyy");
 
@@ -47,9 +48,8 @@ public class Library {
         return r;
     }
 
-    private Rent getLongestRent() {
+    public Rent getLongestRent() {
         Rent longestRent = rents.get(0);
-
         for (Rent r : rents) {
             if ((r.getEnd().getMillis() - r.getBegin().getMillis()) >
                     (longestRent.getEnd().getMillis() - longestRent.getBegin().getMillis())) {
@@ -59,7 +59,7 @@ public class Library {
         return longestRent;
     }
 
-    private ArrayList<Rent> getFaults() {
+    public ArrayList<Rent> getFaultyRents() {
         ArrayList<Rent> r = new ArrayList<>();
         for (int i = 0; i < rents.size() - 1; i++) {
             for (int j = i + 1; j < rents.size(); j++) {

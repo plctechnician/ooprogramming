@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.library;
+package org.nbicocchi.objectoriented.library;
 
 /**
  * Una biblioteca ha la necessità di tenere traccia dei prestiti dei libri e

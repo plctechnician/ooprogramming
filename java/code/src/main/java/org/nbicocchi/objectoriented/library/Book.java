@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.library;
+package org.nbicocchi.objectoriented.library;
 
 /**
  * Class representing a Book

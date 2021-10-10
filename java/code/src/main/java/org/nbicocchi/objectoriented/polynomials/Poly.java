@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.polynomials;
+package org.nbicocchi.objectoriented.polynomials;
 
 /**
  * Interface representing a polynomial with arbitrary grade

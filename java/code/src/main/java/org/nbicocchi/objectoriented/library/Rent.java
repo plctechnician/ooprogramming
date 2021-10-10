@@ -1,10 +1,10 @@
-package org.nbicocchi.collections.exercises.library;
+package org.nbicocchi.objectoriented.library;
 
 import org.joda.time.DateTime;
 import org.nbicocchi.utils.Student;
 
 /**
- * Rent implements a rent of an Item to a Person for a delimited time frame
+ * Rent implements a rent of an Item for a delimited time frame
  */
 public class Rent {
     Item item;

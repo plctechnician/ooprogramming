@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.phonebook;
+package org.nbicocchi.objectoriented.phonebook;
 
 import org.nbicocchi.utils.Student;
 

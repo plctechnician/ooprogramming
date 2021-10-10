@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.polynomials;
+package org.nbicocchi.objectoriented.polynomials;
 
 /**
  * Develop two classes, namely ArrayPoly and ListPoly, for managing polynomials.

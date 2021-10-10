@@ -1,19 +1,21 @@
-package org.nbicocchi.collections.exercises.phonebook;
+package org.nbicocchi.objectoriented.phonebook;
 
 import org.nbicocchi.utils.Student;
 
 /**
  * The PhoneBook Interface defines the functionalities of a basic phone book.
  * <p>
- * Provide two different implementations of the given interface working with the
- * use case below. The first, using internally Arraylist (a), the second using
- * internally HashMap (b).
+ * Provide two different implementations of the PhoneBook interface working with the
+ * use case below. The first, (a) internally uses an Arraylist, the second (b) internally uses
+ * an HashMap.
  *
  * @author Nicola Bicocchi
  */
 public class TestApp {
     public static void main(String[] args) {
         PhoneBook pb = new PhoneBookMap();
+
+        //Uncomment this line for switching implementation
         //PhoneBook pb = new PhoneBookArray();
         pb.addPerson(new Student("Nicola", "Bicocchi", "34567"));
         pb.addPerson(new Student("Marco", "Rizzo", "45243"));

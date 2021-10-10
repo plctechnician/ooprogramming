@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.exercises.polynomials;
+package org.nbicocchi.objectoriented.polynomials;
 
 /**
  * An abstract class providing an implementation for shared parts of ArrayPoly
