@@ -76,7 +76,6 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M4] Data Structures (Collections Framework)
 
-* Structure of JCF (interfaces and abstract classes)
 * Collection (Set, Queue, List) interface and its implementations
 * Map interface and its implementations
 * Iterator and ListIterator (definition and use)
