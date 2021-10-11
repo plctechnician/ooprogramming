@@ -58,26 +58,20 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M2] Basics
 
-* Java development environment
-* Variable, constants, parameter passing
+* Primitive types, variables, constants, parameter passing
 * Flow control statements
 * Strings
 * Arrays
 
 [M3] Object Oriented Programming
 
-* Classes and objects 
-* Constructors, getters, setters, toString()
-* Method overloading and polymorphism
-* Scope and visibility
-* Static attributes and methods
-* Wrapper classes
-* Packages 
-* Inheritance
-* Upcasting and downcasting 
-* Method overriding and polymorphism
-* Abstract methods and classes
-* Interfaces
+* Packages, classes and objects
+* Attributes, methods, visibility
+* Constructors, getters/setters, toString()
+* Inheritance, upcasting, downcasting
+* Polymorphism, method overloading/overriding 
+* Abstract methods, abstract classes, interfaces
+* Wrapper types
 * UML class diagrams
 
 [M4] Data Structures (Collections Framework)
@@ -90,10 +84,10 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M5] Generic Data Structures (Generics)
 
-* Array Sub-typing
-* Object Sub-typing
-* Collection Sub-typing
-* Bounded Wild-cards Types
+* Array sub-typing
+* Object sub-typing
+* Collection sub-typing
+* Bounded wildcards types
 
 [M6] Functional Interfaces
 
@@ -104,25 +98,21 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M7] Exceptions
 
-* Motivations and basic concepts
 * Exceptions (checked and unchecked) and Errors
 * Catching Exceptions (try/catch/finally)
 * Throwing Exceptions (throw)
-* Interception and Delegation (complete and partial) (throws)
+* Delegation models (complete, partial, no delegation) (throws)
 
 [M8] Multi-threading
 
-* Motivations and basic concepts
 * Thread states
-* Creating, starting and stopping threads
 * Race conditions
 * Basic synchronisation (synchronised/sleep/yield/join)
 * Advanced synchronisation (wait/notify)
-* Key Issues: Deadlock, Livelock, Starvation
 
 [M9] Swing Framework
 
-* Graphical event-based programming
+* Structure of Java Swing (interfaces and abstract classes)
 * Containers and Components
 * Layout management
 * Event delegation model
@@ -143,12 +133,10 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M12] Data Access (I/O Framework)
 
-* Reader/Writer interfaces and their implementations
-* InputStream/OutputStream interfaces and their implementations
-* Serialization (Deep/Shallow)
+* InputStream/OutputStream interfaces (binary files)
+* Reader/Writer interfaces (text files)
 * Tokenizers (Scanner/StringTokeniser classes)
 * Filesystem manipulation (File/Files classes)
-* Random Access Files
 
 ## Python Modules
 [M1] Basics
