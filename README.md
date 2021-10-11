@@ -58,14 +58,14 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M2] Basics
 
-* Primitive types, variables, constants, parameter passing
+* Primitive types, variables, constants
+* Functions, parameter passing
 * Flow control statements
-* Strings
-* Arrays
+* Strings, arrays, random numbers, terminal i/o 
 
 [M3] Object Oriented Programming
 
-* Packages, classes and objects
+* Classes, objects, packages
 * Attributes, methods, visibility
 * Constructors, getters/setters, toString()
 * Inheritance, upcasting, downcasting
@@ -141,11 +141,10 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 [M1] Basics
 
 * The Python environment
-* Variables
+* Variables, constants
 * Numeric, strings, boolean literals
-* Conditional statements
-* Iterative statemets
-* Functions and arguments
+* Flow control statements
+* Functions, parameter passing
 * Decorators
 * Exceptions
 * I/O Basics
@@ -154,13 +153,12 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 * Iterable, Iterator, Generator
 * List, Tuple, Set, Dictionary
-* Generator Comprehension
-* List Comprehension
+* Generator, List, Dictionary Comprehension
 * Itertools
 
 [M3] Object Oriented Programming
 
-* Classes, attributes, methods
+* Classes, objects
 * Getters, setters, properties, decorators
 * Encapsulation, inheritance, polymorphism 
 * Informal interfaces
