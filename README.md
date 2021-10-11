@@ -68,10 +68,10 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 * Classes, objects, packages
 * Attributes, methods, visibility
 * Constructors, getters/setters, toString()
+* Wrapper types
 * Inheritance, upcasting, downcasting
 * Polymorphism, method overloading/overriding 
 * Abstract methods, abstract classes, interfaces
-* Wrapper types
 * UML class diagrams
 
 [M4] Data Structures (Collections Framework)
