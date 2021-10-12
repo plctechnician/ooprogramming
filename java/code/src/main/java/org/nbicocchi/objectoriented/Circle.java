@@ -1,62 +1,52 @@
 package org.nbicocchi.objectoriented;
 
+import java.awt.*;
+
 /**
- * Write a Java class representing a Circle (x, y, r). Inside the class, define
- * a static attribute representing PI. Create two objects, c1 and c2, of class
- * Circle.
- * <p>
- * Verify what happens when PI is accessed as a class attribute or, instead, as
- * an object attribute (using c1 or c2).
+ * Write a Java class representing a Circle (Point center, int radius)
+ * Methods:
+ * double getArea()
+ * double getPerimeter()
+ * boolean contains(Point point)
  *
  * @author Nicola Bicocchi
  */
 
 public class Circle {
-    public static double PI = 3.14159;
-    double center_x;
-    double center_y;
-    double radius;
+    Point center;
+    int radius;
 
-    public Circle(double center_x, double center_y, double radius) {
-        this.center_x = center_x;
-        this.center_y = center_y;
+    public Circle(Point center, int radius) {
+        this.center = center;
         this.radius = radius;
     }
 
-    public double getCenter_x() {
-        return center_x;
+    public double getArea() {
+        return Math.PI * radius * radius;
     }
 
-    public void setCenter_x(double center_x) {
-        this.center_x = center_x;
+    public double getPerimeter() {
+        return Math.PI * 2 * radius;
     }
 
-    public double getCenter_y() {
-        return center_y;
+    public boolean contains(Point point) {
+        return radius > Math.hypot(point.x, point.y);
     }
 
-    public void setCenter_y(double center_y) {
-        this.center_y = center_y;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "center=" + center +
+                ", radius=" + radius +
+                '}';
     }
 
     public static void main(String[] args) {
-        Circle c1 = new Circle(2, 2, 4);
-        Circle c2 = new Circle(2, 2, 4);
-
-        System.out.println(c1.PI);
-        System.out.println(c2.PI);
-
-        Circle.PI = 3.1;
-
-        System.out.println(c1.PI);
-        System.out.println(c2.PI);
+        Circle c = new Circle(new Point(0, 0), 10);
+        System.out.println(c);
+        System.out.println(c.getArea());
+        System.out.println(c.getPerimeter());
+        System.out.println(c.contains(new Point(5, 5)));
+        System.out.println(c.contains(new Point(9, 9)));
     }
 }

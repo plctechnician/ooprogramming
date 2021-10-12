@@ -13,9 +13,6 @@ package org.nbicocchi.objectoriented;
  */
 public class Table {
     int a, b;
-    boolean ready = false;
-    double sum;
-    String table;
 
     public Table() {
         super();
@@ -31,35 +28,29 @@ public class Table {
 
     @Override
     public String toString() {
-        if (!ready)
-            compute();
-        return table;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= a; i++) {
+            for (int j = 1; j <= b; j++) {
+                sb.append(i * j);
+                sb.append("\t");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
     public double sum() {
-        if (!ready)
-            compute();
+        double sum = 0;
+        for (int i = 1; i <= a; i++) {
+            for (int j = 1; j <= b; j++) {
+                sum += i * j;
+            }
+        }
         return sum;
     }
 
     public double avg() {
-        if (!ready)
-            compute();
-        return sum / (a * b);
-    }
-
-    private void compute() {
-        sum = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= a; i++) {
-            for (int j = 1; j <= b; j++) {
-                sb.append(i * j).append("\t");
-                sum += i * j;
-            }
-            sb.append("\n");
-        }
-        table = sb.toString();
-        ready = true;
+        return sum() / (a * b);
     }
 
     public static void main(String[] args) {

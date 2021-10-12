@@ -25,8 +25,7 @@ public class RationalTest {
     public void times() {
         Rational r1 = new Rational(1, 2);
         Rational r2 = new Rational(1, 2);
-        Rational r3 = r1.times(r2);
-        assertEquals(1.0, r3.numerator, 0);
-        assertEquals(4.0, r3.denominator, 0);
+        assertEquals(1.0, r1.times(r2).numerator, 0);
+        assertEquals(4.0, r1.times(r2).denominator, 0);
     }
 }

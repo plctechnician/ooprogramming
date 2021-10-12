@@ -26,5 +26,4 @@ public class StringProcessorTest {
         sp1.reverse();
         assertEquals(1, sp1.search("Agata"));
     }
-
 }
