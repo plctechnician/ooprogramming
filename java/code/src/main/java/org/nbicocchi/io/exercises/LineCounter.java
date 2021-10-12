@@ -15,12 +15,12 @@ import java.io.IOException;
 public class LineCounter {
     public static void main(String[] args) throws IOException {
         int lines = 0, chars = 0;
-        String s;
+        String line;
 
-        try (BufferedReader in = new BufferedReader(new FileReader("src/main/resources/text/webpage.html"))) {
-            while ((s = in.readLine()) != null) {
-                chars += s.length();
-                lines++;
+        try (BufferedReader in = new BufferedReader(new FileReader("java/code/src/main/resources/text/webpage.html"))) {
+            while ((line = in.readLine()) != null) {
+                chars += line.length();
+                lines += 1;
             }
             System.out.println("lines: " + lines);
             System.out.println("chars: " + chars);

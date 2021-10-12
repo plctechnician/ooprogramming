@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Scrivere una classe dotata di 4 metodi pubblici:
  * <p>
- * 1) getStudent che legge da tastiera i campi necessari (su una sola linea,
+ * 1) generateStudent che legge da tastiera i campi necessari (su una sola linea,
  * separati da virgole) a descrivere uno studente (nome,cognome,anno imm.,media)
  * e ritorna un oggetto studente (vedi Scanner);
  * <p>
@@ -30,7 +30,7 @@ import java.util.Scanner;
  * @author Nicola Bicocchi
  */
 public class FileStorage {
-    public Student generateStudent() {
+    public static Student generateStudent() {
         System.out.println("Insert a student (e.g., name,surname,average): ");
         Scanner scr = new Scanner(System.in);
         String[] fields = scr.nextLine().split(",");
@@ -63,13 +63,13 @@ public class FileStorage {
     }
 
     public static void main(String[] args) {
-        FileStorage manager = new FileStorage();
-        Student student = manager.generateStudent();
+        FileStorage storage = new FileStorage();
+        Student student = FileStorage.generateStudent();
 
         try {
-            manager.saveText(student, Paths.get(Utils.ooprogrammingdir(), "student.bin").toString());
-            manager.saveBin(student, Paths.get(Utils.ooprogrammingdir(), "student.txt").toString());
-            manager.saveObj(student, Paths.get(Utils.ooprogrammingdir(), "student.obj").toString());
+            storage.saveText(student, Paths.get(Utils.ooprogrammingdir(), "student.bin").toString());
+            storage.saveBin(student, Paths.get(Utils.ooprogrammingdir(), "student.txt").toString());
+            storage.saveObj(student, Paths.get(Utils.ooprogrammingdir(), "student.obj").toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
