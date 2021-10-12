@@ -7,7 +7,7 @@ import java.util.Set;
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/collection/index.php
  */
-public class Collections {
+public class Sets {
 
     /**
      * Find in the string s, the first recurring character and return it.
