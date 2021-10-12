@@ -1,5 +1,7 @@
 package org.nbicocchi.basics.exercises;
 
+import java.awt.*;
+
 /**
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/array/index.php
