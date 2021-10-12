@@ -60,6 +60,5 @@ public class Iterators {
         for (int i : l) {
             System.out.println(i);
         }
-
     }
 }

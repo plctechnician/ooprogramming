@@ -4,6 +4,6 @@ import org.nbicocchi.utils.Student;
 
 class StudentGoodPredicate implements StudentPredicate {
     public boolean test(Student s) {
-        return s.getAverage() >= 20 && s.getAverage() <= 24;
+        return s.getAverage() >= 25;
     }
 }

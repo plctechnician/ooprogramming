@@ -12,35 +12,32 @@ import java.util.Collections;
  */
 public class Sorting {
     public static void main(String[] args) {
-        ArrayList<Student> l = new ArrayList<>();
-        l.add(new Student("Nicola", "Rossi", 28));
-        l.add(new Student("Paolo", "Rossi", 25));
-        l.add(new Student("Nicola", "Bianchi", 23));
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("Nicola", "Rossi", 28));
+        students.add(new Student("Paolo", "Verdi", 25));
+        students.add(new Student("Nicola", "Bianchi", 23));
 
-        for (Student s : l) {
-            System.out.println(s);
-        }
-        System.out.println();
+        /* Original list */
+        System.out.println(students);
 
         /*
-         * Sorting using natural ordering. Comparable must be implemented while equals()
-         * and hashcode() must be overridden in student class for defining an order
+         * Sorting using natural ordering. Comparable must be implemented within Student
+         * while equals() and hashcode() must be overridden
          */
-        Collections.sort(l);
-
-        for (Student s : l) {
-            System.out.println(s);
-        }
-        System.out.println();
+        Collections.sort(students);
+        System.out.println(students);
 
         /*
-         * Sorting using a comparator
+         * Sorting using another ordering, defined within comparator
          */
-        l.sort((s0, s1) -> Double.compare(s0.getAverage(), s1.getAverage()));
+        students.sort((s0, s1) -> Double.compare(s0.getAverage(), s1.getAverage()));
+        System.out.println(students);
 
-        for (Student s : l) {
-            System.out.println(s);
-        }
+        /*
+         * Sorting using another ordering, defined within comparator
+         */
+        students.sort((s0, s1) -> Integer.compare(s0.getLastname().length(), s1.getLastname().length()));
+        System.out.println(students);
     }
 
 }

@@ -66,11 +66,11 @@ public class Student implements Comparable<Student>, Serializable {
     @Override
     public int compareTo(Student s) {
         // Compare lastname first, and then name
-        int cmp = lastname.compareTo(s.lastname);
-        if (cmp != 0) {
-            return cmp;
+        int compare = lastname.compareTo(s.lastname);
+        if (compare == 0) {
+            compare = name.compareTo(s.name);
         }
-        return name.compareTo(s.name);
+        return compare;
     }
 
     @Override

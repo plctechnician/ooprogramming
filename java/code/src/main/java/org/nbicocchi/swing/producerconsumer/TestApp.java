@@ -1,6 +1,6 @@
-package org.nbicocchi.multithreading.producerconsumergui;
+package org.nbicocchi.swing.producerconsumer;
 
-import javax.swing.*;
+import java.awt.*;
 
 /**
  * Si sviluppi un’applicazione grafica che gestisce la velocità di esecuzione di
@@ -16,7 +16,7 @@ import javax.swing.*;
  */
 public class TestApp {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProducerConsumerGUI::new);
+        EventQueue.invokeLater(ProducerConsumerGUI::new);
     }
 
 }

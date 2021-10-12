@@ -31,23 +31,25 @@ public class StreamCreation {
         s.forEach(System.out::println);
     }
 
+    // accept() return void
     public static Stream<Student> getStreamBuilderAccept() {
-        Stream.Builder<Student> sb = Stream.builder();
-        sb.accept(new Student("Dimebag", "Darrell", 27));
-        sb.accept(new Student("Diana", "Krall", 23));
-        sb.accept(new Student("Melody", "Gardot", 30));
-        return sb.build();
+        Stream.Builder<Student> builder = Stream.builder();
+        builder.accept(new Student("Dimebag", "Darrell", 27));
+        builder.accept(new Student("Diana", "Krall", 23));
+        builder.accept(new Student("Melody", "Gardot", 30));
+        return builder.build();
     }
 
+    // add() return another Builder
     public static Stream<Student> getStreamBuilderAdd() {
-        Stream.Builder<Student> sb = Stream.builder();
-        return sb
-                .add(new Student("Dimebag", "Darrell", 27))
+        Stream.Builder<Student> builder = Stream.builder();
+        return builder.add(new Student("Dimebag", "Darrell", 27))
                 .add(new Student("Diana", "Krall", 23))
                 .add(new Student("Melody", "Gardot", 30))
                 .build();
     }
 
+    // Stream.of() creates a Stream<T> from T instances
     public static Stream<Student> getStreamOf() {
         return Stream.of(
                 new Student("Dimebag", "Darrell", 27),
@@ -56,22 +58,22 @@ public class StreamCreation {
     }
 
     public static Stream<Student> getStreamFromList() {
-        ArrayList<Student> l = new ArrayList<>();
-        l.add(new Student("John", "Doe", 28));
-        l.add(new Student("Dimebag", "Darrell", 27));
-        l.add(new Student("Gene", "Hoglan", 22));
-        l.add(new Student("Tyler", "Durden", 26));
-        l.add(new Student("Diana", "Krall", 23));
-        l.add(new Student("Melody", "Gardot", 30));
-        l.add(new Student("Tim", "Buckley", 21));
-        return l.stream();
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("John", "Doe", 28));
+        students.add(new Student("Dimebag", "Darrell", 27));
+        students.add(new Student("Gene", "Hoglan", 22));
+        students.add(new Student("Tyler", "Durden", 26));
+        students.add(new Student("Diana", "Krall", 23));
+        students.add(new Student("Melody", "Gardot", 30));
+        students.add(new Student("Tim", "Buckley", 21));
+        return students.stream();
     }
 
     public static Stream<Student> getStreamFromArray() {
-        Student[] l = new Student[3];
-        l[0] = new Student("John", "Doe", 28);
-        l[1] = new Student("Dimebag", "Darrell", 27);
-        l[2] = new Student("Gene", "Hoglan", 22);
-        return Arrays.stream(l);
+        Student[] students = new Student[3];
+        students[0] = new Student("John", "Doe", 28);
+        students[1] = new Student("Dimebag", "Darrell", 27);
+        students[2] = new Student("Gene", "Hoglan", 22);
+        return Arrays.stream(students);
     }
 }
