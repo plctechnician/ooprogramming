@@ -2,7 +2,6 @@ package org.nbicocchi.io.exercises.trains;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class StorageText implements Storage {
 
     @Override
     public List<Train> load() throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(this.filename));
+        FileReader in = new FileReader(this.filename);
         List<Train> trains = (List<Train>) mapper.readValue(in, List.class);
         in.close();
         return trains;
