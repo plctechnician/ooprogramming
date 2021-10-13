@@ -15,8 +15,8 @@
 
 ### Misc
 * https://www.w3resource.com/
-* https://www.programiz.com/
 * https://exercism.io/
+* https://www.programiz.com/
 * https://www.baeldung.com/
 * http://www.pythontutor.com/
 * https://pynative.com/
