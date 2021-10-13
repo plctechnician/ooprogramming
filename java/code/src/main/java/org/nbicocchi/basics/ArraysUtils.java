@@ -7,7 +7,7 @@ import java.util.Random;
  * 1. java.util.Arrays class
  * 2. System.arraycopy() method
  */
-public class Arrays {
+public class ArraysUtils {
     public static void main(String[] main) {
         int[] v1 = new int[8];
         int[] v2 = new int[8];

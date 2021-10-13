@@ -20,12 +20,12 @@ public class ListChecker {
         l.add("r2r6t8f0d00");
         l.add("z1z0t8f1d7d");
 
-        StringChecker sc = new StringChecker();
+        StringChecker checker = new StringChecker();
         for (Iterator<String> i = l.iterator(); i.hasNext(); ) {
             String s = i.next();
             try {
                 System.out.printf("Checking %s ", s);
-                sc.check(s);
+                checker.check(s);
                 System.out.println("[PASS]");
             } catch (ParseException e) {
                 i.remove();

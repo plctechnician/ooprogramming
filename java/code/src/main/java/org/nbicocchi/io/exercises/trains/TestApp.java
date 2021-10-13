@@ -1,104 +1,45 @@
 package org.nbicocchi.io.exercises.trains;
 
+import org.nbicocchi.utils.Utils;
+
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Si supponga di voler progettare parte del sistema informativo di una azienda
- * di trasporti su rotaia. Per ogni treno occorrerà tenere traccia delle
- * stazioni di fermata, della stazione di partenza e di quella di arrivo, oltre
- * che dei relativi orari. Occorre poi che ad ogni treno sia associato il numero
- * dei posti a sedere disponibili e il numero totale di chilometri percorsi. Nei
- * treni espressi, infine, è previsto anche un servizio ristorante, e anche per
- * questo servizio è necessario tenere traccia del numero di posti disponibili.
- * Un utente di questo sistema informativo potrebbe essere interessato a
- * determinare il numero di fermate effettuate da ciascun treno. Inoltre, chi
- * utilizza tale sistema informativo potrebbe essere interessato a determinare
- * il massimo ricavo realizzabile nellʼerogazione di questo servizio. Tale
- * ricavo dipende dal prezzo che ogni passeggero dovrà pagare per percorrere un
- * chilometro. Nei treni espressi occorrerà tenere conto anche del ricavo che si
- * presume di ottenere in ogni chilometro da ognuno dei posti disponibili nel
- * vagone ristorante (anchʼesso fornito come parametro). Si doti il sistema
- * della possilità di leggere e scrivere lo stato degli oggetti manipolati su:
- * <p>
- * 1. file caratteri 2. file binario (nella forma di strutture dati) 3. file
- * binario (nella forma di oggetti serializzati)
- * <p>
- * In altre parole, si renda funzionante il codice commentato all’interno della
- * classe sottostante.
+ * di trasporti su rotaia. E' necessario salvare oggetti di classe Train (vedi codice)
+ * in 3 modalità differenti:
+ * 1. file di testo
+ * 2. file binario (nella forma di strutture dati)
+ * 3. file binario (nella forma di oggetti serializzati)
  *
  * @author Nicola Bicocchi
  */
 public class TestApp {
 
-    public static void main(String[] args) {
-        ArrayList<Train> tList = new ArrayList<>();
+    public static void testWriteRead(Storage storage, List<Train> trains) throws IOException, ClassNotFoundException {
+        System.out.println(storage.getClass());
+        storage.store(trains);
+        System.out.println(storage.load());
+    }
 
-        Train t;
-        t = new TrainExpress(new Station("Milano", "MX1", "L1"), new Station("Roma", "RM1", "L1"), "11:0:00",
-                "14:12:00", 550, 600);
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Storage storage;
+        List<Train> trains = new ArrayList<>();
 
-        t.addStop(new Station("Bologna", "BO1", "L1"));
-        t.addStop(new Station("Firenze", "FR1", "L1"));
-        t.addStop(new Station("Roma Tiburtina", "RM2", "L1"));
-        tList.add(t);
+        trains.add(new Train("06:00:00", "20:15:00", 25, 700));
+        trains.add(new Train("11:00:00", "14:30:00", 20, 600));
+        trains.add(new Train("17:00:00", "22:45:00", 15, 400));
 
-        t = new Train(new Station("Milano", "MX1", "L1"), new Station("Napoli", "NP1", "L1"), "17:0:00", "22:22:00",
-                450, 500);
+        storage = new StorageText(Paths.get(Utils.ooprogrammingdir(), "StorageText.dat").toAbsolutePath().toString());
+        testWriteRead(storage, trains);
 
-        t.addStop(new Station("Bologna", "BO1", "L1"));
-        t.addStop(new Station("Roma", "RM1", "L1"));
-        tList.add(t);
+        storage = new StorageBinaryObject(Paths.get(Utils.ooprogrammingdir(), "StorageBinaryObject.dat").toAbsolutePath().toString());
+        testWriteRead(storage, trains);
 
-        // prints trains which are going to be saved
-        System.out.println("Trains to be stored:");
-        for (Train tr : tList) {
-            System.out.println(tr);
-        }
-
-        // test writes
-        Storage st;
-        try {
-            st = new TextStorage("StorageText.dat");
-            st.store(tList, false);
-            System.out.println("TextStorage store OK! " + tList.size() + " trains stored.");
-
-            st = new DataStorage("StorageData.dat");
-            st.store(tList, false);
-            System.out.println("DataStorage store OK! " + tList.size() + " trains stored.");
-
-            st = new ObjectStorage("StorageObject.dat");
-            st.store(tList, false);
-            System.out.println("TextStorage store OK! " + tList.size() + " trains stored.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // test reads
-        try {
-            st = new ObjectStorage("StorageObject.dat");
-            tList = (ArrayList<Train>) st.load();
-            System.out.println("\nObjectStorage load OK! " + tList.size() + " trains loaded.");
-            for (Train tr : tList) {
-                System.out.println(tr);
-            }
-
-            st = new TextStorage("StorageText.dat");
-            tList = (ArrayList<Train>) st.load();
-            System.out.println("\nTextStorage load OK! " + tList.size() + " trains loaded.");
-            for (Train tr : tList) {
-                System.out.println(tr);
-            }
-
-            st = new DataStorage("StorageData.dat");
-            tList = (ArrayList<Train>) st.load();
-            System.out.println("\nDataStorage load OK! " + tList.size() + " trains loaded.");
-            for (Train tr : tList) {
-                System.out.println(tr);
-            }
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        storage = new StorageBinaryFields(Paths.get(Utils.ooprogrammingdir(), "StorageBinaryFields.dat").toAbsolutePath().toString());
+        testWriteRead(storage, trains);
     }
 }
