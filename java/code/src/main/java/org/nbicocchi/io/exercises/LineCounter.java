@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Nicola Bicocchi
  */
 public class LineCounter {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         int lines = 0, chars = 0;
         String line;
 

@@ -25,8 +25,8 @@ public class StorageText implements Storage {
 
     @Override
     public List<Train> load() throws IOException {
-        FileReader in = new FileReader(this.filename);
-        List<Train> trains = (List<Train>) mapper.readValue(in, List.class);
+        FileReader in = new FileReader(filename);
+        List<Train> trains = mapper.readValue(in, List.class);
         in.close();
         return trains;
     }

@@ -11,13 +11,12 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ComparatorFrame extends JFrame implements ActionListener, PropertyChangeListener {
-
     private static final long serialVersionUID = 1L;
     private final ComparatorPanel firstImagePanel;
     private final ComparatorPanel secondImagePanel;
     private final JProgressBar progressBar;
+    private final HashMap<String, ImageComparator> comparators;
     private ImageComparator comparator;
-    private HashMap<String, ImageComparator> comparators;
 
     public ComparatorFrame() {
         super("Image Comparator");

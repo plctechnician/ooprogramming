@@ -2,6 +2,9 @@ package org.nbicocchi.io;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Class for listing the content of a directory
@@ -11,23 +14,19 @@ import java.io.IOException;
 public class DirectoryListing {
     public static void main(String[] args) throws IOException {
         File path = new File(System.getProperty("user.home"));
-        if (!path.isDirectory())
+        if (!path.isDirectory()) {
             throw new IOException();
-
-        File[] l = path.listFiles();
-
-        /* this code block allows filtering */
-//		List<File> l = Arrays.asList(path.listFiles(new FilenameFilter() {
-//			public boolean accept(File dir, String file) {
-//				return file.endsWith(".pdf");
-//			}
-//		}));
-
-        if (l != null) {
-            for (File f : l) {
-                System.out.println(f);
-            }
         }
+
+        /* without filtering */
+        // File[] files = path.listFiles();
+
+        /* with filtering */
+		List<File> files = Arrays.asList(
+                Objects.requireNonNull(path.listFiles((dir, file) -> file.endsWith("s"))));
+
+        /* show files */
+        System.out.println(files);
     }
 
 }
