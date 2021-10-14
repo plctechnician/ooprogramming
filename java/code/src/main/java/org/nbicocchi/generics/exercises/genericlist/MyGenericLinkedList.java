@@ -1,32 +1,32 @@
-package org.nbicocchi.collections.implementations;
+package org.nbicocchi.generics.exercises.genericlist;
 
 /**
  * Implementation of a single node composing the linked list
  *
  * @author Nicola Bicocchi
  */
-class Node {
-    Object payload;
-    Node next;
+class Node<T> {
+    private T payload;
+    private Node<T> next;
 
-    public Node(Object dataValue) {
+    public Node(T dataValue) {
         next = null;
         payload = dataValue;
     }
 
-    public Object getPayload() {
+    public T getPayload() {
         return payload;
     }
 
-    public void setPayload(Object dataValue) {
+    public void setPayload(T dataValue) {
         payload = dataValue;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node nextValue) {
+    public void setNext(Node<T> nextValue) {
         next = nextValue;
     }
 }
@@ -36,20 +36,20 @@ class Node {
  *
  * @author Nicola Bicocchi
  */
-public class MyLinkedList extends MyAbstractList {
-    private Node head;
+public class MyGenericLinkedList<T> extends MyGenericAbstractList<T> {
+    private Node<T> head;
     private int size;
 
-    public MyLinkedList() {
+    public MyGenericLinkedList() {
         head = null;
         size = 0;
     }
 
-    private void addFirst(Object data) {
+    private void addFirst(T data) {
         if (isEmpty()) {
-            head = new Node(data);
+            head = new Node<>(data);
         } else {
-            Node node = new Node(data);
+            Node<T> node = new Node<>(data);
             node.setNext(head);
             head = node;
         }
@@ -61,14 +61,14 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public void add(Object data) {
+    public void add(T data) {
         if (isEmpty()) {
             addFirst(data);
             return;
         }
 
-        Node temp = new Node(data);
-        Node current = head;
+        Node<T> temp = new Node<>(data);
+        Node<T> current = head;
         while (current.getNext() != null) {
             current = current.getNext();
         }
@@ -77,7 +77,7 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public void add(Object data, int index) {
+    public void add(T data, int index) {
         if (index < 0 || index > size()) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -87,8 +87,8 @@ public class MyLinkedList extends MyAbstractList {
             return;
         }
 
-        Node temp = new Node(data);
-        Node current = head;
+        Node<T> temp = new Node<>(data);
+        Node<T> current = head;
         // crawl to the requested index or the last element in the list,
         // whichever comes first
         for (int i = 1; i < index && current.getNext() != null; i++) {
@@ -100,12 +100,12 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size()) {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             if (current.getNext() == null)
                 return null;
@@ -120,7 +120,7 @@ public class MyLinkedList extends MyAbstractList {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             if (current.getNext() == null) {
                 throw new ArrayIndexOutOfBoundsException();

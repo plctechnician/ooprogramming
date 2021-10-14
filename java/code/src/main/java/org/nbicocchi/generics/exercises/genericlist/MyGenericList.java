@@ -1,18 +1,14 @@
 package org.nbicocchi.generics.exercises.genericlist;
 
 /**
- * Interface representing basic list operations
+ * Interface representing basic List operations
  *
  * @author Nicola Bicocchi
  */
-public interface GenericList<T> {
+public interface MyGenericList<T> {
     void add(T data);
-
     void add(T data, int index);
-
+    void remove(int index);
     T get(int index);
-
-    boolean remove(int index);
-
     int size();
 }

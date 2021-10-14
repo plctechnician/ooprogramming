@@ -1,12 +1,6 @@
 package org.nbicocchi.generics.exercises.genericlist;
 
-/**
- * Simplified implementation of a generic Abstract List. Contains code shared
- * among all classes implementing GenericList methods
- *
- * @author Nicola Bicocchi
- */
-public abstract class GenericAbstractList<T> implements GenericList<T> {
+public abstract class MyGenericAbstractList<T> implements MyGenericList<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -15,5 +9,4 @@ public abstract class GenericAbstractList<T> implements GenericList<T> {
         }
         return sb.toString();
     }
-
 }

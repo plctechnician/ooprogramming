@@ -2,14 +2,26 @@ package org.nbicocchi.collections.implementations;
 
 public class TestApp {
     public static void main(String[] args) {
-        // MyList
-        MyList l = new MyLinkedList();
-        //MyList l = new MyArrayList();
+        MyList l;
 
+        // My LinkedList
+        l = new MyLinkedList();
         l.add("alpha");
         l.add("beta");
         l.add("delta");
-        l.add("omega");
+        l.add("omega", 0);
+        l.remove(2);
+        System.out.println("size=" + l.size());
+        System.out.println(l);
+
+        // MyArrayList
+        l = new MyArrayList();
+        l.add("alpha");
+        l.add("beta");
+        l.add("delta");
+        l.add("omega", 0);
+        l.remove(2);
+        System.out.println("size=" + l.size());
         System.out.println(l);
 
         // MyHashMap

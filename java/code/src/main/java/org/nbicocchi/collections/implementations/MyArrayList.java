@@ -5,7 +5,7 @@ package org.nbicocchi.collections.implementations;
  *
  * @author Nicola Bicocchi
  */
-public class MyArrayList implements MyList {
+public class MyArrayList extends MyAbstractList {
     private static final int DEFAULT_CAPACITY = 8;
     private int size;
     private Object[] elements;
@@ -17,25 +17,12 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public String toString() {
-        StringBuilder output = new StringBuilder();
-        for (Object o : elements) {
-            if (o != null) {
-                output.append("[").append(o).append("]");
-            }
-        }
-        return output.toString();
-    }
-
-    @Override
     public void add(Object data) {
         // we re-allocate before complete fullness
         if (size >= elements.length - 1) {
             // buffer re-allocation
             Object[] tmp = new Object[elements.length * 2];
-            for (int i = 0; i < elements.length; i++) {
-                tmp[i] = elements[i];
-            }
+            System.arraycopy(elements, 0, tmp, 0, elements.length);
             elements = tmp;
         }
         elements[size] = data;
@@ -44,38 +31,38 @@ public class MyArrayList implements MyList {
 
     @Override
     public void add(Object data, int index) {
+        if (index < 0 || index > size()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         add(data);
         /* move array elements into memory */
-        for (int i = elements.length - 1; i > index; i--) {
-            elements[i] = elements[i - 1];
-        }
+        if (elements.length - 1 - index >= 0)
+            System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
         elements[index] = data;
         elements[size] = null;
     }
 
     @Override
     public Object get(int index) {
-        if (index < 0 || index >= size())
-            return null;
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
+        }
         return elements[index];
     }
 
     @Override
-    public boolean remove(int index) {
-        if (index < 0 || index >= size())
-            return false;
-        /* move array elements into memory */
-        for (int i = index; i < size; i++) {
-            elements[i] = elements[i + 1];
+    public void remove(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
         }
+        /* move array elements into memory */
+        if (size - index >= 0) System.arraycopy(elements, index + 1, elements, index, size - index);
         size--;
         elements[size] = null;
-        return true;
     }
 
     @Override
     public int size() {
         return size;
     }
-
 }

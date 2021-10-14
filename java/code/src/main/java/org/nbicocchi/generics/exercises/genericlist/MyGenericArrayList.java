@@ -1,17 +1,19 @@
 package org.nbicocchi.generics.exercises.genericlist;
 
 /**
- * Simplified implementation of a generic ArrayList
+ * Implementation of a simplified ArrayList class
  *
  * @author Nicola Bicocchi
  */
-public class GenericArrayList<T> extends GenericAbstractList<T> {
-    private static final int DEFAULT_CAPACITY = 16;
-    private int size = 0;
+public class MyGenericArrayList<T> extends MyGenericAbstractList<T> {
+    private static final int DEFAULT_CAPACITY = 8;
+    private int size;
     private Object[] elements;
 
-    public GenericArrayList() {
+    public MyGenericArrayList() {
+        // allocate default initial capacity
         elements = new Object[DEFAULT_CAPACITY];
+        size = 0;
     }
 
     @Override
@@ -29,6 +31,9 @@ public class GenericArrayList<T> extends GenericAbstractList<T> {
 
     @Override
     public void add(T data, int index) {
+        if (index < 0 || index > size()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         add(data);
         /* move array elements into memory */
         if (elements.length - 1 - index >= 0)
@@ -39,20 +44,23 @@ public class GenericArrayList<T> extends GenericAbstractList<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size())
-            return null;
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
+        }
         return (T) elements[index];
     }
 
     @Override
-    public boolean remove(int index) {
-        if (index < 0 || index >= size())
-            return false;
+    public void remove(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
+        }
         /* move array elements into memory */
-        if (size - index >= 0) System.arraycopy(elements, index + 1, elements, index, size - index);
+        if (size - index >= 0) {
+            System.arraycopy(elements, index + 1, elements, index, size - index);
+        }
         size--;
         elements[size] = null;
-        return true;
     }
 
     @Override
