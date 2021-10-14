@@ -158,11 +158,9 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 [M3] Object Oriented Programming
 
-* Classes, objects
-* Getters, setters, properties, decorators
-* Encapsulation, inheritance, polymorphism 
-* Informal interfaces
-* Sorting objects
+* Classes, objects, informal interfaces
+* Getters, setters, properties
+* Encapsulation, inheritance, polymorphism
 * Modules and packages
 
 ## Exam
