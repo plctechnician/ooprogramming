@@ -18,8 +18,8 @@ public class BasicOperations {
     public BasicOperations() throws SQLException {
 
         DBManager.setConnection(
-                Utils.JDBC_Driver_SQLite,
-                Utils.JDBC_URL_SQLite);
+                DBManager.JDBC_Driver_SQLite,
+                DBManager.JDBC_URL_SQLite);
         statement = DBManager.getConnection().createStatement();
 
         /* MySQL connection

@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.genericqueues;
+package org.nbicocchi.generics.exercises.genericqueue;
 
 import java.util.LinkedList;
 

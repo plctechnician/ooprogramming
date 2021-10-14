@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.implementations;
+package org.nbicocchi.generics.exercises.genericlist;
 
 /**
  * Simplified implementation of a generic Abstract List. Contains code shared

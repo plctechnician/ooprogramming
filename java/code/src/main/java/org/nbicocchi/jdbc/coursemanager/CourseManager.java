@@ -49,8 +49,8 @@ public class CourseManager extends JFrame implements ChangeListener {
      */
     public void testConnection() throws SQLException {
         DBManager.setConnection(
-                Utils.JDBC_Driver_MySQL,
-                Utils.JDBC_URL_MySQL);
+                DBManager.JDBC_Driver_MySQL,
+                DBManager.JDBC_URL_MySQL);
         Statement statement = DBManager.getConnection().createStatement(
                 ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);

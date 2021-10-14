@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.genericqueues;
+package org.nbicocchi.generics.exercises.genericqueue;
 
 public interface MyQueue<T> {
     void add(T t);

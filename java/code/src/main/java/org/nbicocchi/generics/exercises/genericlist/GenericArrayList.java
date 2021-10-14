@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.implementations;
+package org.nbicocchi.generics.exercises.genericlist;
 
 /**
  * Simplified implementation of a generic ArrayList
@@ -20,9 +20,7 @@ public class GenericArrayList<T> extends GenericAbstractList<T> {
         if (size >= elements.length - 1) {
             // buffer re-allocation
             Object[] tmp = new Object[elements.length * 2];
-            for (int i = 0; i < elements.length; i++) {
-                tmp[i] = elements[i];
-            }
+            System.arraycopy(elements, 0, tmp, 0, elements.length);
             elements = tmp;
         }
         elements[size] = data;
@@ -33,15 +31,13 @@ public class GenericArrayList<T> extends GenericAbstractList<T> {
     public void add(T data, int index) {
         add(data);
         /* move array elements into memory */
-        for (int i = elements.length - 1; i > index; i--) {
-            elements[i] = elements[i - 1];
-        }
+        if (elements.length - 1 - index >= 0)
+            System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
         elements[index] = data;
         elements[size] = null;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T get(int index) {
         if (index < 0 || index >= size())
             return null;
@@ -53,9 +49,7 @@ public class GenericArrayList<T> extends GenericAbstractList<T> {
         if (index < 0 || index >= size())
             return false;
         /* move array elements into memory */
-        for (int i = index; i < size; i++) {
-            elements[i] = elements[i + 1];
-        }
+        if (size - index >= 0) System.arraycopy(elements, index + 1, elements, index, size - index);
         size--;
         elements[size] = null;
         return true;

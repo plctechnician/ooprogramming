@@ -195,8 +195,8 @@ public class SM_Forward extends JFrame implements ActionListener {
 
     public void testConnection() throws SQLException {
         DBManager.setConnection(
-                Utils.JDBC_Driver_SQLite,
-                Utils.JDBC_URL_SQLite);
+                DBManager.JDBC_Driver_SQLite,
+                DBManager.JDBC_URL_SQLite);
         Statement statement = DBManager.getConnection().createStatement();
 
         try {

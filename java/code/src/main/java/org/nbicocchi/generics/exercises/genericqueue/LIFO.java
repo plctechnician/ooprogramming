@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.genericqueues;
+package org.nbicocchi.generics.exercises.genericqueue;
 
 public class LIFO<T> extends MyAbstractQueue<T> implements MyQueue<T> {
 

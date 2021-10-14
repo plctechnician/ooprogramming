@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.implementations;
+package org.nbicocchi.generics.exercises.genericlist;
 
 /**
  * Interface representing basic list operations

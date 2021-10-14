@@ -1,4 +1,4 @@
-package org.nbicocchi.generics.exercises.implementations;
+package org.nbicocchi.generics.exercises.genericlist;
 
 /**
  * Simplified implementation of a generic LinkedList
@@ -11,7 +11,6 @@ public class GenericLinkedList<T> extends GenericAbstractList<T> {
     private int size = 0;
 
     public GenericLinkedList() {
-
     }
 
     @Override

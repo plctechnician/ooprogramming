@@ -28,7 +28,7 @@ public class ResultSetToJTable extends JFrame {
     }
 
     public void testConnection() throws SQLException {
-        DBManager.setConnection(Utils.JDBC_Driver_SQLite, Utils.JDBC_URL_SQLite);
+        DBManager.setConnection(DBManager.JDBC_Driver_SQLite, DBManager.JDBC_URL_SQLite);
         Statement statement = DBManager.getConnection().createStatement();
 
         try {

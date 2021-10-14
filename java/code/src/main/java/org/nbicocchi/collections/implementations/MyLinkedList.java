@@ -42,7 +42,7 @@ class Node {
  *
  * @author Nicola Bicocchi
  */
-public class MyLinkedList implements MyList, MyQueue {
+public class MyLinkedList implements MyList {
     private Node head;
     private int size;
 
@@ -135,22 +135,12 @@ public class MyLinkedList implements MyList, MyQueue {
 
     @Override
     public String toString() {
-        Node current = head.getNext();
+        Node current = head;
         StringBuilder output = new StringBuilder();
         while (current != null) {
             output.append("[").append(current.getData().toString()).append("]");
             current = current.getNext();
         }
         return output.toString();
-    }
-
-    @Override
-    public Object getFirst() {
-        return get(0);
-    }
-
-    @Override
-    public Object getLast() {
-        return get(size - 1);
     }
 }

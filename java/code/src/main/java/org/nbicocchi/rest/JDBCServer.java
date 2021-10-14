@@ -173,8 +173,8 @@ public class JDBCServer {
 
     public void dbConnection() throws SQLException {
         DBManager.setConnection(
-                Utils.JDBC_Driver_SQLite,
-                Utils.JDBC_URL_SQLite);
+                DBManager.JDBC_Driver_SQLite,
+                DBManager.JDBC_URL_SQLite);
         statement = DBManager.getConnection().createStatement();
 
         try {
