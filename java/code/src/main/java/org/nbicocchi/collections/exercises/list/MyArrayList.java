@@ -1,39 +1,34 @@
-package org.nbicocchi.collections.implementations;
+package org.nbicocchi.collections.exercises.list;
 
 /**
- * Implementation of a simplified ArrayList class
+ * Implementation of a simplified ArrayList
  *
  * @author Nicola Bicocchi
  */
 public class MyArrayList extends MyAbstractList {
-    private static final int DEFAULT_CAPACITY = 8;
-    private int size;
+    private static final int DEFAULT_CAPACITY = 16;
     private Object[] elements;
+    private int size;
 
     public MyArrayList() {
-        // allocate default initial capacity
         elements = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
     @Override
     public void add(Object data) {
-        // we re-allocate before complete fullness
         if (size >= elements.length - 1) {
-            // buffer re-allocation
+            // array resize (x2)
             Object[] tmp = new Object[elements.length * 2];
             System.arraycopy(elements, 0, tmp, 0, elements.length);
             elements = tmp;
         }
-        elements[size] = data;
-        size++;
+        elements[size++] = data;
     }
 
     @Override
     public void add(Object data, int index) {
-        if (index < 0 || index > size()) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        checkBoundaries(index, size);
         add(data);
         /* move array elements into memory */
         if (elements.length - 1 - index >= 0)
@@ -44,21 +39,16 @@ public class MyArrayList extends MyAbstractList {
 
     @Override
     public Object get(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IllegalArgumentException();
-        }
+        checkBoundaries(index, size - 1);
         return elements[index];
     }
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IllegalArgumentException();
-        }
+        checkBoundaries(index, size - 1);
         /* move array elements into memory */
-        if (size - index >= 0) System.arraycopy(elements, index + 1, elements, index, size - index);
-        size--;
-        elements[size] = null;
+        System.arraycopy(elements, index + 1, elements, index, size - index);
+        elements[--size] = null;
     }
 
     @Override

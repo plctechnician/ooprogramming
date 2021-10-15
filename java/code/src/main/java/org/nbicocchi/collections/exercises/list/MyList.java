@@ -1,4 +1,4 @@
-package org.nbicocchi.collections.implementations;
+package org.nbicocchi.collections.exercises.list;
 
 /**
  * Interface representing basic List operations

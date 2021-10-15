@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Scrivere un metodo che implementa una versione - generica (che può funzionare con diversi tipi) -
- * dell'algoritmo Bubble Sort.
+ * Scrivere un metodo che implementa una versione generica (che può funzionare con diversi tipi)
+ * dell'algoritmo Bubble Sort seguendo il seguente prototipo:
+ *
+ * public static <T extends Comparable<T>> void bubbleSort(List<T> l);
  *
  * @author Nicola Bicocchi
  */

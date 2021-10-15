@@ -1,6 +1,13 @@
-package org.nbicocchi.collections.implementations;
+package org.nbicocchi.collections.exercises.list;
 
 public abstract class MyAbstractList implements MyList {
+
+    void checkBoundaries(int index, int limit) {
+        if (index < 0 || index > limit) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
