@@ -1,37 +1,37 @@
-package org.nbicocchi.collections.exercises.list;
+package org.nbicocchi.generics.exercises.list;
 
 /**
  * Implementation of a single node composing the linked list
  *
  * @author Nicola Bicocchi
  */
-class Node {
-    Object payload;
-    Node next;
+class Node<T> {
+    T payload;
+    Node<T> next;
 
-    public Node(Object payload) {
+    public Node(T payload) {
         this.payload = payload;
         this.next = null;
     }
 
-    public Node(Object payload, Node next) {
+    public Node(T payload, Node<T> next) {
         this.payload = payload;
         this.next = next;
     }
 
-    public Object getPayload() {
+    public T getPayload() {
         return payload;
     }
 
-    public void setPayload(Object dataValue) {
+    public void setPayload(T dataValue) {
         payload = dataValue;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node nextValue) {
+    public void setNext(Node<T> nextValue) {
         next = nextValue;
     }
 }
@@ -41,8 +41,8 @@ class Node {
  *
  * @author Nicola Bicocchi
  */
-public class MyLinkedList extends MyAbstractList {
-    private Node head;
+public class MyLinkedList<T> extends MyAbstractList<T> {
+    private Node<T> head;
     private int size;
 
     public MyLinkedList() {
@@ -50,8 +50,8 @@ public class MyLinkedList extends MyAbstractList {
         size = 0;
     }
 
-    private Node getNodeByIndex(int index) {
-        Node current = head;
+    private Node<T> getNodeByIndex(int index) {
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
@@ -59,24 +59,24 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public void add(Object data) {
+    public void add(T data) {
         add(data, size);
     }
 
     @Override
-    public void add(Object data, int index) {
+    public void add(T data, int index) {
         checkBoundaries(index, size);
         if (index == 0) {
-            head = new Node(data, head);
+            head = new Node<>(data, head);
         } else {
-            Node current = getNodeByIndex(index - 1);
-            current.setNext(new Node(data, current.getNext()));
+            Node<T> current = getNodeByIndex(index - 1);
+            current.setNext(new Node<>(data, current.getNext()));
         }
         size++;
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         checkBoundaries(index, size - 1);
         return getNodeByIndex(index).getPayload();
     }
@@ -87,7 +87,7 @@ public class MyLinkedList extends MyAbstractList {
         if (index == 0) {
             head = head.getNext();
         } else {
-            Node current = getNodeByIndex(index - 1);
+            Node<T> current = getNodeByIndex(index - 1);
             current.setNext(current.getNext().getNext());
         }
         size--;

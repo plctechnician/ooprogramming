@@ -1,10 +1,8 @@
-package org.nbicocchi.collections.exercises.list;
+package org.nbicocchi.generics.exercises.list;
 
 public class TestApp {
     public static void main(String[] args) {
-        MyList l;
-
-        l = new MyLinkedList();
+        MyList<String> l = new MyLinkedList<>();
         l.add("a", 0);
         l.add("b");
         l.add("c", 0);
