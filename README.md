@@ -22,7 +22,6 @@
 * https://pynative.com/
 * https://github.com/mtdvio/every-programmer-should-know
 * https://github.com/charlax/professional-programming
-* https://github.com/sindresorhus/awesome
 
 ## Books
 * Head First Java; Sierra, Bates; O'Reilly (intermediate)
