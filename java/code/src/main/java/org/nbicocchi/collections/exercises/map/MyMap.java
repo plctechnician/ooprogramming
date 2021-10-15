@@ -1,6 +1,6 @@
 package org.nbicocchi.collections.exercises.map;
 
 public interface MyMap {
-    int get(int key);
-    void put(int key, int value);
+    Object get(Object key);
+    void put(Object key, Object value);
 }

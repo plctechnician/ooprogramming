@@ -59,18 +59,18 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public void add(Object data) {
-        add(data, size);
+    public void add(Object o) {
+        add(o, size);
     }
 
     @Override
-    public void add(Object data, int index) {
+    public void add(Object o, int index) {
         checkBoundaries(index, size);
         if (index == 0) {
-            head = new Node(data, head);
+            head = new Node(o, head);
         } else {
             Node current = getNodeByIndex(index - 1);
-            current.setNext(new Node(data, current.getNext()));
+            current.setNext(new Node(o, current.getNext()));
         }
         size++;
     }

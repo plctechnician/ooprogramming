@@ -23,19 +23,6 @@ class MyHashMap_HashEntry<K,V> {
     public V getValue() {
         return value;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MyHashMap_HashEntry)) return false;
-        MyHashMap_HashEntry<?, ?> that = (MyHashMap_HashEntry<?, ?>) o;
-        return Objects.equals(getKey(), that.getKey()) && Objects.equals(getValue(), that.getValue());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getKey(), getValue());
-    }
 }
 
 public class MyHashMap<K,V> implements MyMap<K,V> {

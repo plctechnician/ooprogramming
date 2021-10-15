@@ -6,8 +6,8 @@ package org.nbicocchi.collections.exercises.list;
  * @author Nicola Bicocchi
  */
 public interface MyList {
-    void add(Object data);
-    void add(Object data, int index);
+    void add(Object o);
+    void add(Object o, int index);
     void remove(int index);
     Object get(int index);
     int size();

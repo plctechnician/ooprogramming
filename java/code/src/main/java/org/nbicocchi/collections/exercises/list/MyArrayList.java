@@ -16,24 +16,24 @@ public class MyArrayList extends MyAbstractList {
     }
 
     @Override
-    public void add(Object data) {
+    public void add(Object o) {
         if (size >= elements.length - 1) {
             // array resize (x2)
             Object[] tmp = new Object[elements.length * 2];
             System.arraycopy(elements, 0, tmp, 0, elements.length);
             elements = tmp;
         }
-        elements[size++] = data;
+        elements[size++] = o;
     }
 
     @Override
-    public void add(Object data, int index) {
+    public void add(Object o, int index) {
         checkBoundaries(index, size);
-        add(data);
+        add(o);
         /* move array elements into memory */
         if (elements.length - 1 - index >= 0)
             System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
-        elements[index] = data;
+        elements[index] = o;
         elements[size] = null;
     }
 
