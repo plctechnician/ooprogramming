@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import javax.swing.*;
 public class TetrisPanel extends JPanel implements KeyListener, ActionListener {
     private static final long serialVersionUID = -8715353373678321308L;
     private static final int BOARD_MAX_X = 12;
-    private static final int BOARD_MAX_Y = 23;
+    private static final int BOARD_MAX_Y = 26;
     private static final int BOARD_BLOCK = 26;
 
     private long score;
@@ -50,10 +49,15 @@ public class TetrisPanel extends JPanel implements KeyListener, ActionListener {
 
     private void moveDown() {
         if (!currentPiece.moveDown()) {
+            increaseScore();
             fixPieceToBoard();
-            clearRows();
+            deleteFullRows();
             generatePiece();
         }
+    }
+
+    private void increaseScore() {
+        score += 1;
     }
 
     private void fixPieceToBoard() {
@@ -62,37 +66,61 @@ public class TetrisPanel extends JPanel implements KeyListener, ActionListener {
         }
     }
 
-    private void clearRows() {
+    private void deleteFullRows() {
+        boolean gap;
 
+        for (int row = BOARD_MAX_Y - 2; row > 0;) {
+            gap = false;
+            for (int column = BOARD_MAX_X - 2; column > 0; column--) {
+                if (board[column][row] == Color.BLACK) {
+                    gap = true;
+                    break;
+                }
+            }
+            if (gap) {
+                row--;
+            } else {
+                deleteFullRow(row);
+            }
+        }
+    }
+
+    private void deleteFullRow(int rowToDelete) {
+        for (int row = rowToDelete; row > 1; row--) {
+            for (int column = BOARD_MAX_X - 2; column > 0; column--) {
+                board[column][row] = board[column][row - 1];
+            }
+        }
     }
 
     private void generatePiece() {
         Random rnd = new Random();
-        currentPiece = new Piece(board, rnd.nextInt(7), 0, new Point(5, 2));
+        currentPiece = new Piece(board, rnd.nextInt(7), 0, new Point(BOARD_MAX_X / 2, 1));
     }
 
     @Override
     public void paintComponent(Graphics g) {
         // Paint the well
-        g.fillRect(0, 0, 26*12, 26*23);
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 23; j++) {
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, BOARD_BLOCK * BOARD_MAX_X, BOARD_BLOCK * BOARD_MAX_Y);
+
+        for (int i = 0; i < BOARD_MAX_X; i++) {
+            for (int j = 0; j < BOARD_MAX_Y; j++) {
                 g.setColor(board[i][j]);
-                g.fillRect(26*i, 26*j, 25, 25);
+                g.fillRect(BOARD_BLOCK * i, BOARD_BLOCK * j, BOARD_BLOCK - 1, BOARD_BLOCK - 1);
             }
+        }
+
+        // Draw the currently falling piece
+        g.setColor(currentPiece.getColor());
+        for (Point p : currentPiece.getGeometry()) {
+            g.fillRect(p.x * BOARD_BLOCK, p.y * BOARD_BLOCK,
+                    BOARD_BLOCK - 1, BOARD_BLOCK - 1);
         }
 
         // Display the score
         g.setColor(Color.WHITE);
-        g.drawString("" + score, 19*12, 25);
-
-        // Draw the currently falling piece
-        g.setColor(currentPiece.getColor());
-        System.out.println(Arrays.toString(currentPiece.getGeometry()));
-        for (Point p : currentPiece.getGeometry()) {
-            g.fillRect(p.x * 26, p.y * 26,
-                    25, 25);
-        }
+        g.drawString("" + score, BOARD_BLOCK * BOARD_MAX_X / 2, BOARD_BLOCK);
     }
 
     @Override

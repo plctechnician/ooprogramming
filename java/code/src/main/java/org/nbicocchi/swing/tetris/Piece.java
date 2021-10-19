@@ -61,7 +61,7 @@ public class Piece {
             }
     };
 
-    private final Color[] tetraminoColor = {
+    private final Color[] tetraminosColor = {
             Color.cyan, Color.blue, Color.orange, Color.yellow, Color.green, Color.pink, Color.red
     };
 
@@ -78,7 +78,7 @@ public class Piece {
     }
 
     public Color getColor() {
-        return tetraminoColor[type];
+        return tetraminosColor[type];
     }
 
     public Point[] getGeometry() {
@@ -102,35 +102,43 @@ public class Piece {
         return false;
     }
 
-    public void rotateRight() {
+    public boolean rotateRight() {
         int oldValue = rotation;
         rotation = (++rotation) % 4;
         if (collides()) {
             rotation = oldValue;
+            return false;
         }
+        return true;
     }
 
-    public void rotateLeft() {
+    public boolean rotateLeft() {
         int oldValue = rotation;
         rotation = (--rotation) % 4;
         if (rotation < 0) rotation = 3;
         if (collides()) {
             rotation = oldValue;
+            return false;
         }
+        return true;
     }
 
-    public void moveLeft() {
+    public boolean moveLeft() {
         position.x += 1;
         if (collides()) {
             position.x -= 1;
+            return false;
         }
+        return true;
     }
 
-    public void moveRight() {
+    public boolean moveRight() {
         position.x -= 1;
         if (collides()) {
             position.x += 1;
+            return false;
         }
+        return true;
     }
 
     public boolean moveDown() {
