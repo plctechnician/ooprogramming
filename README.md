@@ -204,7 +204,7 @@ While developing I get strange errors. What should I do?
 > The first thing to do is copy and paste the error string on Google and check for eventual answers on StackOverflow. The vast majority of common errors has a dedicated page.
 
 If I need help, should I write an email to book an appointment?
-> Yes, I will be available every Wednesday morning for chatting.
+> Yes, I will be available every Monday morning for chatting.
 
 How does the exam is evaluated?
 > The final grade is a subjectively-weighted (Dr. Bicocchi is the subject) average between the home project and the oral examination. 
