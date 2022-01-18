@@ -7,6 +7,11 @@ import static org.junit.Assert.*;
 public class StringsTest {
 
     @Test
+    public void concatenate_simple() {
+        assertEquals("HelloWorld", Strings.concatenate_simple("Hello", "World"));
+    }
+
+    @Test
     public void concatenate() {
         String[] input = {"Hello", " ", "World", "!"};
         assertEquals("Hello World!", Strings.concatenate(input));

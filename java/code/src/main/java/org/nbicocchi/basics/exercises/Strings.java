@@ -8,6 +8,15 @@ package org.nbicocchi.basics.exercises;
  */
 public class Strings {
     /**
+     * Write a function accepting 2 strings
+     * and returning a single String representing
+     * the concatenation of them
+     */
+    public static String concatenate_simple(String s1, String s2) {
+        return s1 + s2;
+    }
+
+    /**
      * Write a function accepting a string[]
      * and returning a single String representing
      * the concatenation of all Strings of the array
