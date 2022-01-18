@@ -50,10 +50,8 @@ public class Strings {
      */
     public static String removeFirstTwoChars(String s) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (i > 1) {
+        for (int i = 2; i < s.length(); i++) {
                 sb.append(s.charAt(i));
-            }
         }
         return sb.toString();
     }
