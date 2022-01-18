@@ -31,25 +31,6 @@ public class Strings {
 
     /**
      * Write a function accepting a string
-     * and returning all duplicate characters contained as a char[]
-     */
-    public static char[] duplicateChars(String input) {
-        StringBuilder seen = new StringBuilder();
-        StringBuilder duplicates = new StringBuilder();
-
-        for (int i = 0; i < input.length(); i++) {
-            String tmp = String.valueOf(input.charAt(i));
-            if (seen.toString().contains(tmp) && !duplicates.toString().contains(tmp)) {
-                duplicates.append(tmp);
-            } else {
-                seen.append(tmp);
-            }
-        }
-        return duplicates.toString().toCharArray();
-    }
-
-    /**
-     * Write a function accepting a string
      * and returning the inverted String
      */
     public static String reverse(String s) {
@@ -66,10 +47,24 @@ public class Strings {
     /**
      * Write a function accepting a string
      * and returning the string without the first two characters.
+     */
+    public static String removeFirstTwoChars(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i > 1) {
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Write a function accepting a string
+     * and returning the string without the first two characters.
      * Keep the first character if it is 'H' and
      * keep the second character if it is 'e'.
      */
-    public static String removeFirstTwoChars(String s) {
+    public static String removeFirstTwoCharsIf(String s) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
             if (i == 0) {
@@ -90,9 +85,20 @@ public class Strings {
     /**
      * Write a function accepting a string
      * and returning true if "good" appears
-     * starting at index 0 or 1 in the given string.
+     * at the beginning of the string
+     * see startsWith() method
      */
     public static boolean goodAtTheBeginning(String s) {
+        return s.startsWith("good");
+    }
+
+    /**
+     * Write a function accepting a string
+     * and returning true if "good" appears
+     * starting at index 0 or 1 in the given string.
+     * see substring() method
+     */
+    public static boolean goodAtTheBeginningExt(String s) {
         String a = s.substring(0, 4);
         String b = s.substring(1, 5);
         return a.equals("good") || b.equals("good");
@@ -111,6 +117,25 @@ public class Strings {
             output = s;
         }
         return output;
+    }
+
+    /**
+     * Write a function accepting a string
+     * and returning all duplicate characters contained as a char[]
+     */
+    public static char[] duplicateChars(String input) {
+        StringBuilder seen = new StringBuilder();
+        StringBuilder duplicates = new StringBuilder();
+
+        for (int i = 0; i < input.length(); i++) {
+            String tmp = String.valueOf(input.charAt(i));
+            if (seen.toString().contains(tmp) && !duplicates.toString().contains(tmp)) {
+                duplicates.append(tmp);
+            } else {
+                seen.append(tmp);
+            }
+        }
+        return duplicates.toString().toCharArray();
     }
 
     /**

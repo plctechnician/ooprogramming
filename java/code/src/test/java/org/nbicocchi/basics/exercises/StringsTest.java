@@ -32,10 +32,19 @@ public class StringsTest {
     @Test
     public void removeFirstTwoChars() {
         String input = "Hello World!";
-        assertEquals("Hello World!", Strings.removeFirstTwoChars(input));
+        assertEquals("llo World!", Strings.removeFirstTwoChars(input));
 
         input = "Home Sweet Home";
-        assertEquals("Hme Sweet Home", Strings.removeFirstTwoChars(input));
+        assertEquals("me Sweet Home", Strings.removeFirstTwoChars(input));
+    }
+
+    @Test
+    public void removeFirstTwoCharsIf() {
+        String input = "Hello World!";
+        assertEquals("Hello World!", Strings.removeFirstTwoCharsIf(input));
+
+        input = "Home Sweet Home";
+        assertEquals("Hme Sweet Home", Strings.removeFirstTwoCharsIf(input));
     }
 
     @Test
@@ -44,10 +53,22 @@ public class StringsTest {
         assertTrue(Strings.goodAtTheBeginning(input));
 
         input = " good Sweet Home";
-        assertTrue(Strings.goodAtTheBeginning(input));
+        assertFalse(Strings.goodAtTheBeginning(input));
 
         input = "No good Sweet Home";
         assertFalse(Strings.goodAtTheBeginning(input));
+    }
+
+    @Test
+    public void goodAtTheBeginningExt() {
+        String input = "good Sweet Home";
+        assertTrue(Strings.goodAtTheBeginningExt(input));
+
+        input = " good Sweet Home";
+        assertTrue(Strings.goodAtTheBeginningExt(input));
+
+        input = "No good Sweet Home";
+        assertFalse(Strings.goodAtTheBeginningExt(input));
     }
 
     @Test
