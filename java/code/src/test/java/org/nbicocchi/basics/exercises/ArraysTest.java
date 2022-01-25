@@ -15,6 +15,14 @@ public class ArraysTest {
     }
 
     @Test
+    public void testDivideArrays() {
+        double[] v1 =  {5.0, 4.0, 6.0, 2.0};
+        double[] v2 =  {10.0, 2.0, 3.0, 8.0};
+        double[] output =  {0.5, 2.0, 2.0, 0.25};
+        assertArrayEquals(output, Arrays.divideArrays(v1, v2), 0.01);
+    }
+
+    @Test
     public void bubbleSort() {
         int[] input =  {5, 4, 6, 2, 3, 4};
         int[] output = {2, 3, 4, 4, 5, 6};

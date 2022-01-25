@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public class Arrays {
     /**
      * Write a function accepting a double[] and a factor f (double as well)
-     * an returning a double[] representing the original double[] divided by f
+     * returning a double[] representing the original double[] divided by f
      */
     public static double[] divideArray(double[] in, double f) {
         double[] out = new double[in.length];
@@ -23,8 +23,22 @@ public class Arrays {
     }
 
     /**
+     * Write a function accepting two double[]
+     * returning a double[] representing the first array divided by the second array
+     * The two arrays must have the same size
+     */
+    public static double[] divideArrays(double[] a, double[] b) {
+        if (a.length != b.length) return null;
+        double[] out = new double[a.length];
+        for (int i = 0; i < a.length; i++) {
+            out[i] = a[i] / b[i];
+        }
+        return out;
+    }
+
+    /**
      * Write a function accepting an int[]
-     * an returning a sorted version of it (bubble sort)
+     * returning a sorted version of it (bubble sort)
      */
     static int[] bubbleSort(int[] v) {
         boolean changed = true;
@@ -44,7 +58,7 @@ public class Arrays {
 
     /**
      * Write a function accepting an int
-     * and returning an array long[] composed
+     * returning an array long[] composed
      * of the first n numbers of the Fibonacci series
      * (without recursion).
      */
@@ -67,8 +81,8 @@ public class Arrays {
     }
 
     /**
-     * * Write a function accepting an int[]
-     * and returning an int[] in which all the
+     * Write a function accepting an int[]
+     * returning an int[] in which all the
      * 0s have been moved to the end of an array.
      * Maintain the relative order of the other (non-zero) elements.
      */
@@ -91,7 +105,7 @@ public class Arrays {
 
     /**
      * Write a function accepting an int
-     * and returning the sequence of individual digits.
+     * returning the sequence of individual digits.
      */
     public static int[] splitter(int input) {
         int n = Integer.toString(input).length();
