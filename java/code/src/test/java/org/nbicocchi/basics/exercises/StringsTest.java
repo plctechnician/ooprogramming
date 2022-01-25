@@ -59,6 +59,18 @@ public class StringsTest {
     }
 
     @Test
+    public void goodAtTheBeginningHard() {
+        String input = "good Sweet Home";
+        assertTrue(Strings.goodAtTheBeginningHard(input));
+
+        input = " good Sweet Home";
+        assertFalse(Strings.goodAtTheBeginningHard(input));
+
+        input = "No good Sweet Home";
+        assertFalse(Strings.goodAtTheBeginningHard(input));
+    }
+
+    @Test
     public void goodAtTheBeginningExt() {
         String input = "good Sweet Home";
         assertTrue(Strings.goodAtTheBeginningExt(input));

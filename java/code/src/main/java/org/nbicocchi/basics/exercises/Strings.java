@@ -29,7 +29,6 @@ public class Strings {
         return sb.toString();
     }
 
-
     /**
      * Write a function accepting a string a returning
      * the same string but reversed
@@ -89,6 +88,16 @@ public class Strings {
      */
     public static boolean goodAtTheBeginning(String s) {
         return s.startsWith("good");
+    }
+
+    /**
+     * Write a function accepting a string
+     * and returning true if "good" appears
+     * at the beginning of the string
+     * without using the startsWith() method
+     */
+    public static boolean goodAtTheBeginningHard(String s) {
+        return (s.charAt(0) == 'g' && s.charAt(1) == 'o' && s.charAt(2) == 'o' && s.charAt(3) == 'd');
     }
 
     /**
