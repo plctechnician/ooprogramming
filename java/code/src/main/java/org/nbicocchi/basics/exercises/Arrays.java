@@ -1,14 +1,25 @@
 package org.nbicocchi.basics.exercises;
 
-import java.awt.*;
-
 /**
+ *
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/array/index.php
  * Code -> Folding -> Collapse All
  * Code -> Folding -> Expand Doc Comments
  */
 public class Arrays {
+    /**
+     * Write a function accepting a double[] and a factor f (double as well)
+     * an returning a double[] representing the original double[] divided by f
+     */
+    public static double[] divideArray(double[] in, double f) {
+        double[] out = new double[in.length];
+        for (int i = 0; i < in.length; i++) {
+            out[i] = in[i] / f;
+        }
+        return out;
+    }
+
     /**
      * Write a function accepting an int[]
      * an returning a sorted version of it (bubble sort)
@@ -27,20 +38,6 @@ public class Arrays {
             }
         }
         return v;
-    }
-
-    /**
-     * Write a function accepting an int
-     * and returning the sequence of individual digits.
-     */
-    public static int[] splitter(int input) {
-        int n = Integer.toString(input).length();
-        int[] digits = new int[n];
-
-        for (int d = n - 1; d >= 0; d--) {
-            digits[digits.length - 1 - d] = input / ((int) Math.pow(10, d)) % 10;
-        }
-        return digits;
     }
 
     /**
@@ -88,5 +85,19 @@ public class Arrays {
             output[j] = 0;
         }
         return output;
+    }
+
+    /**
+     * Write a function accepting an int
+     * and returning the sequence of individual digits.
+     */
+    public static int[] splitter(int input) {
+        int n = Integer.toString(input).length();
+        int[] digits = new int[n];
+
+        for (int d = n - 1; d >= 0; d--) {
+            digits[digits.length - 1 - d] = input / ((int) Math.pow(10, d)) % 10;
+        }
+        return digits;
     }
 }

@@ -29,9 +29,10 @@ public class Strings {
         return sb.toString();
     }
 
+
     /**
-     * Write a function accepting a string
-     * and returning the inverted String
+     * Write a function accepting a string a returning
+     * the same string but reversed
      */
     public static String reverse(String s) {
         StringBuilder sb = new StringBuilder();
@@ -106,6 +107,7 @@ public class Strings {
      * Write a function accepting a string
      * and returning the same string if the first or last characters are the same or
      * the string without those characters otherwise.
+     * * see substring(), charAt() methods
      */
     public static String removeFirstLast(String s) {
         String output;

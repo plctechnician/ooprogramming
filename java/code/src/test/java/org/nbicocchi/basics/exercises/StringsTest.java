@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringsTest {
-
     @Test
     public void concatenate_simple() {
         assertEquals("HelloWorld", Strings.concatenate_simple("Hello", "World"));
