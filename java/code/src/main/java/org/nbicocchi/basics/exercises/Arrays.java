@@ -25,7 +25,7 @@ public class Arrays {
     /**
      * Write a function accepting two double[]
      * returning a double[] representing the first array divided by the second array
-     * The two arrays must have the same size
+     * The two arrays must have the same size. Returns null otherwise.
      */
     public static double[] divideArrays(double[] a, double[] b) {
         if (a.length != b.length) return null;
@@ -63,7 +63,7 @@ public class Arrays {
      * (without recursion).
      */
     public static long[] fibonacci(int n) {
-        long[] fibonacci = null;
+        long[] fibonacci;
 
         if (n == 1) {
             fibonacci = new long[] {0};
