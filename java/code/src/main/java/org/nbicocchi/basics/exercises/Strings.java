@@ -114,9 +114,9 @@ public class Strings {
 
     /**
      * Write a function accepting a string
-     * and returning the same string if the first or last characters are the same or
-     * the string without those characters otherwise.
-     * * see substring(), charAt() methods
+     * and returning the same string (trimmed of the first and last characters) if the first or last characters are equal
+     * or returning the same string (without trimming anything) otherwise
+     * see substring(), charAt() methods
      */
     public static String removeFirstLast(String s) {
         String output;
@@ -131,6 +131,7 @@ public class Strings {
     /**
      * Write a function accepting a string
      * and returning all duplicate characters contained as a char[]
+     * see StringBuilder methods
      */
     public static char[] duplicateChars(String input) {
         StringBuilder seen = new StringBuilder();
@@ -150,6 +151,7 @@ public class Strings {
     /**
      * Write a function accepting a string
      * and returning true if the string is a palindrome.
+     * see StringBuilder methods
      */
     public static boolean isPalindrome(String s) {
         if (s.length() <= 1) {
