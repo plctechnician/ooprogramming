@@ -1,7 +1,5 @@
 package org.nbicocchi.generics.exercises.map;
 
-import java.util.Objects;
-
 /**
  * Implementation of a simplified HashMap
  *

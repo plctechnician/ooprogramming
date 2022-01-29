@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class SM_Updatable extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     public static String[] qualities = {"High", "Average", "Low", "Shitty"};
 
     SM_Updatable_Model model;

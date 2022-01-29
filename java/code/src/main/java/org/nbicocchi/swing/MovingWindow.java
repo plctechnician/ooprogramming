@@ -6,7 +6,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 public class MovingWindow extends JFrame implements ComponentListener {
-    private static final long serialVersionUID = 1L;
     private final JLabel summary;
 
     public MovingWindow() {

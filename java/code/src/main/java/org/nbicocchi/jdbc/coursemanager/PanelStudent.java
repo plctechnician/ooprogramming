@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class PanelStudent extends JPanel implements ActionListener {
-
-    private static final long serialVersionUID = 1L;
     private final JButton btnNext;
     private final JButton btnPrev;
     private final JButton btnRemove;

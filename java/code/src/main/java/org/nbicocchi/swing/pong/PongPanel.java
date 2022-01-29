@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
-    private static final long serialVersionUID = 1L;
     Timer timer;
     HashMap<String, GameObject> hgo;
 

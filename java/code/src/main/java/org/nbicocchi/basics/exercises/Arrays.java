@@ -1,7 +1,5 @@
 package org.nbicocchi.basics.exercises;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  *
  * You can find many more here:

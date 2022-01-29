@@ -12,7 +12,9 @@ package org.nbicocchi.multithreading.managerworkers;
  * numero di thread paralleli deve essere configurabile attraverso un parametro.
  * Ad esempio, i 10 blocchi contigui di cui sopra, potrebbero essere processati
  * solamente da 4 thread paralleli. Non appena un thead termina l’analisi di un
- * blocco, ne riceve da processare uno nuovo fino ad esaurimento. Suggerimento:
+ * blocco, ne riceve da processare uno nuovo fino ad esaurimento.
+ *
+ * Suggerimento:
  * Per implementare il passaggio dei risultati verso il thread principale,
  * ricordare che ogni thread è, innanzitutto, un oggetto.
  *

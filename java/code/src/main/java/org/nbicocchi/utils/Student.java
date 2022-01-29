@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Student implements Comparable<Student>, Serializable {
-    private static final long serialVersionUID = 1L;
     String name;
     String lastname;
     String phone;

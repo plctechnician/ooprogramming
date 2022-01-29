@@ -7,7 +7,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.dnd.*;
 
 public class DragDrop extends JFrame implements DropTargetListener {
-    private static final long serialVersionUID = 1L;
     DropTarget dt;
     JTextField tf;
 

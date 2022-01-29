@@ -1,7 +1,5 @@
 package org.nbicocchi.jdbc;
 
-import org.nbicocchi.utils.Utils;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

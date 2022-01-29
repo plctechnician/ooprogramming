@@ -12,7 +12,6 @@ import java.awt.*;
  * column sizes and it uses a combo box as an editor for the Sport column.
  */
 public class JTableRender extends JPanel {
-    private static final long serialVersionUID = 1L;
     private final boolean DEBUG = false;
 
     public JTableRender() {

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Properties;
 
 public class GamePanel extends JPanel implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final Properties properties;
     private List<Ball> balls;
     private Timer timer;

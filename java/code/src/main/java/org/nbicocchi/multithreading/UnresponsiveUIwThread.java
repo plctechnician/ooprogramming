@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UnresponsiveUIwThread extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final JTextField tfCount;
     private final JButton btnStart;
     private final JButton btnStop;

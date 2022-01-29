@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ImageButton extends JButton {
-    private static final long serialVersionUID = 1L;
     private final int correctPosition_x;
     private final int correctPosition_y;
 

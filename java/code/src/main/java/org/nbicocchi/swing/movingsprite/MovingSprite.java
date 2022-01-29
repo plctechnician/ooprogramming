@@ -13,7 +13,6 @@ import java.awt.event.KeyListener;
  * and can paint itself.
  */
 public class MovingSprite extends JFrame implements KeyListener, ActionListener {
-    private static final long serialVersionUID = 1L;
     JButton btnLeft;
     JButton btnRight;
     JButton btnUp;

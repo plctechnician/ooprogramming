@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 public class Notepad extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final JTextArea textArea;
     private final JMenuItem openFile;
     private final JMenuItem saveFile;

@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LayoutManager extends JFrame {
-    private static final long serialVersionUID = 1L;
-
     public LayoutManager() {
         JPanel p1 = new JPanel(new BorderLayout());
         p1.add(new JButton("A"), BorderLayout.PAGE_START);

@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CelsiusConverterFull extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final JButton CFButton;
     private final JButton FCButton;
     private final JTextField fahrenheitTF;

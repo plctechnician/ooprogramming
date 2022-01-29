@@ -2,7 +2,6 @@ package org.nbicocchi.jdbc.sausagemanager;
 
 import org.nbicocchi.jdbc.DBManager;
 import org.nbicocchi.utils.Sausage;
-import org.nbicocchi.utils.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

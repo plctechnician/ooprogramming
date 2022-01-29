@@ -1,9 +1,6 @@
 package org.nbicocchi.io.exercises.trains;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Train implements Serializable {
     static final long serialVersionUID = 1L;

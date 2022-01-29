@@ -7,7 +7,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MouseDrag extends JFrame {
-    private static final long serialVersionUID = 1L;
 
     public MouseDrag() {
         setTitle(getClass().getName());
@@ -22,7 +21,6 @@ public class MouseDrag extends JFrame {
     }
 
     private static class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
-        private static final long serialVersionUID = 1L;
         int startX, startY, endX, endY;
         private Color color = Color.RED;
 

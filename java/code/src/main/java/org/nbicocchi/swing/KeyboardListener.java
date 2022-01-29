@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class KeyboardListener extends JFrame implements KeyListener {
-    private static final long serialVersionUID = 1L;
     ArrayList<Integer> lastChars;
     JPanel p;
     JLabel l;

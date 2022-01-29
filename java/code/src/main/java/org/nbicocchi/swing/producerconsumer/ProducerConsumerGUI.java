@@ -14,7 +14,6 @@ public class ProducerConsumerGUI extends JFrame implements ChangeListener, Actio
     public static final int INIT_WAIT = 100;
     public static final int MIN_WAIT = 100;
     public static final int MAX_WAIT = 1000;
-    private static final long serialVersionUID = 1L;
     JSlider waitProducer;
     JSlider waitConsumer;
     JProgressBar progressBar;

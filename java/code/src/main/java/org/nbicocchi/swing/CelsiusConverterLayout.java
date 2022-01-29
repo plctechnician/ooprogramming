@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CelsiusConverterLayout extends JFrame {
-    private static final long serialVersionUID = 1L;
     private final JButton CFButton;
     private final JButton FCButton;
     private final JTextField fahrenheitTF;

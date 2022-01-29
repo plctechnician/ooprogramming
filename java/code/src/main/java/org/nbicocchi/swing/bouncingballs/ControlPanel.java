@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.Properties;
 
 public class ControlPanel extends JPanel implements ChangeListener, ActionListener {
-    private static final long serialVersionUID = 1L;
     final JCheckBox pause;
     final JSlider slider;
     Properties properties;

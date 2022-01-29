@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class SM_JTable extends JFrame implements ActionListener, TableModelListener {
-    private static final long serialVersionUID = 1L;
-
     JTable tResults;
     JButton btInsert;
     JButton btDelete;

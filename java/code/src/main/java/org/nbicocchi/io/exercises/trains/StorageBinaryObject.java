@@ -1,7 +1,6 @@
 package org.nbicocchi.io.exercises.trains;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StorageBinaryObject implements Storage {

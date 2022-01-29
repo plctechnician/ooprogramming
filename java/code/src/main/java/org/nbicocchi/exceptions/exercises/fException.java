@@ -1,8 +1,6 @@
 package org.nbicocchi.exceptions.exercises;
 
 public class fException extends Exception {
-    private static final long serialVersionUID = 1L;
-
     public fException() {
         super();
     }

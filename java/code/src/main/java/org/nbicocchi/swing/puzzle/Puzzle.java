@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Puzzle extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final JMenuItem openFile, shuffleFile, closeFile;
     private final int TILE_X = 3, TILE_Y = 3;
     private final int TILE_WIDTH = 150, TILE_HEIGHT = 150;

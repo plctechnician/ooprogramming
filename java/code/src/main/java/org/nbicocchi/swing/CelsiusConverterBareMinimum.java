@@ -3,7 +3,6 @@ package org.nbicocchi.swing;
 import javax.swing.*;
 
 public class CelsiusConverterBareMinimum extends JFrame {
-    private static final long serialVersionUID = 1L;
     private final JButton FCButton, CFButton;
     private final JTextField fahrenheitTF, celsiusTF;
 

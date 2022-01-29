@@ -1,7 +1,6 @@
 package org.nbicocchi.basics.exercises;
 
 import org.junit.Test;
-import org.nbicocchi.localmods.Test1;
 
 import static org.junit.Assert.*;
 

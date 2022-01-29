@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ComparatorPanel extends JPanel {
-
-    private static final long serialVersionUID = 1L;
     private BufferedImage image = null;
 
     public BufferedImage getImage() {

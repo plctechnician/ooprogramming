@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Counter extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     private final JLabel label;
 
     public Counter() {

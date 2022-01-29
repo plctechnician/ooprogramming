@@ -10,7 +10,6 @@ import java.util.Random;
 import javax.swing.*;
 
 public class TetrisPanel extends JPanel implements KeyListener, ActionListener {
-    private static final long serialVersionUID = -8715353373678321308L;
     private static final int BOARD_MAX_X = 12;
     private static final int BOARD_MAX_Y = 26;
     private static final int BOARD_BLOCK = 26;

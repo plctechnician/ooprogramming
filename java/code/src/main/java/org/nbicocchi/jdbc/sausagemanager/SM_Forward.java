@@ -2,7 +2,6 @@ package org.nbicocchi.jdbc.sausagemanager;
 
 import org.nbicocchi.jdbc.DBManager;
 import org.nbicocchi.utils.Sausage;
-import org.nbicocchi.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class SM_Forward extends JFrame implements ActionListener {
-    private static final long serialVersionUID = 1L;
     public static String[] qualities = {"High", "Average", "Low", "Shitty"};
 
     List<Sausage> lm;

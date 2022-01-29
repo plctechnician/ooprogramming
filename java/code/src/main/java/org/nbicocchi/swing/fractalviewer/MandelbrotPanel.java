@@ -13,7 +13,6 @@ import java.awt.image.*;
  * run time to select which part you want to be shown.
  */
 public class MandelbrotPanel extends JPanel implements MouseListener, MouseMotionListener {
-    private static final long serialVersionUID = 1L;
     /**
      * Colour table for this component (actually the BufferedImage)
      */

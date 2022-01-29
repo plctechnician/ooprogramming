@@ -1,7 +1,6 @@
 package org.nbicocchi.jdbc.sausagemanager;
 
 import org.nbicocchi.jdbc.DBManager;
-import org.nbicocchi.utils.Utils;
 
 import javax.swing.table.AbstractTableModel;
 import java.sql.ResultSet;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SM_JTable_Model extends AbstractTableModel {
-    private static final long serialVersionUID = 1L;
     private final String[] columnNames = new String[]{"id", "length", "diameter", "weight", "quality"};
     private final Class<?>[] columnClass = new Class<?>[]{String.class, Double.class, Double.class, Double.class,
             String.class};

@@ -1,7 +1,6 @@
 package org.nbicocchi.jdbc.coursemanager;
 
 import org.nbicocchi.jdbc.DBManager;
-import org.nbicocchi.utils.Utils;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

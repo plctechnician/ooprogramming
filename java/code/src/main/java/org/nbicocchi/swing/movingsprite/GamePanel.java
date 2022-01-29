@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class GamePanel extends JPanel {
-    private static final long serialVersionUID = 1L;
     BufferedImage image;
     int xLock, yLock, rLock;
 
