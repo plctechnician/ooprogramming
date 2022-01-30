@@ -103,7 +103,6 @@ public class JTableRender extends JPanel {
     }
 
     class MyTableModel extends AbstractTableModel {
-        private static final long serialVersionUID = 1L;
         public final Object[] longValues = {"Jane", "Kathy", "None of the above", 20, true};
         private final String[] columnNames = {"First Name", "Last Name", "Sport", "# of Years", "Vegetarian"};
         private final Object[][] data = {{"Kathy", "Smith", "Snowboarding", 5, false},

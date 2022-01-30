@@ -3,8 +3,8 @@
 ## Software, Tutorials, Exercises
 
 ### Java
-* [Java SE Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
-* [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/), [Java SE API](https://docs.oracle.com/en/java/javase/15/docs/api/index.html) 
+* [Java SE Development Kit](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/), [Java SE API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html) 
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/), [IntelliJ IDEA Resources](https://www.jetbrains.com/idea/resources/)
 
 ### Python
