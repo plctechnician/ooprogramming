@@ -210,7 +210,7 @@ How does the exam is evaluated?
 > The final grade is a subjectively-weighted (Dr. Bicocchi is the subject) average between the home project and the oral examination. 
 > The oral examination is composed of theoretical questions about Java and Python and simple quizzes and exercises that anyone that developed a 2000 lines software project is quickly able to solve. The websites reported above, in particular https://www.w3resource.com/ and https://exercism.io/ provide plenty of examples.
 
-Can I get extra bonuses for good behaviours during the course?
+Can I get rewards for good behaviours during the course?
 > Yes! Even though this repository is maintained mostly by Dr. Bicocchi, it embeds ideas and suggestions that came from students over the years. The best way to propose a change is a **pull request**. 1 accepted **pull request** is worth 1 point. No more than 3 points can be accumulated in this way.
 
 Can I get punishments for bad behaviours during the course?
