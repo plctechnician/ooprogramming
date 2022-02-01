@@ -4,7 +4,7 @@ package oop.multithreading.managerworkers;
  * Si implementi un’applicazione multi-threaded per la ricerca di numeri primi.
  * Il software deve sfruttare la moderne architetture multicore suddividendo
  * l’intervallo di numeri interi in cui effettuare la ricerca in blocchi
- * contigui. Ad esempio la ricerca dei primi compresi nell’intervallo [1‐1000]
+ * contigui. Ad esempio la ricerca dei primi compresi nell’intervallo 1-1000
  * potrebbe essere divisa in 10 blocchi contigui di 100 elementi ciascuno. Ogni
  * blocco deve essere processato da un thread separato il quale, una volta
  * terminata la computazione, ritorna i risultati al thread principale. Per
