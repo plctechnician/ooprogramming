@@ -1,5 +1,6 @@
 package oop.collections.exercises;
 
+
 import java.util.*;
 
 /**
@@ -74,7 +75,7 @@ public class Lists {
      * Write a function to iterate and print all elements of a LinkedList in reverse order
      */
     public static void iterateReverse(LinkedList<Integer> list) {
-        for (Iterator i = list.descendingIterator(); i.hasNext();) {
+        for (Iterator<Integer> i = list.descendingIterator(); i.hasNext();) {
             System.out.println(i.next());
         }
     }
