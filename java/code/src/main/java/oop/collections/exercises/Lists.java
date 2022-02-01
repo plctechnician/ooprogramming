@@ -12,10 +12,17 @@ import java.util.*;
 public class Lists {
 
     /**
-     * Write a function to insert an element into a list at the first position
+     * Write a function to insert an element into a list at the beginning
      */
     public static void insertFirst(List<Integer> list, int value) {
         list.add(0, value);
+    }
+
+    /**
+     * Write a function to insert an element into a list at the end
+     */
+    public static void insertLast(List<Integer> list, int value) {
+        list.add(value);
     }
 
     /**
