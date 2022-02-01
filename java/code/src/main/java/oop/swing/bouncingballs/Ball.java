@@ -1,7 +1,8 @@
 package oop.swing.bouncingballs;
 
 import java.awt.*;
-import java.util.Random;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 public class Ball {
     double radius;
@@ -9,7 +10,7 @@ public class Ball {
     Color color;
 
     public Ball(double width, double height) {
-        Random rnd = new Random();
+        RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
         this.radius = Math.max(width / 50, (width / 20) * rnd.nextDouble());
         this.position = new Vector2D(
                 width * rnd.nextDouble() * 0.7 + radius,

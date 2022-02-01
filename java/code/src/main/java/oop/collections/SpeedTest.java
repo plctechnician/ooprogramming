@@ -1,8 +1,11 @@
 package oop.collections;
 
+import java.util.*;
 import java.util.List;
 import java.util.Map;
-import java.util.*;
+import java.util.Set;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 /**
  * Class for showing the speed of insertion and retrieval from ArrayList,
@@ -14,48 +17,60 @@ public class SpeedTest {
     int items;
     long start;
     long stop;
-    Random rnd;
+    RandomGenerator rnd;
 
     public SpeedTest(int items) {
         this.items = items;
-        this.rnd = new Random();
+        this.rnd = RandomGeneratorFactory.getDefault().create();
     }
 
-    public long fillList(List<Integer> l) {
+    public void fillList(List<Integer> l) {
         start = System.nanoTime();
         for (int i = 0; i < items; i++) {
             l.add(rnd.nextInt(items));
         }
         stop = System.nanoTime();
-        return stop - start;
     }
 
-    public long retrieveFromList(List<Integer> l) {
+    public void retrieveFromList(List<Integer> l) {
         start = System.nanoTime();
         for (int i = 0; i < items; i++) {
             retrieveValueFromList(l, rnd.nextInt(items));
         }
         stop = System.nanoTime();
-        return stop - start;
     }
 
-    public long fillMap(Map<Integer, Integer> m) {
+    public void fillSet(Set<Integer> s) {
+        start = System.nanoTime();
+        for (int i = 0; i < items; i++) {
+            s.add(rnd.nextInt(items));
+        }
+        stop = System.nanoTime();
+    }
+
+    public void retrieveFromSet(Set<Integer> s) {
+        start = System.nanoTime();
+        for (int i = 0; i < items; i++) {
+            s.contains(i);
+        }
+        stop = System.nanoTime();
+    }
+
+    public void fillMap(Map<Integer, Integer> m) {
         start = System.nanoTime();
         for (int i = 0; i < items; i++) {
             int n = rnd.nextInt(items);
             m.put(n, n);
         }
         stop = System.nanoTime();
-        return stop - start;
     }
 
-    public long retrieveFromMap(Map<Integer, Integer> m) {
+    public void retrieveFromMap(Map<Integer, Integer> m) {
         start = System.nanoTime();
         for (int i = 0; i < items; i++) {
             m.get(rnd.nextInt(items));
         }
         stop = System.nanoTime();
-        return stop - start;
     }
 
     public void retrieveValueFromList(List<Integer> l, int value) {
@@ -65,31 +80,40 @@ public class SpeedTest {
         }
     }
 
+    public String summary(String verb, String dataStructureName) {
+        return String.format("%s %s [items=%d] [time=%.2fms]", verb, dataStructureName, items, (stop - start) / 1000000.0);
+    }
+
     public static void main(String[] args) {
-        long t;
-        int items = 3000;
+        int items = 5000;
         SpeedTest test = new SpeedTest(items);
 
-        ArrayList<Integer> al = new ArrayList<>();
-        t = test.fillList(al);
-        System.out.println("Filling ArrayList [items=" + items + "][time=" + t / 1000000.0 + "ms]");
+        List<Integer> al = new ArrayList<>();
+        test.fillList(al);
+        System.out.println(test.summary("FILL", "ArrayList"));
 
-        t = test.retrieveFromList(al);
-        System.out.println("Retrieving ArrayList [items=" + items + "][time=" + t / 1000000.0 + "ms]");
+        test.retrieveFromList(al);
+        System.out.println(test.summary("RETR", "ArrayList"));
 
-        LinkedList<Integer> ll = new LinkedList<>();
-        t = test.fillList(ll);
-        System.out.println("Filling LinkedList [items=" + items + "][time=" + t / 1000000.0 + "ms]");
+        List<Integer> ll = new LinkedList<>();
+        test.fillList(ll);
+        System.out.println(test.summary("FILL", "LinkedList"));
 
-        t = test.retrieveFromList(ll);
-        System.out.println("Retrieving LinkedList [items=" + items + "][time=" + t / 1000000.0 + "ms]");
+        test.retrieveFromList(ll);
+        System.out.println(test.summary("RETR", "LinkedList"));
+
+        Set<Integer> s = new HashSet<>();
+        test.fillSet(s);
+        System.out.println(test.summary("FILL", "HashSet"));
+
+        test.retrieveFromSet(s);
+        System.out.println(test.summary("RETR", "HashSet"));
 
         HashMap<Integer, Integer> m = new HashMap<>();
-        t = test.fillMap(m);
-        System.out.println("Filling HashMap [items=" + items + "][time=" + t / 1000000.0 + "ms]");
+        test.fillMap(m);
+        System.out.println(test.summary("FILL", "HashMap"));
 
-        t = test.retrieveFromMap(m);
-        System.out.println("Retrieving HashMap [items=" + items + "][time=" + t / 1000000.0 + "ms]");
-
+        test.retrieveFromMap(m);
+        System.out.println(test.summary("RETR", "HashMap"));
     }
 }

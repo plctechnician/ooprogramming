@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
     Timer timer;
@@ -22,7 +24,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
     }
 
     public void init() {
-        Random rnd = new Random();
+        RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
         hgo = new HashMap<>();
 
         hgo.put("ball", new Ball(this, hgo,

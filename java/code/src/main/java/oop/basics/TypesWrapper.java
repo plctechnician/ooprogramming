@@ -10,19 +10,19 @@ public class TypesWrapper {
     }
 
     public static void test_double() {
-        double n = 3.14;
-        Double N = n;    /* autoboxing */
-        String n_string = String.valueOf(n);
-        N = Double.valueOf(n_string);
-        n = Double.parseDouble(n_string);
+        double d = 3.14;
+        Double D = d;    /* autoboxing */
+        String n_string = String.valueOf(d);
+        D = Double.valueOf(n_string);
+        d = Double.parseDouble(n_string);
     }
 
     public static void test_boolean() {
-        boolean n = true;
-        Boolean N = n;    /* autoboxing */
-        String n_string = String.valueOf(n);
-        N = Boolean.valueOf(n_string);
-        n = Boolean.parseBoolean(n_string);
+        boolean b = true;
+        Boolean B = b;    /* autoboxing */
+        String n_string = String.valueOf(b);
+        B = Boolean.valueOf(n_string);
+        b = Boolean.parseBoolean(n_string);
     }
 
     public static void main(String[] args) {

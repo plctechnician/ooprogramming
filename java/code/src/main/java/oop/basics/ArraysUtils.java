@@ -1,6 +1,7 @@
 package oop.basics;
 
-import java.util.Random;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 /**
  * Demonstration of:
@@ -11,7 +12,7 @@ public class ArraysUtils {
     public static void main(String[] main) {
         int[] v1 = new int[8];
         int[] v2 = new int[8];
-        Random rnd = new Random();
+        RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
 
         /* fill with one random number */
         java.util.Arrays.fill(v1, rnd.nextInt(100));

@@ -1,6 +1,7 @@
 package oop.objectoriented.exercises;
 
-import java.util.Random;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 /**
  * Write a class named Vector representing a vector of integers with additional features.
@@ -25,7 +26,7 @@ public class Vector {
     }
 
     void init() {
-        Random rnd = new Random();
+        RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
         for (int i = 0; i < v.length; i++) {
             v[i] = rnd.nextInt(100);
         }

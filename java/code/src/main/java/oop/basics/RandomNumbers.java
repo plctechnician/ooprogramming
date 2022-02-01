@@ -1,10 +1,17 @@
 package oop.basics;
 
 import java.util.Random;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 public class RandomNumbers {
     public static void main(String[] args) {
-        Random rnd = new Random();
+        int seed = 42;
+        RandomGenerator rnd = new Random(seed);
+        //RandomGenerator rnd = RandomGeneratorFactory.of("Random").create(seed);
+        //RandomGenerator rnd = RandomGeneratorFactory.getDefault().create(seed);
+        //RandomGenerator rnd = RandomGeneratorFactory.of("L32X64MixRandom").create(seed);
+        //RandomGenerator rnd = RandomGeneratorFactory.of("Xoshiro256PlusPlus").create(seed);
 
         /* integer numbers */
         System.out.println(rnd.nextInt());
