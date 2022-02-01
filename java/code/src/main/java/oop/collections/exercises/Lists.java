@@ -12,80 +12,94 @@ import java.util.*;
 public class Lists {
 
     /**
+     * ArrayList exercises
+     */
+
+    /**
      * Write a function to insert an element into a list at the beginning
      */
-    public static void insertFirst(List<Integer> list, int value) {
+    public static void insertFirst(ArrayList<Integer> list, int value) {
         list.add(0, value);
     }
 
     /**
      * Write a function to insert an element into a list at the end
      */
-    public static void insertLast(List<Integer> list, int value) {
+    public static void insertLast(ArrayList<Integer> list, int value) {
         list.add(value);
     }
 
     /**
-     * Write a function to replace the 3rd element with a given value
+     * Write a function to replace the 3rd element of a list with a given value
      */
-    public static void replace(List<Integer> list, int value) {
+    public static void replace(ArrayList<Integer> list, int value) {
         list.set(2, value);
     }
 
     /**
      * Write a function to remove the 3rd element from a list
      */
-    public static void removeThird(List<Integer> list) {
+    public static void removeThird(ArrayList<Integer> list) {
         list.remove(2);
+    }
+
+    /**
+     * Write a function to remove the element "666" from a list
+     */
+    public static void removeEvil(ArrayList<Integer> list) {
+        list.remove(Integer.valueOf(666));
+    }
+
+    /**
+     * Write a function returning a ArrayList<Integer> containing the first
+     * 10 square numbers (i.e., 1, 4, 9, 16, ...)
+     */
+    public static ArrayList<Integer> generateSquare() {
+        ArrayList<Integer> l = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            l.add(i * i);
+        }
+        return l;
     }
 
     /**
      * Write a function to verify if a list contains a certain value
      */
-    public static boolean contains(List<Integer> list, int value) {
+    public static boolean contains(ArrayList<Integer> list, int value) {
         return list.contains(value);
     }
 
     /**
-     * Write a function to copy a list into another list
+     * Write a function to copy a list into another list (without using library functions)
      */
-    public static void copy(List<Integer> source, List<Integer> target) {
-        Collections.copy(target, source);
+    public static void copy(ArrayList<Integer> source, ArrayList<Integer> target) {
+        target.clear();
+        for (int item : source) {
+            target.add(item);
+        }
     }
 
     /**
      * Write a function to reverse the elements of a list
      */
-    public static void reverse(List<Integer> list) {
+    public static void reverse(ArrayList<Integer> list) {
         Collections.reverse(list);
     }
 
     /**
-     * Write a function to iterate and print all elements of a list
+     * Write a function to reverse the elements of a list (without using library functions)
      */
-    public static void iterate(List<Integer> list) {
-        for (Integer i : list) {
-            System.out.println(i);
-        }
-    }
-
-    /**
-     * Write a function to iterate and print all elements of an ArrayList in reverse order
-     */
-    public static void iterateReverse(ArrayList<Integer> list) {
+    public static void reverseManual(ArrayList<Integer> list) {
+        ArrayList<Integer> tmp = new ArrayList<>();
         for (int i = list.size() - 1; i >= 0; i--) {
-            System.out.println(list.get(i));
+            tmp.add(list.get(i));
         }
+        copy(tmp, list);
     }
 
     /**
-     * Write a function to iterate and print all elements of a LinkedList in reverse order
+     * LinkedList exercises
      */
-    public static void iterateReverse(LinkedList<Integer> list) {
-        for (Iterator<Integer> i = list.descendingIterator(); i.hasNext();) {
-            System.out.println(i.next());
-        }
-    }
 
     /**
      * Write a function to insert the same element both at the beginning
