@@ -12,10 +12,6 @@ import java.util.*;
 public class Lists {
 
     /**
-     * ArrayList exercises
-     */
-
-    /**
      * Write a function to insert an element into a list at the beginning
      */
     public static void insertFirst(ArrayList<Integer> list, int value) {
@@ -96,10 +92,6 @@ public class Lists {
         }
         copy(tmp, list);
     }
-
-    /**
-     * LinkedList exercises
-     */
 
     /**
      * Write a function to insert the same element both at the beginning
