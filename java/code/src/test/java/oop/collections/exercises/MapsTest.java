@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class MapsTest {
 
     @Test
-    public void count() {
+    public void testCount() {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 1);
         map.put(2, 2);
@@ -18,7 +18,7 @@ public class MapsTest {
     }
 
     @Test
-    public void empty() {
+    public void testEmpty() {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 1);
         map.put(2, 2);
@@ -28,7 +28,7 @@ public class MapsTest {
     }
 
     @Test
-    public void contains() {
+    public void testContains() {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 1);
         map.put(2, 2);
@@ -38,7 +38,7 @@ public class MapsTest {
     }
 
     @Test
-    public void keySet() {
+    public void testKeySet() {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 1);
         map.put(2, 2);
@@ -48,7 +48,17 @@ public class MapsTest {
     }
 
     @Test
-    public void getColor() {
+    public void testValues() {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 1);
+        map.put(2, 2);
+        map.put(3, 3);
+        Collection<Integer> c = new ArrayList<>(Arrays.asList(1, 2, 3));
+        assertArrayEquals(c.toArray(), Maps.values(map).toArray());
+    }
+
+    @Test
+    public void testGetColor() {
         assertEquals("black", Maps.getColor(0));
         assertEquals("white", Maps.getColor(1));
         assertEquals("red", Maps.getColor(2));

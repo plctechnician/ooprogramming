@@ -54,8 +54,8 @@ public class ListsTest {
     @Test
     public void testContains() {
         ArrayList<Integer> l = new ArrayList<>(Arrays.asList(5, 1, 12, 44, 7));
-        assertTrue(l.contains(12));
-        assertFalse(l.contains(3));
+        assertTrue(Lists.contains(l, 12));
+        assertFalse(Lists.contains(l, 3));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ListsTest {
         ArrayList<Integer> l = new ArrayList<>(Arrays.asList(5, 1, 12, 44, 7));
         ArrayList<Integer> l2 = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
         Lists.copy(l, l2);
-        assertTrue(l.equals(l2));
+        assertEquals(l, l2);
     }
 
     @Test

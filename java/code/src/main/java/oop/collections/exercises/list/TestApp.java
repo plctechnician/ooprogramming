@@ -1,5 +1,9 @@
 package oop.collections.exercises.list;
 
+/**
+ * Provide an implementation of the MyList interface and test it with the
+ * main() functions reported below
+ */
 public class TestApp {
     public static void main(String[] args) {
         MyList l;
