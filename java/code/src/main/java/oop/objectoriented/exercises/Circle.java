@@ -3,10 +3,14 @@ package oop.objectoriented.exercises;
 import java.awt.*;
 
 /**
- * Write a Java class representing a Circle (Point center, int radius)
+ * Write a Java class representing a moving Circle (Point center, int radius)
  * Methods:
  * double getArea()
  * double getPerimeter()
+ * double moveUp()
+ * double moveDown()
+ * double moveLeft()
+ * double moveRight()
  * boolean contains(Point point)
  *
  * @author Nicola Bicocchi
@@ -19,6 +23,22 @@ public class Circle {
     public Circle(Point center, int radius) {
         this.center = center;
         this.radius = radius;
+    }
+
+    public void moveUp() {
+        center.translate(0, 1);
+    }
+
+    public void moveDown() {
+        center.translate(0, -1);
+    }
+
+    public void moveLeft() {
+        center.translate(-1, 0);
+    }
+
+    public void moveRight() {
+        center.translate(1, 0);
     }
 
     public double getArea() {

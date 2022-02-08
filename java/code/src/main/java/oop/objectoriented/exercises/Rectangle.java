@@ -1,5 +1,14 @@
 package oop.objectoriented.exercises;
 
+/**
+ * Write a class representing a Rectangle
+ * Methods:
+ * double getArea()
+ * double getPerimeter()
+ *
+ * @author Nicola Bicocchi
+ */
+
 public class Rectangle {
     double width;
     double height;
