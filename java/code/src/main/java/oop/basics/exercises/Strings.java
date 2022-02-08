@@ -13,6 +13,7 @@ public class Strings {
      * the concatenation of them
      */
     public static String concatenate_simple(String s1, String s2) {
+
         return s1 + s2;
     }
 
