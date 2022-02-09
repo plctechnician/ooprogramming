@@ -8,7 +8,6 @@ package oop.objectoriented.exercises;
  *
  * @author Nicola Bicocchi
  */
-
 public class Triangle {
     double width;
     double height;
@@ -28,16 +27,6 @@ public class Triangle {
 
     @Override
     public String toString() {
-        return "Triangle{" +
-                "width=" + width +
-                ", height=" + height +
-                '}';
-    }
-
-    public static void main(String[] args) {
-        Triangle t1 = new Triangle(10, 20);
-        System.out.println(t1.getPerimenter());
-        System.out.println(t1.getArea());
-        System.out.println(t1);
+        return "Triangle{" + "width=" + width + ", height=" + height + '}';
     }
 }

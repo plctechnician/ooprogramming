@@ -1,8 +1,8 @@
 package oop.collections.exercises.set;
 
 /**
- * Provide an implementation of the MySet interface and test it with the
- * main() functions reported below
+ * Provide an implementation of the MySet interface
+ * test it with the main() function reported below
  */
 public class TestApp {
     public static void main(String[] args) {

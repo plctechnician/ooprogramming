@@ -1,19 +1,17 @@
 package oop.objectoriented.exercises;
 
-import java.util.Arrays;
-
 /**
  * Implementare una classe Street, che rappresenta una strada a senso unico. Il
- * costruttore accetta la lunghezza della strada in chilometri. Il metodo
+ * costruttore accetta la lunghezza della strada in chilometri.
+ *
  * insertCar() accetta un intero (km) come argomento ed aggiunge un’automobile
  * al chilometro km. L’automobile inserita percorrerà la strada alla velocità
- * di un chilometro al minuto, (60 km/h) fino alla fine della stessa. Il metodo
+ * di un chilometro al minuto, (60 km/h) fino alla fine della stessa.
+ *
  * getCarsByPosition() riceve come parametro un intero (km) e restituisce il
- * numero di automobili presenti al chilometro km. Il metodo progress() simula
- * il passaggio di 1 minuto di tempo (cioè fa avanzare tutte le automobili di
- * un chilometro).
- * <p>
- * Fornire infine la classe di metodo main dimostrativo.
+ * numero di automobili presenti al chilometro km.
+ *
+ * progress() simula il passaggio di 1 minuto di tempo (cioè fa avanzare tutte le automobili di un chilometro).
  *
  * @author Nicola Bicocchi
  */
@@ -41,27 +39,5 @@ public class Street {
             cars[i] = cars[i - 1];
         }
         cars[0] = 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Street{" +
-                "cars=" + Arrays.toString(cars) +
-                '}';
-    }
-
-    public static void main(String[] args) {
-        Street s = new Street(10);
-        s.insertCar(0);
-        s.insertCar(0);
-        s.insertCar(5);
-        s.insertCar(9);
-
-        System.out.println("km 0 = " + s.getCarsByPosition(0));
-        System.out.println("km 1 = " + s.getCarsByPosition(1));
-
-        System.out.println(s);
-        s.progress();
-        System.out.println(s);
     }
 }

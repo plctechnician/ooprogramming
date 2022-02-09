@@ -19,7 +19,7 @@ public class Puzzle extends JFrame implements ActionListener {
     private final int TILE_WIDTH = 150, TILE_HEIGHT = 150;
 
     private final JPanel gamePanel;
-    private List<ImageButton> buttons;
+    private final List<ImageButton> buttons;
 
     public Puzzle() {
         super("Puzzle");

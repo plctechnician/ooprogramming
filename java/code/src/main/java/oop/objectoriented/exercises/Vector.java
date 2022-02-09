@@ -21,20 +21,28 @@ public class Vector {
         this.v = v;
     }
 
-    public Vector(int capacity) {
-        this.v = new int[capacity];
-    }
-
-    void init() {
-        RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
+    public String show() {
+        StringBuilder b = new StringBuilder();
+        b.append("[");
         for (int i = 0; i < v.length; i++) {
-            v[i] = rnd.nextInt(100);
+            b.append(String.format("%d, ", v[i]));
         }
+        b.append("]");
+        return b.toString();
     }
 
-    void sort() {
+    public int search(int value) {
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void sort() {
         boolean changed;
-        for (int i = 0; i < v.length-1; i++) {
+        for (int i = 0; i < v.length - 1; i++) {
             changed = false;
             for (int j = 0; j < v.length - i - 1; j++) {
                 if (v[j] > v[j + 1]) {
@@ -44,30 +52,15 @@ public class Vector {
                     v[j + 1] = tmp;
                 }
             }
-            if (!changed) break;
+            if (!changed)
+                break;
         }
     }
 
-    int search(int value) {
+    public void init() {
+        RandomGenerator rnd = RandomGeneratorFactory.of("Random").create();
         for (int i = 0; i < v.length; i++) {
-            if (v[i] == value) {
-                return i;
-            }
+            v[i] = rnd.nextInt(100);
         }
-        return -1;
-    }
-
-    void show() {
-        for (int i = 0; i < v.length; i++) {
-            System.out.printf("[%d] %d\n", i, v[i]);
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] values = {7, 5, 34, 23, 99};
-        Vector v = new Vector(values);
-        v.sort();
-        v.show();
-        System.out.printf("%d index = %d\n", 7, v.search(7));
     }
 }

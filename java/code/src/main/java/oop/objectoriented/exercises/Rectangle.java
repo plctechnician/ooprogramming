@@ -8,7 +8,6 @@ package oop.objectoriented.exercises;
  *
  * @author Nicola Bicocchi
  */
-
 public class Rectangle {
     double width;
     double height;
@@ -28,21 +27,6 @@ public class Rectangle {
 
     @Override
     public String toString() {
-        return "Rectangle{" +
-                "width=" + width +
-                ", height=" + height +
-                '}';
-    }
-
-    public static void main(String[] args) {
-        Rectangle r1 = new Rectangle(10.0, 5.0);
-        System.out.println(r1.getPerimeter());
-        System.out.println(r1.getArea());
-
-        r1.width = 20;
-
-        System.out.println(r1.getPerimeter());
-        System.out.println(r1.getArea());
-
+        return "Rectangle{" + "width=" + width + ", height=" + height + '}';
     }
 }

@@ -2,14 +2,13 @@ package oop.collections.exercises;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class ListsTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+public class ListsTest {
     @Test
     public void testInsertFirst() {
         ArrayList<Integer> l = new ArrayList<>(Arrays.asList(5, 1, 12, 44, 7));
@@ -47,8 +46,7 @@ public class ListsTest {
 
     @Test
     public void testGenerateSquare() {
-        assertEquals(Arrays.asList(1, 4, 9, 16, 25, 36, 49, 64, 81, 100),
-                Lists.generateSquare());
+        assertEquals(Arrays.asList(1, 4, 9, 16, 25, 36, 49, 64, 81, 100), Lists.generateSquare());
     }
 
     @Test

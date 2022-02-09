@@ -1,15 +1,16 @@
 package oop.basics.exercises;
 
 /**
- *
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/array/index.php
+ *
+ * Preferences -> Editor -> General -> Code folding -> One-line methods (uncheck)
  * Code -> Folding -> Collapse All
  * Code -> Folding -> Expand Doc Comments
  */
 public class Arrays {
     /**
-     * Write a function accepting a double[] and a factor f (double as well)
+     * Write a function accepting a double[] and a factor f (double)
      * returning a double[] representing the original double[] divided by f
      */
     public static double[] divideArray(double[] in, double f) {
@@ -26,7 +27,8 @@ public class Arrays {
      * The two arrays must have the same size. Returns null otherwise.
      */
     public static double[] divideArrays(double[] a, double[] b) {
-        if (a.length != b.length) return null;
+        if (a.length != b.length)
+            return null;
         double[] out = new double[a.length];
         for (int i = 0; i < a.length; i++) {
             out[i] = a[i] / b[i];
@@ -56,17 +58,14 @@ public class Arrays {
 
     /**
      * Write a function accepting an int
-     * returning an array long[] composed
-     * of the first n numbers of the Fibonacci series
-     * (without recursion).
+     * returning a long[] composed of the first n numbers of the Fibonacci series (without recursion).
      */
     public static long[] fibonacci(int n) {
         long[] fibonacci;
-
         if (n == 1) {
-            fibonacci = new long[] {0};
+            fibonacci = new long[]{0};
         } else if (n == 2) {
-            fibonacci = new long[] {0, 1};
+            fibonacci = new long[]{0, 1};
         } else {
             fibonacci = new long[n];
             fibonacci[0] = 0;
@@ -80,20 +79,17 @@ public class Arrays {
 
     /**
      * Write a function accepting an int[]
-     * returning an int[] in which all the
-     * 0s have been moved to the end of an array.
+     * returning an int[] in which all the 0s have been moved to the end of an array.
      * Maintain the relative order of the other (non-zero) elements.
      */
     public static int[] moveZerosEnd(int[] v) {
         int[] output = new int[v.length];
         int i, j = 0;
-
         for (i = 0; i < v.length; i++) {
             if (v[i] != 0) {
                 output[j++] = v[i];
             }
         }
-
         // fills with remaining zeros
         for (; j < output.length; j++) {
             output[j] = 0;
@@ -104,11 +100,11 @@ public class Arrays {
     /**
      * Write a function accepting an int
      * returning the sequence of individual digits.
+     * (e.g. 363738229 -> [3,6,3,7,3,8,2,2,9])
      */
     public static int[] splitter(int input) {
         int n = Integer.toString(input).length();
         int[] digits = new int[n];
-
         for (int d = n - 1; d >= 0; d--) {
             digits[digits.length - 1 - d] = input / ((int) Math.pow(10, d)) % 10;
         }

@@ -2,12 +2,11 @@ package oop.collections.exercises;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.*;
 
-public class MapsTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+public class MapsTest {
     @Test
     public void testCount() {
         Map<Integer, Integer> map = new HashMap<>();

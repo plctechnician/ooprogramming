@@ -3,8 +3,8 @@ package oop.objectoriented.exercises;
 import java.util.Arrays;
 
 /**
- * Implementare una classe StringProcessor per effettuare operazioni su array di
- * stringhe. Metodi:
+ * Implementare una classe StringProcessor per effettuare operazioni su array di stringhe.
+ * Metodi:
  *
  * public StringProcessor(String[] v): Costruttore
  * public int findShortest(): ritorna l'indice della stringa più corta
@@ -26,7 +26,6 @@ public class StringProcessor {
         if (v.length == 0) {
             return -1;
         }
-
         int shortestIndex = 0;
         int shortestLength = v[0].length();
         for (int i = 0; i < v.length; i++) {
@@ -56,22 +55,11 @@ public class StringProcessor {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof StringProcessor)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof StringProcessor))
+            return false;
         StringProcessor that = (StringProcessor) o;
         return Arrays.equals(v, that.v);
-    }
-
-    public static void main(String[] args) {
-        String[] v1 = {"Nicola", "Marzia", "Agata", "Dharma"};
-        String[] v2 = {"Nicola", "Marzia", "Agata", "Dharma"};
-        StringProcessor sp1 = new StringProcessor(v1);
-        StringProcessor sp2 = new StringProcessor(v2);
-
-        System.out.println("shortest=" + sp1.findShortest());
-        System.out.println("search=" + sp1.search("Marzia"));
-        sp1.reverse();
-        // False because sp1 has been reversed
-        System.out.println("equals=" + sp1.equals(sp2));
     }
 }

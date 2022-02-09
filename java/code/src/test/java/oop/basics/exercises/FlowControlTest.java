@@ -2,18 +2,11 @@ package oop.basics.exercises;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FlowControlTest {
     @Test
-    public void sumFirstHundredNumbers() {
-
-        assertEquals(5050, FlowControl.sumFirstHundredNumbers());
-    }
-
-    @Test
-    public void sumFirstNNumbers() {
-
-        assertEquals(5050, FlowControl.sumFirstNNumbers(100));
+    public void sumFirstNumbers() {
+        assertEquals(5050, FlowControl.sumFirstNumbers(100));
     }
 }

@@ -27,16 +27,6 @@ public class Polygon {
         return vertices.length;
     }
 
-    public Point[] getVertices() {
-        return vertices;
-    }
-
-    public void move(Point movement) {
-        for (Point vertex : vertices) {
-            vertex.translate(movement.x, movement.y);
-        }
-    }
-
     public double getArea() {
         double sum = 0;
         for (int i = 0; i < vertices.length; i++) {
@@ -46,19 +36,18 @@ public class Polygon {
         return sum / 2.0;
     }
 
-    @Override
-    public String toString() {
-        return "Polygon{" +
-                "vertices=" + Arrays.toString(vertices) +
-                '}';
+    public void move(Point movement) {
+        for (Point vertex : vertices) {
+            vertex.translate(movement.x, movement.y);
+        }
     }
 
-    public static void main(String[] args) {
-        Point[] vertices = {new Point(0,0), new Point(10, 0), new Point(5, 10)};
-        Polygon p = new Polygon(vertices);
-        System.out.println(p.getVerticesNumber());
-        System.out.println(p.getArea());
-        p.move(new Point(-5, -10));
-        System.out.println(p);
+    public Point[] getVertices() {
+        return vertices;
+    }
+
+    @Override
+    public String toString() {
+        return "Polygon{" + "vertices=" + Arrays.toString(vertices) + '}';
     }
 }

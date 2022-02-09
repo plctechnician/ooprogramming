@@ -1,17 +1,17 @@
 package oop.collections.exercises;
 
 import java.util.*;
-
 /**
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/collection/index.php
+ *
+ * Preferences -> Editor -> General -> Code folding -> One-line methods (uncheck)
  * Code -> Folding -> Collapse All
  * Code -> Folding -> Expand Doc Comments
  */
 public class Sets {
-
     /**
-     * Write a function returning the intersection of two given sets without using library functions
+     * Write a function returning the intersection of two given sets (without using library functions)
      */
     public static Set<Integer> intersection_manual(Set<Integer> source, Set<Integer> target) {
         Set<Integer> tmp = new HashSet<>();
@@ -24,7 +24,7 @@ public class Sets {
     }
 
     /**
-     * Write a function returning the union of two given sets without using library functions
+     * Write a function returning the union of two given sets (without using library functions)
      */
     public static Set<Integer> union_manual(Set<Integer> source, Set<Integer> target) {
         Set<Integer> tmp = new HashSet<>();
@@ -60,7 +60,6 @@ public class Sets {
      * Remember collections can be created from another collection!
      */
     public static List<Integer> toList(Set<Integer> source) {
-
         return new ArrayList<>(source);
     }
 
@@ -69,7 +68,6 @@ public class Sets {
      * Remember collections can be created from another collection!
      */
     public static List<Integer> removeDuplicates(List<Integer> l) {
-
         return new ArrayList<>(new HashSet<>(l));
     }
 
@@ -89,8 +87,9 @@ public class Sets {
     }
 
     /**
-     * Write a function accepting a string s, and returning the first recurring character.
-     * Otherwise, return null. For example firstRecurringCharacter("abaco") returns a.
+     * Write a function accepting a string s
+     * returning the first recurring character
+     * For example firstRecurringCharacter("abaco") -> a.
      */
     public static String firstRecurringCharacter(String s) {
         Set<Character> seenCharacters = new HashSet<>();
@@ -105,8 +104,8 @@ public class Sets {
     }
 
     /**
-     * Write a function accepting a string s, and returning a set comprising all returning charachters.
-     * For example allRecurringChars("mamma") returns [m, a].
+     * Write a function accepting a string s, and returning a set comprising all recurring characters.
+     * For example allRecurringChars("mamma") -> [m, a].
      */
     public static Set<Character> allRecurringChars(String s) {
         Set<Character> seen = new HashSet<>();
@@ -134,7 +133,6 @@ public class Sets {
      * Write a function to return the first item from a TreeSet
      */
     public static int getFirst(TreeSet<Integer> source) {
-
         return source.first();
     }
 
@@ -142,7 +140,6 @@ public class Sets {
      * Write a function to return the last item from a TreeSet
      */
     public static int getLast(TreeSet<Integer> source) {
-
         return source.last();
     }
 
@@ -150,7 +147,6 @@ public class Sets {
      * Write a function to get an element from a TreeSet which is strictly greater than a given element.
      */
     public static int getGreater(TreeSet<Integer> source, int value) {
-
         return source.higher(value);
     }
 }

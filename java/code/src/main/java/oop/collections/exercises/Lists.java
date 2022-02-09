@@ -6,6 +6,8 @@ import java.util.*;
 /**
  * You can find many more here:
  * https://www.w3resource.com/java-exercises/collection/index.php
+ *
+ * Preferences -> Editor -> General -> Code folding -> One-line methods (uncheck)
  * Code -> Folding -> Collapse All
  * Code -> Folding -> Expand Doc Comments
  */

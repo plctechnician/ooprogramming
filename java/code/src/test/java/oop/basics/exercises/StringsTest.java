@@ -6,11 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StringsTest {
     @Test
-    public void concatenate_simple() {
-        assertEquals("HelloWorld", Strings.concatenate_simple("Hello", "World"));
-    }
-
-    @Test
     public void concatenate() {
         String[] input = {"Hello", " ", "World", "!"};
         assertEquals("Hello World!", Strings.concatenate(input));
@@ -32,7 +27,6 @@ public class StringsTest {
     public void removeFirstTwoChars() {
         String input = "Hello World!";
         assertEquals("llo World!", Strings.removeFirstTwoChars(input));
-
         input = "Home Sweet Home";
         assertEquals("me Sweet Home", Strings.removeFirstTwoChars(input));
     }
@@ -41,7 +35,6 @@ public class StringsTest {
     public void removeFirstTwoCharsIf() {
         String input = "Hello World!";
         assertEquals("Hello World!", Strings.removeFirstTwoCharsIf(input));
-
         input = "Home Sweet Home";
         assertEquals("Hme Sweet Home", Strings.removeFirstTwoCharsIf(input));
     }
@@ -50,34 +43,18 @@ public class StringsTest {
     public void goodAtTheBeginning() {
         String input = "good Sweet Home";
         assertTrue(Strings.goodAtTheBeginning(input));
-
         input = " good Sweet Home";
         assertFalse(Strings.goodAtTheBeginning(input));
-
         input = "No good Sweet Home";
         assertFalse(Strings.goodAtTheBeginning(input));
-    }
-
-    @Test
-    public void goodAtTheBeginningHard() {
-        String input = "good Sweet Home";
-        assertTrue(Strings.goodAtTheBeginningHard(input));
-
-        input = " good Sweet Home";
-        assertFalse(Strings.goodAtTheBeginningHard(input));
-
-        input = "No good Sweet Home";
-        assertFalse(Strings.goodAtTheBeginningHard(input));
     }
 
     @Test
     public void goodAtTheBeginningExt() {
         String input = "good Sweet Home";
         assertTrue(Strings.goodAtTheBeginningExt(input));
-
         input = " good Sweet Home";
         assertTrue(Strings.goodAtTheBeginningExt(input));
-
         input = "No good Sweet Home";
         assertFalse(Strings.goodAtTheBeginningExt(input));
     }
@@ -86,7 +63,6 @@ public class StringsTest {
     public void removeFirstLast() {
         String input = "Google";
         assertEquals("Google", Strings.removeFirstLast(input));
-
         input = "GoogleG";
         assertEquals("oogle", Strings.removeFirstLast(input));
     }
@@ -95,7 +71,6 @@ public class StringsTest {
     public void isPalindrome() {
         String input = "Google";
         assertFalse(Strings.isPalindrome(input));
-
         input = "radar";
         assertTrue(Strings.isPalindrome(input));
     }
