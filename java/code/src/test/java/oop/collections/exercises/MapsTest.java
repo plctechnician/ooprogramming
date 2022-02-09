@@ -8,56 +8,39 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MapsTest {
     @Test
-    public void testCount() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
+    public void count() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
         assertEquals(3, Maps.count(map));
     }
 
     @Test
-    public void testEmpty() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
+    public void empty() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
         Maps.empty(map);
         assertEquals(0, map.size());
     }
 
     @Test
-    public void testContains() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
+    public void contains() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
         assertTrue(Maps.contains(map, 1));
         assertFalse(Maps.contains(map, 5));
     }
 
     @Test
-    public void testKeySet() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
-        Set<Integer> set = new HashSet<>(Arrays.asList(1, 2, 3));
-        assertArrayEquals(set.toArray(), Maps.keySet(map).toArray());
+    public void keySet() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
+        assertEquals(Set.of(1,2,3), Maps.keySet(map));
     }
 
     @Test
-    public void testValues() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
-        Collection<Integer> c = new ArrayList<>(Arrays.asList(1, 2, 3));
-        assertArrayEquals(c.toArray(), Maps.values(map).toArray());
+    public void values() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
+        assertEquals(List.of(1,2,3), Maps.values(map));
     }
 
     @Test
-    public void testGetColor() {
+    public void getColor() {
         assertEquals("black", Maps.getColor(0));
         assertEquals("white", Maps.getColor(1));
         assertEquals("red", Maps.getColor(2));

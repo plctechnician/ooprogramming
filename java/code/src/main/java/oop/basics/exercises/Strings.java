@@ -41,16 +41,14 @@ public class Strings {
      * returning the string without the first two characters.
      */
     public static String removeFirstTwoChars(String s) {
-        /*
         StringBuilder sb = new StringBuilder();
         for (int i = 2; i < s.length(); i++) {
             sb.append(s.charAt(i));
         }
         return sb.toString();
-        */
 
         // more compact version
-        return s.substring(2);
+        // return s.substring(2);
     }
 
     /**
@@ -79,9 +77,7 @@ public class Strings {
 
     /**
      * Write a function accepting a string
-     * returning true if "good" appears
-     * at the beginning of the string
-     * without using the startsWith() method
+     * returning true if "good" appears at the beginning of the string
      */
     public static boolean goodAtTheBeginning(String s) {
         return (s.charAt(0) == 'g' && s.charAt(1) == 'o' && s.charAt(2) == 'o' && s.charAt(3) == 'd');
@@ -95,7 +91,7 @@ public class Strings {
      * starting at index 0 or 1 in the given string.
      * see substring() method
      */
-    public static boolean goodAtTheBeginningExt(String s) {
+    public static boolean goodAroundTheBeginning(String s) {
         String a = s.substring(0, 4);
         String b = s.substring(1, 5);
         return a.equals("good") || b.equals("good");
@@ -114,21 +110,20 @@ public class Strings {
 
     /**
      * Write a function accepting a string
-     * returning all duplicate characters contained as a char[]
-     * see StringBuilder methods
+     * returning all recurring characters contained into the string as a char[]
      */
     public static char[] duplicateChars(String input) {
         StringBuilder seen = new StringBuilder();
-        StringBuilder duplicates = new StringBuilder();
+        StringBuilder recurring = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             String tmp = String.valueOf(input.charAt(i));
-            if (seen.toString().contains(tmp) && !duplicates.toString().contains(tmp)) {
-                duplicates.append(tmp);
+            if (seen.toString().contains(tmp)) {
+                recurring.append(tmp);
             } else {
                 seen.append(tmp);
             }
         }
-        return duplicates.toString().toCharArray();
+        return recurring.toString().toCharArray();
     }
 
     /**

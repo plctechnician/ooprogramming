@@ -50,13 +50,13 @@ public class StringsTest {
     }
 
     @Test
-    public void goodAtTheBeginningExt() {
+    public void goodAroundTheBeginning() {
         String input = "good Sweet Home";
-        assertTrue(Strings.goodAtTheBeginningExt(input));
+        assertTrue(Strings.goodAroundTheBeginning(input));
         input = " good Sweet Home";
-        assertTrue(Strings.goodAtTheBeginningExt(input));
+        assertTrue(Strings.goodAroundTheBeginning(input));
         input = "No good Sweet Home";
-        assertFalse(Strings.goodAtTheBeginningExt(input));
+        assertFalse(Strings.goodAroundTheBeginning(input));
     }
 
     @Test
