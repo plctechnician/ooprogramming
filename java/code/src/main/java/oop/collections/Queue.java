@@ -1,5 +1,7 @@
 package oop.collections;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -10,21 +12,8 @@ import java.util.PriorityQueue;
 public class Queue {
     public static void main(String[] args) {
         String action;
-        //java.util.Queue<Integer> l = new LinkedList<>();
-        java.util.Queue<Integer> l = new PriorityQueue<>();
-
-        action = "Adding elements...";
-        System.out.println(action);
-        l.add(2);
-        l.add(14);
-        l.add(3);
-        l.add(7);
-
-        action = "Showing content...";
-        System.out.println(action);
-        for (int i : l) {
-            System.out.println(i);
-        }
+        //java.util.Queue<Integer> l = new LinkedList<>(List.of(21, 14, 7, 99));
+        java.util.Queue<Integer> l = new PriorityQueue<>(List.of(21, 14, 7, 99));
 
         action = "Peek element...";
         System.out.println(action);
@@ -42,6 +31,12 @@ public class Queue {
         System.out.println(action);
         for (int i : l) {
             System.out.println(i);
+        }
+
+        action = "Showing content (iterator)...";
+        System.out.println(action);
+        for (Iterator<Integer> i = l.iterator(); i.hasNext();) {
+            System.out.println(i.next());
         }
     }
 }
