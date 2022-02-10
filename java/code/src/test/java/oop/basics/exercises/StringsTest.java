@@ -7,71 +7,54 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StringsTest {
     @Test
     public void concatenate() {
-        String[] input = {"Hello", " ", "World", "!"};
-        assertEquals("Hello World!", Strings.concatenate(input));
+        assertEquals("Hello World!", Strings.concatenate(new String[]{"Hello", " ", "World", "!"}));
     }
 
     @Test
     public void duplicateChars() {
-        String input = "whistleblower";
-        assertEquals("lwe", new String(Strings.duplicateChars(input)));
+        assertEquals("lwe", new String(Strings.duplicateChars("whistleblower")));
     }
 
     @Test
     public void reverse() {
-        String input = "String test";
-        assertEquals("tset gnirtS", Strings.reverse(input));
+        assertEquals("tset gnirtS", Strings.reverse("String test"));
     }
 
     @Test
     public void removeFirstTwoChars() {
-        String input = "Hello World!";
-        assertEquals("llo World!", Strings.removeFirstTwoChars(input));
-        input = "Home Sweet Home";
-        assertEquals("me Sweet Home", Strings.removeFirstTwoChars(input));
+        assertEquals("llo World!", Strings.removeFirstTwoChars("Hello World!"));
+        assertEquals("me Sweet Home", Strings.removeFirstTwoChars("Home Sweet Home"));
     }
 
     @Test
     public void removeFirstTwoCharsIf() {
-        String input = "Hello World!";
-        assertEquals("Hello World!", Strings.removeFirstTwoCharsIf(input));
-        input = "Home Sweet Home";
-        assertEquals("Hme Sweet Home", Strings.removeFirstTwoCharsIf(input));
+        assertEquals("Hello World!", Strings.removeFirstTwoCharsIf("Hello World!"));
+        assertEquals("Hme Sweet Home", Strings.removeFirstTwoCharsIf("Home Sweet Home"));
     }
 
     @Test
     public void goodAtTheBeginning() {
-        String input = "good Sweet Home";
-        assertTrue(Strings.goodAtTheBeginning(input));
-        input = " good Sweet Home";
-        assertFalse(Strings.goodAtTheBeginning(input));
-        input = "No good Sweet Home";
-        assertFalse(Strings.goodAtTheBeginning(input));
+        assertTrue(Strings.goodAtTheBeginning("good Sweet Home"));
+        assertFalse(Strings.goodAtTheBeginning(" good Sweet Home"));
+        assertFalse(Strings.goodAtTheBeginning("No good Sweet Home"));
     }
 
     @Test
     public void goodAroundTheBeginning() {
-        String input = "good Sweet Home";
-        assertTrue(Strings.goodAroundTheBeginning(input));
-        input = " good Sweet Home";
-        assertTrue(Strings.goodAroundTheBeginning(input));
-        input = "No good Sweet Home";
-        assertFalse(Strings.goodAroundTheBeginning(input));
+        assertTrue(Strings.goodAroundTheBeginning("good Sweet Home"));
+        assertTrue(Strings.goodAroundTheBeginning(" good Sweet Home"));
+        assertFalse(Strings.goodAroundTheBeginning("No good Sweet Home"));
     }
 
     @Test
     public void removeFirstLast() {
-        String input = "Google";
-        assertEquals("Google", Strings.removeFirstLast(input));
-        input = "GoogleG";
-        assertEquals("oogle", Strings.removeFirstLast(input));
+        assertEquals("Google", Strings.removeFirstLast("Google"));
+        assertEquals("oogle", Strings.removeFirstLast("GoogleG"));
     }
 
     @Test
     public void isPalindrome() {
-        String input = "Google";
-        assertFalse(Strings.isPalindrome(input));
-        input = "radar";
-        assertTrue(Strings.isPalindrome(input));
+        assertFalse(Strings.isPalindrome("Google"));
+        assertTrue(Strings.isPalindrome("radar"));
     }
 }

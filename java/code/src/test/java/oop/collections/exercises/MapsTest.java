@@ -36,7 +36,7 @@ public class MapsTest {
     @Test
     public void values() {
         Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
-        assertEquals(List.of(1,2,3), Maps.values(map));
+        assertEquals(new ArrayList<>(List.of(1, 2, 3)), new ArrayList<>(Maps.values(map)));
     }
 
     @Test
