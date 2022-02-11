@@ -12,12 +12,11 @@ public class MovingWindow extends JFrame implements ComponentListener {
         super("Moving Window");
 
         summary = new JLabel("");
-        JPanel p1 = new JPanel(new BorderLayout());
-        p1.add(summary, BorderLayout.SOUTH);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(summary, BorderLayout.SOUTH);
 
-        add(p1);
         addComponentListener(this);
-
+        setContentPane(panel);
         setSize(300, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

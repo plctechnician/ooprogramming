@@ -11,6 +11,7 @@ public class CelsiusConverterFullUIDesigner extends JFrame {
     private JButton btFahrenheit;
 
     public CelsiusConverterFullUIDesigner() throws HeadlessException {
+        super("CelsiusConverterFullUIDesigner");
         setContentPane(mainPanel);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

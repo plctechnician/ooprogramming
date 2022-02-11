@@ -16,7 +16,7 @@
           <component id="4ef16" class="javax.swing.JTextField" binding="tfCelsius">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="248" height="30"/>
               </grid>
             </constraints>
             <properties>
@@ -26,7 +26,7 @@
           <component id="67a41" class="javax.swing.JTextField" binding="tfFahrenheit">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="248" height="30"/>
               </grid>
             </constraints>
             <properties>

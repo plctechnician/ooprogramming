@@ -4,27 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class KeyboardListener extends JFrame implements KeyListener {
-    ArrayList<Integer> lastChars;
-    JPanel p;
-    JLabel l;
+    LinkedList<Integer> lastChars;
+    JPanel panel;
+    JLabel label;
 
     public KeyboardListener() {
-        lastChars = new ArrayList<>(Arrays.asList(0, 0, 0));
+        super("KeyboardListener");
+        lastChars = new LinkedList<>(List.of(0, 0, 0));
 
-        p = new JPanel(new BorderLayout());
-        l = new JLabel("");
-        p.add(l, BorderLayout.PAGE_END);
+        panel = new JPanel(new BorderLayout());
+        label = new JLabel();
+        panel.add(label, BorderLayout.PAGE_END);
 
-        setContentPane(p);
+        setContentPane(panel);
         getContentPane().setFocusable(true);
         getContentPane().addKeyListener(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Testing Key Listener");
-        setSize(300, 200);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(400, 400);
         setVisible(true);
     }
 
@@ -35,18 +35,18 @@ public class KeyboardListener extends JFrame implements KeyListener {
         // update last chars
         int keyCode = e.getKeyCode();
         char keyChar = e.getKeyChar();
-        lastChars.add(0, keyCode);
-        lastChars.remove(3);
+        lastChars.addFirst(keyCode);
+        lastChars.removeLast();
 
         // update label
-        l.setText("RGB = " + lastChars);
+        label.setText("RGB = " + lastChars);
 
         // update terminal
         System.out.print("RGB = " + lastChars);
         System.out.println("\tkeyPressed: VK Code is " + keyCode + ", Key char is " + keyChar);
 
         // update panel color
-        p.setBackground(new Color(lastChars.get(0), lastChars.get(1), lastChars.get(2)));
+        panel.setBackground(new Color(lastChars.get(0), lastChars.get(1), lastChars.get(2)));
         repaint();
     }
 
