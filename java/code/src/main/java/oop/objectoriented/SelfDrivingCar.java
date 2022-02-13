@@ -33,7 +33,7 @@ public class SelfDrivingCar extends Car {
         return "SelfDrivingCar{" +
                 "isOn=" + isOn +
                 ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
+                ", model='" + color + '\'' +
                 ", isSelfDriving=" + isSelfDriving +
                 '}';
     }
