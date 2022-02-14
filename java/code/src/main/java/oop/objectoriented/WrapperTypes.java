@@ -48,7 +48,7 @@ public class WrapperTypes {
 
     public static void main(String[] args) {
         System.out.println(speedTest() + "ms");
-        System.out.println(speedTestMyInteger() + "ms");
+        //System.out.println(speedTestMyInteger() + "ms");
     }
 }
 

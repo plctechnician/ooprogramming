@@ -2,8 +2,8 @@ package oop.objectoriented.exercises.reverse;
 
 /**
  * Use the Reverser Interface to provide the following main() with
- * three different (but interchangeable) methods for reversing a String.
- * This use of polymorphism is widely diffused in real-world software!
+ * three different (but interchangeable) objects for reversing a String.
+ * The reverse() method accepts a String and returns the same String, but inverted.
  */
 
 public class TestApp {
