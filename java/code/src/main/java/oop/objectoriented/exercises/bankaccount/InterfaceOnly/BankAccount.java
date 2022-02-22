@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.bankaccount;
+package oop.objectoriented.exercises.bankaccount.InterfaceOnly;
 
 public interface BankAccount {
     String getIBAN();

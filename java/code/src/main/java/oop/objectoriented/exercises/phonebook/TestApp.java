@@ -4,7 +4,7 @@ import oop.utils.Student;
 
 /**
  * The PhoneBook Interface defines the functionalities of a basic phone book.
- * <p>
+ *
  * Provide two different implementations of the PhoneBook interface working with the
  * use case below. The first, (a) internally uses an Arraylist, the second (b) internally uses
  * an HashMap.
