@@ -9,6 +9,7 @@ import java.util.random.RandomGeneratorFactory;
  * 2. System.arraycopy() method
  */
 public class ArraysUtils {
+    // this is a comment
     public static void main(String[] main) {
         int[] v1 = new int[8];
         int[] v2 = new int[8];
