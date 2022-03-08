@@ -10,7 +10,7 @@ public class CelsiusConverterLayout extends JFrame {
     private final JTextField celsiusTF;
 
     public CelsiusConverterLayout() {
-        super("Celsius Converter");
+        super();
         celsiusTF = new JTextField("0");
         fahrenheitTF = new JTextField("32");
         CFButton = new JButton("°C->°F");
@@ -26,12 +26,13 @@ public class CelsiusConverterLayout extends JFrame {
         p2.add(CFButton);
         p2.add(FCButton);
 
-        JPanel p3 = new JPanel(new BorderLayout());
-        p3.add(p1, BorderLayout.CENTER);
-        p3.add(p2, BorderLayout.PAGE_END);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(p1, BorderLayout.CENTER);
+        mainPanel.add(p2, BorderLayout.PAGE_END);
 
         /* JFrame methods called */
-        setContentPane(p3);
+        setContentPane(mainPanel);
+        setTitle("Celsius Converter");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(200, 100);
         setVisible(true);

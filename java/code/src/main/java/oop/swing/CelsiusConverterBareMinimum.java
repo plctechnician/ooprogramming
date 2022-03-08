@@ -7,22 +7,23 @@ public class CelsiusConverterBareMinimum extends JFrame {
     private final JTextField fahrenheitTF, celsiusTF;
 
     public CelsiusConverterBareMinimum() {
-        super("Celsius Converter");
+        super();
         celsiusTF = new JTextField("000");
         fahrenheitTF = new JTextField("032");
         CFButton = new JButton("°C->°F");
         FCButton = new JButton("°F->°C");
 
-        JPanel p1 = new JPanel();
-        p1.add(celsiusTF);
-        p1.add(new JLabel("°C"));
-        p1.add(fahrenheitTF);
-        p1.add(new JLabel("°F"));
-        p1.add(CFButton);
-        p1.add(FCButton);
+        JPanel mainPanel = new JPanel();
+        mainPanel.add(celsiusTF);
+        mainPanel.add(new JLabel("°C"));
+        mainPanel.add(fahrenheitTF);
+        mainPanel.add(new JLabel("°F"));
+        mainPanel.add(CFButton);
+        mainPanel.add(FCButton);
 
         /* JFrame methods called */
-        setContentPane(p1);
+        setContentPane(mainPanel);
+        setTitle("Celsius Converter");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(350, 75);
         setResizable(true);
