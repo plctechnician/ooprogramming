@@ -68,7 +68,7 @@ public class LambdaFunctionalInterfaces {
         results = processPredicateConsumer(
                 students,
                 (Student s) -> s.getAverage() >= 20 && s.getAverage() <= 24,
-                System.out::println
+                (Student s) -> System.out.println(s)
         );
         System.out.println(results);
 
@@ -76,8 +76,8 @@ public class LambdaFunctionalInterfaces {
         results = processPredicateConsumerFunction(
                 students,
                 (Student s) -> s.getAverage() >= 20 && s.getAverage() <= 24,
-                Student::getName,
-                System.out::println
+                (Student s) -> s.getName(),
+                (String s) -> System.out.println(s)
         );
         System.out.println(results);
     }
