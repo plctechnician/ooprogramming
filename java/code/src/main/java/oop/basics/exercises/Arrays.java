@@ -40,7 +40,7 @@ public class Arrays {
      * Write a function accepting an int[]
      * returning a sorted version of it (bubble sort)
      */
-    static int[] bubbleSort(int[] v) {
+    public static int[] bubbleSort(int[] v) {
         boolean changed = true;
         while (changed) {
             changed = false;
