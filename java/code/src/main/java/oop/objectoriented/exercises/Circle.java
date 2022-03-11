@@ -7,11 +7,11 @@ import java.awt.*;
  * Methods:
  * double getArea()
  * double getPerimeter()
- * double moveUp()
- * double moveDown()
- * double moveLeft()
- * double moveRight()
  * boolean contains(Point point)
+ * void moveUp()
+ * void moveDown()
+ * void moveLeft()
+ * void moveRight()
  *
  * @author Nicola Bicocchi
  */

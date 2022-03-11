@@ -12,12 +12,15 @@ public class StringsTest {
 
     @Test
     public void duplicateChars() {
-        assertEquals("lwe", new String(Strings.duplicateChars("whistleblower")));
+        assertEquals("elw", new String(Strings.duplicateChars("whistleblower")));
+        assertEquals("ehis", new String(Strings.duplicateChars("headmistressship")));
+        assertEquals("es", new String(Strings.duplicateChars("stresslessness")));
     }
 
     @Test
     public void reverse() {
         assertEquals("tset gnirtS", Strings.reverse("String test"));
+        assertEquals("eoD nhoJ", Strings.reverse("John Doe"));
     }
 
     @Test

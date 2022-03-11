@@ -104,32 +104,36 @@ public class Strings {
      * see substring(), charAt() methods
      */
     public static String removeFirstLast(String s) {
-        String output = (s.charAt(0) == s.charAt(s.length() - 1)) ? s.substring(1, s.length() - 1) : s;
-        return output;
+        return (s.charAt(0) == s.charAt(s.length() - 1)) ? s.substring(1, s.length() - 1) : s;
     }
 
     /**
      * Write a function accepting a string
      * returning all recurring characters contained into the string as a char[]
+     * More specifically, recurring characters have to be returned in alphabetical order.
+     * For example: headmistressship -> [e,h,i,s]
+     * see StringBuilder class
      */
     public static char[] duplicateChars(String input) {
         StringBuilder seen = new StringBuilder();
         StringBuilder recurring = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             String tmp = String.valueOf(input.charAt(i));
-            if (seen.toString().contains(tmp)) {
-                recurring.append(tmp);
-            } else {
+            if (!seen.toString().contains(tmp)) {
                 seen.append(tmp);
+            } else if (!recurring.toString().contains(tmp)) {
+                recurring.append(tmp);
             }
         }
-        return recurring.toString().toCharArray();
+        char[] result = recurring.toString().toCharArray();
+        java.util.Arrays.sort(result);
+        return result;
     }
 
     /**
      * Write a function accepting a string
      * returning true if the string is a palindrome.
-     * see StringBuilder methods
+     * see StringBuilder class
      */
     public static boolean isPalindrome(String s) {
         if (s.length() <= 1) {

@@ -11,7 +11,7 @@ import java.util.Arrays;
  * int getVerticesNumber() - returns the number of vertices
  * Point[] getVertices() - returns the array of vertices
  * void move(Point movement) - moves the polygon as specified by movement (treated as a vector)
- * double getArea() - returns the area of the polygon, computed using the formula that cna be found here
+ * double getArea() - returns the area of the polygon, computed using the formula that can be found here
  * (https://arachnoid.com/area_irregular_polygon/index.html)
  *
  * @author Nicola Bicocchi

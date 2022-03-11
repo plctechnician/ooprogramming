@@ -38,22 +38,26 @@ public class Arrays {
 
     /**
      * Write a function accepting an int[]
-     * returning a sorted version of it (bubble sort)
+     * returning a sorted version of it (bubble sort algorithm)
+     * The original int[] should not be modified
      */
     public static int[] bubbleSort(int[] v) {
+        int[] copy = new int[v.length];
+        System.arraycopy(v, 0, copy, 0, v.length);
+
         boolean changed = true;
         while (changed) {
             changed = false;
-            for (int i = 0; i < v.length - 1; i++) {
-                if (v[i] > v[i + 1]) {
+            for (int i = 0; i < copy.length - 1; i++) {
+                if (copy[i] > copy[i + 1]) {
                     changed = true;
-                    int tmp = v[i];
-                    v[i] = v[i + 1];
-                    v[i + 1] = tmp;
+                    int tmp = copy[i];
+                    copy[i] = copy[i + 1];
+                    copy[i + 1] = tmp;
                 }
             }
         }
-        return v;
+        return copy;
     }
 
     /**
@@ -103,10 +107,12 @@ public class Arrays {
      * (e.g. 363738229 -> [3,6,3,7,3,8,2,2,9])
      */
     public static int[] splitter(int input) {
-        int n = Integer.toString(input).length();
-        int[] digits = new int[n];
-        for (int d = n - 1; d >= 0; d--) {
-            digits[digits.length - 1 - d] = input / ((int) Math.pow(10, d)) % 10;
+        String stringNumber = Integer.toString(input);
+        int length = stringNumber.length();
+        int[] digits = new int[length];
+
+        for (int i = 0; i < stringNumber.length(); i++) {
+            digits[i] = Character.getNumericValue(stringNumber.charAt(i));
         }
         return digits;
     }
