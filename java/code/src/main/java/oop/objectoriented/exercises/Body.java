@@ -42,11 +42,6 @@ public class Body {
         this.vY = vY;
     }
 
-    public void setSpeed(double vX, double vY) {
-        this.vX = vX;
-        this.vY = vY;
-    }
-
     public void progress(double t) {
         x += vX * t;
         y += vY * t;

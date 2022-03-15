@@ -8,7 +8,8 @@ public class BodyTest {
     @Test
     public void setSpeed() {
         Body b = new Body(0, 0, 5, 5);
-        b.setSpeed(10, 10);
+        b.setVX(10);
+        b.setVY(10);
         assertEquals(10.0, b.getVX(), 0.0);
     }
 
