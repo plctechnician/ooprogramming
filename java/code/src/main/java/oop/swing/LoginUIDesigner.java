@@ -12,10 +12,7 @@ public class LoginUIDesigner extends JFrame {
 
     public LoginUIDesigner() {
         super("LoginUIDesigner");
-        setContentPane(mainPanel);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+
         OKButton.addActionListener(e -> {
             char[] user = tfUsername.getText().toCharArray();
             char[] pass = tfPassword.getPassword();
@@ -26,6 +23,11 @@ public class LoginUIDesigner extends JFrame {
             }
         });
         cancelButton.addActionListener(e -> dispose());
+
+        setContentPane(mainPanel);
+        pack();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     private boolean validCredentials(char[] user, char[] pass) {
