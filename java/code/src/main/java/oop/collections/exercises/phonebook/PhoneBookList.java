@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.phonebook;
+package oop.collections.exercises.phonebook;
 
 import oop.utils.Student;
 

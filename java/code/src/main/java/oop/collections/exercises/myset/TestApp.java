@@ -1,4 +1,4 @@
-package oop.collections.exercises.set;
+package oop.collections.exercises.myset;
 
 /**
  * Provide an implementation of the MySet interface

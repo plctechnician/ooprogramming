@@ -1,4 +1,4 @@
-package oop.collections.exercises.list;
+package oop.collections.exercises.mylist;
 
 public interface MyList {
     void add(Object o);

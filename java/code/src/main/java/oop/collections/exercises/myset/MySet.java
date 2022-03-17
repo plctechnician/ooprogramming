@@ -1,4 +1,4 @@
-package oop.collections.exercises.set;
+package oop.collections.exercises.myset;
 
 public interface MySet {
     void add(Object o);

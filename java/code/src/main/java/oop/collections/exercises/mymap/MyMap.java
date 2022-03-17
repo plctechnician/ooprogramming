@@ -1,4 +1,4 @@
-package oop.collections.exercises.map;
+package oop.collections.exercises.mymap;
 
 public interface MyMap {
     Object get(Object key);

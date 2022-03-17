@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.polynomials;
+package oop.collections.exercises.polynomials;
 
 /**
  * Class representing a polynomial with coefficients stored as on array of

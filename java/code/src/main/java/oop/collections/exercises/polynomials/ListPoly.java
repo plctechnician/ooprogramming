@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.polynomials;
+package oop.collections.exercises.polynomials;
 
 import java.util.ArrayList;
 import java.util.List;

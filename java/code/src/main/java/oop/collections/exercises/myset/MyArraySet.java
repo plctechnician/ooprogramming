@@ -1,4 +1,4 @@
-package oop.collections.exercises.set;
+package oop.collections.exercises.myset;
 
 /**
  * Implementation of a fictional ArraySet

@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.polynomials;
+package oop.collections.exercises.polynomials;
 
 /**
  * Develop two classes, namely ArrayPoly and ListPoly, for managing polynomials.

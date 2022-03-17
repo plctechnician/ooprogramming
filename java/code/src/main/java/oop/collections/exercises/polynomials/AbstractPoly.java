@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.polynomials;
+package oop.collections.exercises.polynomials;
 
 /**
  * An abstract class providing an implementation for shared parts of ArrayPoly

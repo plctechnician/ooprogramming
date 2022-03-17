@@ -1,4 +1,4 @@
-package oop.collections.exercises.map;
+package oop.collections.exercises.mymap;
 
 /**
  * Provide an implementation of the MyMap interface

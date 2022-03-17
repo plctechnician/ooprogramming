@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.polynomials;
+package oop.collections.exercises.polynomials;
 
 /**
  * Interface representing a polynomial with arbitrary grade

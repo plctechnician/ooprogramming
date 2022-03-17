@@ -1,4 +1,4 @@
-package oop.collections.exercises.list;
+package oop.collections.exercises.mylist;
 
 /**
  * Provide an implementation of the MyList interface
