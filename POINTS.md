@@ -3,4 +3,5 @@
 * Ayoub Imad +
 * Alex Lenzi + 
 * Monssef Rahlan +
-* Pietro Moriello +
+* Pietro Moriello ++
+* Federico Melis +

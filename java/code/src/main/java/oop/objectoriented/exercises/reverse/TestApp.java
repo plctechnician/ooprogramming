@@ -11,9 +11,9 @@ package oop.objectoriented.exercises.reverse;
 
 public class TestApp {
     public static void main(String[] args) {
-        Reverser r = new EngineBest();
+        //Reverser r = new EngineBest();
         //Reverser r = new EngineFast();
-        //Reverser r = new EngineSlow();
+        Reverser r = new EngineSlow();
 
         //One line version with lambda expressions
         //Reverser r = (String s) -> new StringBuilder(s).reverse().toString();

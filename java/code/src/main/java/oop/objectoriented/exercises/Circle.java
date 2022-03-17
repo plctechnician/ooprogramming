@@ -5,6 +5,7 @@ import java.awt.*;
 /**
  * Write a Java class representing a Circle (Point center, int radius) capable of moving on a 2D plane
  * Methods:
+ * getters and setters
  * double getArea()
  * double getPerimeter()
  * boolean contains(Point point)
@@ -21,6 +22,22 @@ public class Circle {
 
     public Circle(Point center, int radius) {
         this.center = center;
+        this.radius = radius;
+    }
+
+    public Point getCenter() {
+        return center;
+    }
+
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
         this.radius = radius;
     }
 
