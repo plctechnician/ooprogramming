@@ -9,13 +9,13 @@ package oop.objectoriented.exercises.anphibious;
 public class TestApp {
     public static void main(String[] args) {
         LandVehicle l = new Car();
-        l.run();
+        System.out.println(l.run());
 
         WaterVehicle w = new Boat();
-        w.sail();
+        System.out.println(w.sail());
 
         Anphibious a = new Anphibious();
-        a.run();
-        a.sail();
+        System.out.println(a.run());
+        System.out.println(a.sail());
     }
 }

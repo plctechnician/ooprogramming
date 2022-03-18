@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class TestApp {
     public static void main(String[] args) {
-        oop.objectoriented.exercises.shape.Shape[] shapes = new oop.objectoriented.exercises.shape.Shape[2];
+        Shape[] shapes = new Shape[2];
         shapes[0] = new Circle(new Point(0,0), 10);
         shapes[1] = new Rectangle(new Point(-10, 10), new Point(0,0));
 
