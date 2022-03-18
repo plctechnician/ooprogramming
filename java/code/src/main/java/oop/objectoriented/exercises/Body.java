@@ -4,7 +4,7 @@ package oop.objectoriented.exercises;
  * Implement a Body class representing a two-dimensional body (x, y) capable of moving with a certain speed (vx, vy).
  *
  * The class implements three constructors:
- * Body() - Setting x = y = vy = vy = 0
+ * Body() - Setting x = y = vx = vy = 0
  * Body(x, y) Setting x, y as specified and vx = vy = 0
  * Body(x, y, vx, vy) Setting x, y, vx, vy as specified
  *
