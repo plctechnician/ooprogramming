@@ -50,7 +50,7 @@ public class Circle {
     }
 
     public boolean contains(Point point) {
-        return radius > Math.hypot(point.x, point.y);
+        return Math.hypot(point.x - center.x, point.y - center.y) < radius;
     }
 
     public void moveUp() {
