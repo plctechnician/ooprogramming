@@ -8,8 +8,8 @@ import java.util.Arrays;
  * Internally, the class represents an irregular polygon as an array of 2d points (vertices).
  *
  * Supported methods:
+ * getters and setters
  * int getVerticesNumber() - returns the number of vertices
- * Point[] getVertices() - returns the array of vertices
  * void move(Point movement) - moves the polygon as specified by movement (treated as a vector)
  * double getArea() - returns the area of the polygon, computed using the formula that can be found here
  * (https://arachnoid.com/area_irregular_polygon/index.html)
@@ -20,6 +20,14 @@ public class Polygon {
     Point[] vertices;
 
     public Polygon(Point[] vertices) {
+        this.vertices = vertices;
+    }
+
+    public Point[] getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(Point[] vertices) {
         this.vertices = vertices;
     }
 
@@ -40,10 +48,6 @@ public class Polygon {
         for (Point vertex : vertices) {
             vertex.translate(movement.x, movement.y);
         }
-    }
-
-    public Point[] getVertices() {
-        return vertices;
     }
 
     @Override

@@ -1,15 +1,13 @@
 package oop.objectoriented.exercises.anphibious;
 
 public class Anphibious implements LandVehicle, WaterVehicle {
-
     @Override
-    public void sail() {
-        System.out.println("Anphibious sailing...");
+    public String sail() {
+        return "Anphibious sailing...";
     }
 
     @Override
-    public void run() {
-        System.out.println("Anphibious running...");
+    public String run() {
+        return "Anphibious running...";
     }
-
 }

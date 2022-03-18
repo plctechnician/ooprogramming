@@ -25,6 +25,17 @@ public class PolygonTest {
     }
 
     @Test
+    public void setVertices() {
+        Point[] vertices = {new Point(0,0), new Point(10, 0), new Point(10, 10)};
+        Polygon p = new Polygon(vertices);
+        Point[] verticesNews = {new Point(1,1), new Point(2, 2), new Point(3, 3)};
+        p.setVertices(verticesNews);
+        assertEquals(new Point(1, 1), p.getVertices()[0]);
+        assertEquals(new Point(2, 2), p.getVertices()[1]);
+        assertEquals(new Point(3, 3), p.getVertices()[2]);
+    }
+
+    @Test
     public void move() {
         Point[] vertices = {new Point(0,0), new Point(10, 0), new Point(10, 10)};
         Polygon p = new Polygon(vertices);
