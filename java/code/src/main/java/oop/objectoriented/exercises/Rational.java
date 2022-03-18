@@ -3,7 +3,7 @@ package oop.objectoriented.exercises;
 /**
  * Implementare una classe Rational che rappresenta un numero razionale.
  *
- * Il costruttore accetta numeratore e denominatore. Se il denominatore è uguale a 0, viene lanciata una eccezione.
+ * Il costruttore accetta numeratore e denominatore.
  *
  * Il metodo plus() prende un altro Rational x come argomento e restituisce la somma.
  * Il metodo times() prende un altro Rational x come argomento e restituisce il prodotto.
@@ -17,9 +17,6 @@ public class Rational implements Comparable<Rational> {
     int denominator;
 
     public Rational(int numerator, int denominator) {
-        if (denominator == 0) {
-            throw new IllegalArgumentException();
-        }
         this.numerator = numerator;
         this.denominator = denominator;
     }
