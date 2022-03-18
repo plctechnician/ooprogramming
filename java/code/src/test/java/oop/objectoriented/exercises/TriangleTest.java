@@ -14,6 +14,6 @@ class TriangleTest {
     @Test
     void getPerimenter() {
         Triangle t = new Triangle(10, 10);
-        assertEquals(32.3606, t.getPerimenter(), 0.01);
+        assertEquals(32.3606, t.getPerimeter(), 0.01);
     }
 }

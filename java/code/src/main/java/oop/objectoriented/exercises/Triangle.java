@@ -1,7 +1,7 @@
 package oop.objectoriented.exercises;
 
 /**
- * Write a class representing a Triangle
+ * Write a class representing an isosceles triangle
  * Methods:
  * double getArea()
  * double getPerimeter()
@@ -21,7 +21,7 @@ public class Triangle {
         return width * height / 2.0;
     }
 
-    public double getPerimenter() {
+    public double getPerimeter() {
         return width + 2 * Math.hypot(height, width / 2);
     }
 
