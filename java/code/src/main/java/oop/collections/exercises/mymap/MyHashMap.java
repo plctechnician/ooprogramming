@@ -5,30 +5,12 @@ package oop.collections.exercises.mymap;
  *
  * @author Nicola Bicocchi
  */
-class MyHashMap_HashEntry {
-    private final Object key;
-    private final Object value;
-
-    MyHashMap_HashEntry(Object key, Object value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    public Object getKey() {
-        return key;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-}
-
 public class MyHashMap implements MyMap {
     private final static int TABLE_SIZE = 8;
-    MyHashMap_HashEntry[] table;
+    MyHashMapEntry[] table;
 
     public MyHashMap() {
-        table = new MyHashMap_HashEntry[TABLE_SIZE];
+        table = new MyHashMapEntry[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++)
             table[i] = null;
     }
@@ -47,7 +29,7 @@ public class MyHashMap implements MyMap {
         int hash = (key.hashCode() % TABLE_SIZE);
         while (table[hash] != null && table[hash].getKey() != key)
             hash = (hash + 1) % TABLE_SIZE;
-        table[hash] = new MyHashMap_HashEntry(key, value);
+        table[hash] = new MyHashMapEntry(key, value);
     }
 
     @Override
