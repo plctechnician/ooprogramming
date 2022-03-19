@@ -5,27 +5,26 @@ import oop.utils.Student;
 import java.util.ArrayList;
 
 /**
- * A PhoneBook implementation internally using ArrayList To be used for small
- * and simple applications. Slow!
+ * A PhoneBook implementation internally using ArrayList. Slow!
  *
  * @author Nicola Bicocchi
  * @see PhoneBook
  */
 public class PhoneBookList implements PhoneBook {
-    ArrayList<Student> pb;
+    ArrayList<Student> phoneBook;
 
     public PhoneBookList() {
-        pb = new ArrayList<>();
+        phoneBook = new ArrayList<>();
     }
 
     @Override
     public void addPerson(Student p) {
-        pb.add(p);
+        phoneBook.add(p);
     }
 
     @Override
     public Student searchByName(String name) {
-        for (Student p : pb) {
+        for (Student p : phoneBook) {
             if (p.getName().equals(name)) {
                 return p;
             }
@@ -35,7 +34,7 @@ public class PhoneBookList implements PhoneBook {
 
     @Override
     public Student searchByLastname(String lastname) {
-        for (Student p : pb) {
+        for (Student p : phoneBook) {
             if (p.getLastname().equals(lastname)) {
                 return p;
             }
@@ -45,7 +44,7 @@ public class PhoneBookList implements PhoneBook {
 
     @Override
     public Student searchByNumber(String phone) {
-        for (Student p : pb) {
+        for (Student p : phoneBook) {
             if (p.getPhone().equals(phone)) {
                 return p;
             }
@@ -57,6 +56,6 @@ public class PhoneBookList implements PhoneBook {
     public void deleteByNumber(String phone) {
         Student p = searchByNumber(phone);
         if (p != null)
-            pb.remove(p);
+            phoneBook.remove(p);
     }
 }

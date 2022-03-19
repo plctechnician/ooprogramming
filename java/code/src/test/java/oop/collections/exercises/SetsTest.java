@@ -38,8 +38,10 @@ public class SetsTest {
 
     @Test
     public void toList() {
-        Set<Integer> s1 = Set.of(1, 2, 3, 4, 5);
-        assertEquals(Arrays.asList(1, 2, 3, 4, 5), Sets.toList(s1));
+        Set<Integer> s = Set.of(1, 2, 3, 4, 5);
+        List<Integer> l = Sets.toList(s);
+        Collections.sort(l);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), l);
     }
 
     @Test
@@ -69,7 +71,9 @@ public class SetsTest {
     @Test
     public void toArray() {
         Set<Integer> s = Set.of(1, 2, 3, 4, 5);
-        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, Sets.toArray(s));
+        Integer[] v = Sets.toArray(s);
+        Arrays.sort(v);
+        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, v);
     }
 
     @Test

@@ -13,10 +13,10 @@ public class Sets {
     /**
      * Write a function returning the intersection of two given sets (without using library functions)
      */
-    public static Set<Integer> intersection_manual(Set<Integer> source, Set<Integer> target) {
+    public static Set<Integer> intersection_manual(Set<Integer> first, Set<Integer> second) {
         Set<Integer> tmp = new HashSet<>();
-        for (int i : source) {
-            if (target.contains(i)) {
+        for (int i : first) {
+            if (second.contains(i)) {
                 tmp.add(i);
             }
         }
@@ -26,12 +26,12 @@ public class Sets {
     /**
      * Write a function returning the union of two given sets (without using library functions)
      */
-    public static Set<Integer> union_manual(Set<Integer> source, Set<Integer> target) {
+    public static Set<Integer> union_manual(Set<Integer> first, Set<Integer> second) {
         Set<Integer> tmp = new HashSet<>();
-        for (int i : source) {
+        for (int i : first) {
             tmp.add(i);
         }
-        for (int i : target) {
+        for (int i : second) {
             tmp.add(i);
         }
         return tmp;
@@ -40,24 +40,24 @@ public class Sets {
     /**
      * Write a function returning the intersection of two given sets (see retainAll())
      */
-    public static Set<Integer> intersection(Set<Integer> source, Set<Integer> target) {
-        Set<Integer> tmp = new HashSet<>(source);
-        tmp.retainAll(target);
+    public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
+        Set<Integer> tmp = new HashSet<>(first);
+        tmp.retainAll(second);
         return tmp;
     }
 
     /**
      * Write a function returning the union of two given sets (see addAll())
      */
-    public static Set<Integer> union(Set<Integer> source, Set<Integer> target) {
-        Set<Integer> tmp = new HashSet<>(source);
-        tmp.addAll(target);
+    public static Set<Integer> union(Set<Integer> first, Set<Integer> second) {
+        Set<Integer> tmp = new HashSet<>(first);
+        tmp.addAll(second);
         return tmp;
     }
 
     /**
      * Write a function to transform a set into a list without duplicates
-     * Remember collections can be created from another collection!
+     * Note well: collections can be created from another collection!
      */
     public static List<Integer> toList(Set<Integer> source) {
         return new ArrayList<>(source);
@@ -65,7 +65,7 @@ public class Sets {
 
     /**
      * Write a function to remove duplicates from a list
-     * Remember collections can be created from another collection!
+     * Note well: collections can be created from another collection!
      */
     public static List<Integer> removeDuplicates(List<Integer> l) {
         return new ArrayList<>(new HashSet<>(l));
@@ -75,8 +75,8 @@ public class Sets {
      * Write a function to remove duplicates from a list without using the constructors trick seen above
      */
     public static List<Integer> removeDuplicates_manual(List<Integer> l) {
-        Set<Integer> seen = new HashSet<Integer>();
-        List<Integer> tmp = new ArrayList<Integer>();
+        Set<Integer> seen = new HashSet<>();
+        List<Integer> tmp = new ArrayList<>();
         for (int i : l) {
             if (!seen.contains(i)) {
                 seen.add(i);
@@ -131,6 +131,7 @@ public class Sets {
 
     /**
      * Write a function to return the first item from a TreeSet
+     * Note well: use TreeSet specific methods
      */
     public static int getFirst(TreeSet<Integer> source) {
         return source.first();
@@ -138,6 +139,7 @@ public class Sets {
 
     /**
      * Write a function to return the last item from a TreeSet
+     * Note well: use TreeSet specific methods
      */
     public static int getLast(TreeSet<Integer> source) {
         return source.last();
@@ -145,6 +147,7 @@ public class Sets {
 
     /**
      * Write a function to get an element from a TreeSet which is strictly greater than a given element.
+     * Note well: use TreeSet specific methods
      */
     public static int getGreater(TreeSet<Integer> source, int value) {
         return source.higher(value);

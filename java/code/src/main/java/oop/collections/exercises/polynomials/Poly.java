@@ -26,19 +26,18 @@ public interface Poly {
     Poly derivative();
 
     /**
-     * True if p equals the current object
-     *
-     * @param p The polynomial to be compared
-     * @return True if p equals the current object
-     */
-    boolean equals(Poly p);
-
-    /**
      * Returns the coefficient of the monomial with the specified degree
      *
      * @param degree The degree to be queried (get the coefficient)
      * @return The coefficient of the monomial with the specified degree
      */
     double coefficient(int degree);
+
+    /**
+     * Returns a double[] containing all the coefficients
+     *
+     * @return A double[] containing all the coefficients
+     */
+    double[] coefficients();
 }
 

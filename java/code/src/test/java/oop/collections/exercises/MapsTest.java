@@ -28,6 +28,14 @@ public class MapsTest {
     }
 
     @Test
+    void containsKeyValue() {
+        Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
+        assertTrue(Maps.containsKeyValue(map, 1,1));
+        assertFalse(Maps.containsKeyValue(map, 1,2));
+        assertFalse(Maps.containsKeyValue(map, 7,2));
+    }
+
+    @Test
     public void keySet() {
         Map<Integer, Integer> map = new HashMap<>(Map.of(1,1,2,2,3,3));
         assertEquals(Set.of(1,2,3), Maps.keySet(map));

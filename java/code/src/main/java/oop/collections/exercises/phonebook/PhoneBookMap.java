@@ -11,19 +11,19 @@ import java.util.HashMap;
  * @see PhoneBook
  */
 public class PhoneBookMap implements PhoneBook {
-    HashMap<String, Student> map;
+    HashMap<String, Student> phoneBook;
 
     public PhoneBookMap() {
-        map = new HashMap<>();
+        phoneBook = new HashMap<>();
     }
 
     // We use the phone number as key because it is unique
     public void addPerson(Student s) {
-        map.put(s.getPhone(), s);
+        phoneBook.put(s.getPhone(), s);
     }
 
     public Student searchByName(String name) {
-        for (Student s : map.values()) {
+        for (Student s : phoneBook.values()) {
             if (s.getName().equals(name)) {
                 return s;
             }
@@ -32,7 +32,7 @@ public class PhoneBookMap implements PhoneBook {
     }
 
     public Student searchByLastname(String lastname) {
-        for (Student s : map.values()) {
+        for (Student s : phoneBook.values()) {
             if (s.getLastname().equals(lastname)) {
                 return s;
             }
@@ -41,13 +41,13 @@ public class PhoneBookMap implements PhoneBook {
     }
 
     public Student searchByNumber(String phone) {
-        if (map.containsKey(phone)) {
-            return map.get(phone);
+        if (phoneBook.containsKey(phone)) {
+            return phoneBook.get(phone);
         }
         return null;
     }
 
     public void deleteByNumber(String phone) {
-        map.remove(phone);
+        phoneBook.remove(phone);
     }
 }

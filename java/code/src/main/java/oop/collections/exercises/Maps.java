@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class Maps {
     /**
-     * Write a function to return the number of key-value mappings in a map
+     * Write a function to return the number of key-value mappings of a  map
      */
     public static int count(Map<Integer, Integer> map) {
         return map.size();
@@ -31,8 +31,19 @@ public class Maps {
     /**
      * Write a function to test if a map contains a mapping for the specified key
      */
-    public static boolean contains(Map<Integer, Integer> map, int value) {
-        return map.containsKey(value);
+    public static boolean contains(Map<Integer, Integer> map, int key) {
+        return map.containsKey(key);
+    }
+
+    /**
+     * Write a function to test if a map contains a mapping for the specified key and if its value equals the
+     * specified value
+     */
+    public static boolean containsKeyValue(Map<Integer, Integer> map, int key, int value) {
+        if (!map.containsKey(key)) {
+            return false;
+        }
+        return map.get(key) == value;
     }
 
     /**
@@ -50,7 +61,7 @@ public class Maps {
     }
 
     /**
-     * Write a function, internally using a map, returning "black", "white", or "red" depending on an int input value.
+     * Write a function, internally using a map, returning "black", "white", or "red" depending on int input value.
      * "black" = 0, "white" = 1, "red" = 2
      */
     public static String getColor(int value) {

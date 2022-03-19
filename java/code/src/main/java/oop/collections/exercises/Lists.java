@@ -69,6 +69,7 @@ public class Lists {
 
     /**
      * Write a function to copy a list into another list (without using library functions)
+     * Note well: the target list must be emptied before the copy
      */
     public static void copy(ArrayList<Integer> source, ArrayList<Integer> target) {
         target.clear();
@@ -96,8 +97,8 @@ public class Lists {
     }
 
     /**
-     * Write a function to insert the same element both at the beginning
-     * and the end of the same LinkedList
+     * Write a function to insert the same element both at the beginning and the end of the same LinkedList
+     * Note well: you can use LinkedList specific methods
      */
     public static void insertBeginningEnd(LinkedList<Integer> list, int value) {
         list.addFirst(value);

@@ -8,21 +8,19 @@ import java.util.List;
  *
  * @author Nicola Bicocchi
  */
-public class ListPoly extends AbstractPoly implements Poly {
-    List<Double> c;
+public class ListPoly extends AbstractPoly {
+    List<Double> coefficients;
 
     public ListPoly(double[] coeffs) {
-        if (coeffs == null || coeffs.length == 0) {
-            throw new IllegalArgumentException();
+        coefficients = new ArrayList<>();
+        for (double c : coeffs) {
+            coefficients.add(c);
         }
-
-        c = new ArrayList<>();
-        for (double coeff : coeffs) c.add(coeff);
     }
 
     @Override
     public int degree() {
-        return c.size() - 1;
+        return coefficients.size() - 1;
     }
 
     @Override
@@ -32,9 +30,15 @@ public class ListPoly extends AbstractPoly implements Poly {
 
     @Override
     public double coefficient(int degree) {
-        if (degree > degree() || degree < 0)
-            throw new IllegalArgumentException();
-        return c.get(degree);
+        return coefficients.get(degree);
     }
 
+    @Override
+    public double[] coefficients() {
+        double[] target = new double[coefficients.size()];
+        for (int i = 0; i < target.length; i++) {
+            target[i] = coefficients.get(i);
+        }
+        return target;
+    }
 }

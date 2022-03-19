@@ -1,5 +1,7 @@
 package oop.collections.exercises.polynomials;
 
+import java.util.Objects;
+
 /**
  * An abstract class providing an implementation for shared parts of ArrayPoly
  * and ListPoly
@@ -17,15 +19,27 @@ public abstract class AbstractPoly implements Poly {
     }
 
     @Override
-    public boolean equals(Poly q) {
-        if (q == null || degree() != q.degree())
+    public boolean equals(Object o) {
+        if (o == null) {
             return false;
+        }
+        if (!(o instanceof Poly p)) {
+            return false;
+        }
+        if (degree() != p.degree()) {
+            return false;
+        }
+        for (int i = 0; i <= degree(); i++) {
+            if (coefficient(i) != p.coefficient(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        boolean equal = true;
-        for (int i = 0; i <= degree() && equal; i++)
-            equal = (coefficient(i) == q.coefficient(i));
-
-        return equal;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(coefficients());
     }
 
     @Override
@@ -39,6 +53,7 @@ public abstract class AbstractPoly implements Poly {
                 out += coefficient(i) + "x^" + i + " + ";
         }
 
-        return out += coefficient(degree()) + "x^" + degree();
+        out += coefficient(degree()) + "x^" + degree();
+        return out;
     }
 }

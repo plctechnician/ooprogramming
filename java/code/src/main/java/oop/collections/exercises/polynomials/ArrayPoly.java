@@ -6,21 +6,16 @@ package oop.collections.exercises.polynomials;
  *
  * @author Nicola Bicocchi
  */
-public class ArrayPoly extends AbstractPoly implements Poly {
-    private final double[] c;
+public class ArrayPoly extends AbstractPoly {
+    private final double[] coefficients;
 
-    public ArrayPoly(double[] c) {
-        if (c == null || c.length == 0) {
-            throw new IllegalArgumentException();
-        }
-
-        this.c = new double[c.length];
-        System.arraycopy(c, 0, this.c, 0, c.length);
+    public ArrayPoly(double[] coefficients) {
+        this.coefficients = coefficients;
     }
 
     @Override
     public int degree() {
-        return c.length - 1;
+        return coefficients.length - 1;
     }
 
     @Override
@@ -30,9 +25,11 @@ public class ArrayPoly extends AbstractPoly implements Poly {
 
     @Override
     public double coefficient(int degree) {
-        if (degree > degree() || degree < 0)
-            throw new IllegalArgumentException();
-        return c[degree];
+        return coefficients[degree];
     }
 
+    @Override
+    public double[] coefficients() {
+        return coefficients;
+    }
 }
