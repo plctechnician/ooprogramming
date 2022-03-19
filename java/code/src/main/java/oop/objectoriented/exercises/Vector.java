@@ -9,7 +9,7 @@ import java.util.random.RandomGeneratorFactory;
  * Supported methods:
  * void init() initialize the vector with random numbers [0, 100]
  * void sort() sorts the vector in ascending order
- * void show() shows the content of the vector
+ * String show() returns a String showing the content of the vector
  * int search(int value) returns the index in which "value" is stored. -1 if "value" is missing.
  *
  * @author Nicola Bicocchi
@@ -24,8 +24,8 @@ public class Vector {
     public String show() {
         StringBuilder b = new StringBuilder();
         b.append("[");
-        for (int i = 0; i < v.length; i++) {
-            b.append(String.format("%d, ", v[i]));
+        for (int j : v) {
+            b.append(String.format("%d, ", j));
         }
         b.append("]");
         return b.toString();

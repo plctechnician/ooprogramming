@@ -12,6 +12,22 @@ public class Rectangle extends Shape {
         this.bottomRight = bottomRight;
     }
 
+    public Point getUpperLeft() {
+        return upperLeft;
+    }
+
+    public void setUpperLeft(Point upperLeft) {
+        this.upperLeft = upperLeft;
+    }
+
+    public Point getBottomRight() {
+        return bottomRight;
+    }
+
+    public void setBottomRight(Point bottomRight) {
+        this.bottomRight = bottomRight;
+    }
+
     @Override
     public double getPerimeter() {
         return ((bottomRight.x - upperLeft.x) + (upperLeft.y - bottomRight.y)) * 2;

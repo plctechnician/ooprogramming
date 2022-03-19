@@ -44,4 +44,20 @@ class RectangleTest {
         Rectangle s = new Rectangle(Color.BLACK, true, new Point(-10,10), new Point(0,0));
         assertEquals(100, s.getArea(), 0.01);
     }
+
+    @Test
+    void resize() {
+        Rectangle s = new Rectangle(Color.BLACK, true, new Point(-10,10), new Point(0,0));
+        s.resize(2.0);
+        assertEquals(new Point(-10, 10), s.getUpperLeft());
+        assertEquals(new Point(10, -10), s.getBottomRight());
+    }
+
+    @Test
+    void move() {
+        Rectangle s = new Rectangle(Color.BLACK, true, new Point(-10,10), new Point(0,0));
+        s.move(new Point(10,-10));
+        assertEquals(new Point(0, 0), s.getUpperLeft());
+        assertEquals(new Point(10, -10), s.getBottomRight());
+    }
 }

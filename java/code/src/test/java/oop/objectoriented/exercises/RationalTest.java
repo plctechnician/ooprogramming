@@ -6,12 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RationalTest {
     @Test
-    public void constructorThrowIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Rational(1, 0));
-    }
-
-    @Test
     public void plus() {
         Rational r1 = new Rational(1, 2);
         Rational r2 = new Rational(1, 2);
