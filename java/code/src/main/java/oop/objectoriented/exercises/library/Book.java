@@ -10,4 +10,17 @@ public class Book extends Item {
         super(title, year);
         this.pages = pages;
     }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" + "pages=" + pages + ", title='" + title + '\'' + ", year=" + year + '}';
+    }
 }

@@ -1,7 +1,8 @@
 package oop.objectoriented.exercises.library;
 
-import org.joda.time.DateTime;
 import oop.utils.Student;
+
+import java.util.Date;
 
 /**
  * Rent implements a rent of an Item for a delimited time frame
@@ -9,11 +10,10 @@ import oop.utils.Student;
 public class Rent {
     Item item;
     Student student;
-    DateTime begin;
-    DateTime end;
+    Date begin;
+    Date end;
 
-    public Rent(Item item, Student student,
-                DateTime begin, DateTime end) {
+    public Rent(Item item, Student student, Date begin, Date end) {
         this.item = item;
         this.student = student;
         this.begin = begin;
@@ -36,23 +36,24 @@ public class Rent {
         this.student = student;
     }
 
-    public DateTime getBegin() {
+    public Date getBegin() {
         return begin;
     }
 
-    public void setBegin(DateTime begin) {
+    public void setBegin(Date begin) {
         this.begin = begin;
     }
 
-    public DateTime getEnd() {
+    public Date getEnd() {
         return end;
     }
 
-    public void setEnd(DateTime end) {
+    public void setEnd(Date end) {
         this.end = end;
     }
 
+    @Override
     public String toString() {
-        return item + ", " + student + ", " + begin.toString() + ", " + end.toString();
+        return "Rent{" + "item=" + item + ", student=" + student + ", begin=" + begin + ", end=" + end + '}';
     }
 }

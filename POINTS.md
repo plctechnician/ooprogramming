@@ -6,3 +6,4 @@
 * Pietro Moriello ++
 * Federico Melis +
 * Lorenzo Corradi +
+* Silvia Giovanardi +

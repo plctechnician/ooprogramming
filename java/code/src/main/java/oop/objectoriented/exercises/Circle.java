@@ -9,10 +9,10 @@ import java.awt.*;
  * double getArea()
  * double getPerimeter()
  * boolean contains(Point point)
- * void moveUp()
- * void moveDown()
- * void moveLeft()
- * void moveRight()
+ * void moveUp() (center.y += 1)
+ * void moveDown() (center.y -= 1)
+ * void moveLeft() (center.x -= 1)
+ * void moveRight() (center.x += 1)
  *
  * @author Nicola Bicocchi
  */

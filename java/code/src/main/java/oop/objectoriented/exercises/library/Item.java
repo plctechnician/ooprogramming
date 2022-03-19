@@ -3,7 +3,7 @@ package oop.objectoriented.exercises.library;
 /**
  * Class generalizing Books and DVDs
  */
-public class Item {
+public abstract class Item {
     String title;
     int year;
 
@@ -12,7 +12,24 @@ public class Item {
         this.year = year;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @Override
     public String toString() {
-        return title + " (" + year + ")";
+        return "Item{" + "title='" + title + '\'' + ", year=" + year + '}';
     }
 }
