@@ -16,7 +16,7 @@ public class TestApp {
         PhoneBook pb = new PhoneBookMap();
 
         //Uncomment this line for switching implementation
-        //PhoneBook pb = new PhoneBookArray();
+        //PhoneBook pb = new PhoneBookList();
         pb.addPerson(new Student("Nicola", "Bicocchi", "34567"));
         pb.addPerson(new Student("Marco", "Rizzo", "45243"));
         pb.addPerson(new Student("Luisa", "Poppi", "24564"));
