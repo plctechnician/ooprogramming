@@ -6,8 +6,8 @@ package oop.collections.exercises.mylist;
  * @author Nicola Bicocchi
  */
 public class MyLinkedList extends MyAbstractList {
-    private MyLinkedListNode head;
-    private int size;
+    MyLinkedListNode head;
+    int size;
 
     public MyLinkedList() {
         head = null;

@@ -44,16 +44,11 @@ public abstract class AbstractPoly implements Poly {
 
     @Override
     public String toString() {
-        if (degree() == 0)
-            return "" + coefficient(0);
-
-        String out = (coefficient(0) == 0) ? "" : "" + coefficient(0) + " + ";
-        for (int i = 1; i < degree(); i++) {
-            if (coefficient(i) != 0)
-                out += coefficient(i) + "x^" + i + " + ";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < degree(); i++) {
+            sb.append(coefficient(i)).append("x^").append(i).append(" + ");
         }
-
-        out += coefficient(degree()) + "x^" + degree();
-        return out;
+        sb.append(coefficient(degree())).append("x^").append(degree());
+        return sb.toString();
     }
 }

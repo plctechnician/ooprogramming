@@ -6,22 +6,19 @@ package oop.collections.exercises.mylist;
  * @author Nicola Bicocchi
  */
 public class MyArrayList extends MyAbstractList {
-    private static final int DEFAULT_CAPACITY = 16;
-    private Object[] elements;
-    private int size;
+    static final int INITIAL_SIZE = 16;
+    Object[] elements;
+    int size;
 
     public MyArrayList() {
-        elements = new Object[DEFAULT_CAPACITY];
+        elements = new Object[INITIAL_SIZE];
         size = 0;
     }
 
     @Override
     public void add(Object o) {
         if (size >= elements.length - 1) {
-            // array resize (x2)
-            Object[] tmp = new Object[elements.length * 2];
-            System.arraycopy(elements, 0, tmp, 0, elements.length);
-            elements = tmp;
+            enlarge();
         }
         elements[size++] = o;
     }
@@ -31,8 +28,9 @@ public class MyArrayList extends MyAbstractList {
         checkBoundaries(index, size);
         add(o);
         /* move array elements into memory */
-        if (elements.length - 1 - index >= 0)
+        if (elements.length - 1 - index >= 0) {
             System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
+        }
         elements[index] = o;
         elements[size] = null;
     }
@@ -54,5 +52,11 @@ public class MyArrayList extends MyAbstractList {
     @Override
     public int size() {
         return size;
+    }
+
+    void enlarge() {
+        Object[] tmp = new Object[elements.length * 2];
+        System.arraycopy(elements, 0, tmp, 0, elements.length);
+        elements = tmp;
     }
 }
