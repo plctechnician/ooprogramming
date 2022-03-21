@@ -5,37 +5,18 @@ package oop.collections.exercises.myset;
  *
  * @author Nicola Bicocchi
  */
-public class MyArraySet implements MySet {
-    private static final int DEFAULT_CAPACITY = 16;
-    private Object[] elements;
-    private int size;
-
+public class MyArraySet extends MyAbstractSet {
     public MyArraySet() {
-        elements = new Object[DEFAULT_CAPACITY];
-        size = 0;
-    }
-
-    private int getIndex(Object o) {
-        int index = -1;
-        for (int i = 0; i < size; i++) {
-            if (elements[i].equals(o)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
+        super();
     }
 
     @Override
     public void add(Object o) {
-        if (size >= elements.length - 1) {
-            // array resize (x2)
-            Object[] tmp = new Object[elements.length * 2];
-            System.arraycopy(elements, 0, tmp, 0, elements.length);
-            elements = tmp;
+        if (capacityRatio() > 0.6) {
+            enlarge();
         }
         if (!contains(o)) {
-            elements[size++] = o;
+            table[size++] = o;
         }
     }
 
@@ -44,31 +25,25 @@ public class MyArraySet implements MySet {
         int index = getIndex(o);
         if (index == -1) return;
 
-        System.arraycopy(elements, index + 1, elements, index, size - index);
-        elements[--size] = null;
+        System.arraycopy(table, index + 1, table, index, size - index);
+        table[--size] = null;
     }
 
     @Override
     public boolean contains(Object o) {
-        for (Object item : elements) {
-            if (item != null && item.equals(o)) {
-                return true;
-            }
-        }
-        return false;
+        int index = getIndex(o);
+        return index != -1;
     }
 
-    @Override
-    public int size() {
-        return size;
+    Object[] toArray() {
+        return table;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < size(); i++) {
-            sb.append(String.format("[%s]", elements[i].toString()));
+    int getIndex(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (table[i].hashCode() == o.hashCode())
+                return i;
         }
-        return sb.toString();
+        return -1;
     }
 }

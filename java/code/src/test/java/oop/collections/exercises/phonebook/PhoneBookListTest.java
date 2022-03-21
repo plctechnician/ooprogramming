@@ -42,6 +42,6 @@ class PhoneBookListTest {
     @Test
     void deleteByNumber() {
         pb.deleteByNumber("34567");
-        assertEquals(null, pb.searchByLastname("Bicocchi"));
+        assertNull(pb.searchByLastname("Bicocchi"));
     }
 }

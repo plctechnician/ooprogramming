@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PhoneBookMapTest {
     PhoneBook pb;
@@ -42,6 +43,6 @@ class PhoneBookMapTest {
     @Test
     void deleteByNumber() {
         pb.deleteByNumber("34567");
-        assertEquals(null, pb.searchByLastname("Bicocchi"));
+        assertNull(pb.searchByLastname("Bicocchi"));
     }
 }

@@ -6,45 +6,81 @@ package oop.collections.exercises.mymap;
  * @author Nicola Bicocchi
  */
 public class MyHashMap implements MyMap {
-    private final static int TABLE_SIZE = 8;
+    final static int INITIAL_SIZE = 8;
     MyHashMapEntry[] table;
+    int size = 0;
 
     public MyHashMap() {
-        table = new MyHashMapEntry[TABLE_SIZE];
-        for (int i = 0; i < TABLE_SIZE; i++)
-            table[i] = null;
+        table = new MyHashMapEntry[INITIAL_SIZE];
     }
 
     public Object get(Object key) {
-        int hash = (key.hashCode() % TABLE_SIZE);
-        while (table[hash] != null && table[hash].getKey() != key)
-            hash = (hash + 1) % TABLE_SIZE;
-        if (table[hash] == null)
-            return -1;
-        else
-            return table[hash].getValue();
+        int bucket = getBucket(key);
+        if (table[bucket] != null) {
+            return table[bucket].getValue();
+        }
+        return -1;
     }
 
     public void put(Object key, Object value) {
-        int hash = (key.hashCode() % TABLE_SIZE);
-        while (table[hash] != null && table[hash].getKey() != key)
-            hash = (hash + 1) % TABLE_SIZE;
-        table[hash] = new MyHashMapEntry(key, value);
+        if (capacityRatio() > 0.6) {
+            enlarge();
+        }
+        int bucket = getBucket(key);
+        if (table[bucket] == null) {
+            table[bucket] = new MyHashMapEntry(key, value);
+            size++;
+        }
+    }
+
+    @Override
+    public void remove(Object key) {
+        int bucket = getBucket(key);
+        if (table[bucket] != null) {
+            table[bucket] = null;
+            size--;
+        }
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        int bucket = getBucket(o);
+        return table[bucket] != null;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < TABLE_SIZE; i++) {
-            try {
-                Object key = table[i].getKey();
-                Object value = table[i].getValue();
-                sb.append("bucket ").append(i).append(" --> (").append(key).append(", ").append(value).append(")");
-            } catch (NullPointerException e) {
-                sb.append("bucket ").append(i).append(" --> null");
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == null) {
+                sb.append(String.format("[bucket %d] -> null\n", i));
+            } else {
+                sb.append(String.format("[bucket %d] -> (%s, %s)\n", i, table[i].getKey(), table[i].getValue()));
             }
-            sb.append("\n");
         }
         return sb.toString();
+    }
+
+    int getBucket(Object key) {
+        int bucket = (Math.abs(key.hashCode()) % table.length);
+        while (table[bucket] != null && table[bucket].getKey() != key) {
+            bucket = (bucket + 1) % table.length;
+        }
+        return bucket;
+    }
+
+    double capacityRatio() {
+        return size / (double)table.length;
+    }
+
+    void enlarge() {
+        MyHashMapEntry[] tmp = new MyHashMapEntry[table.length * 2];
+        System.arraycopy(table, 0, tmp, 0, table.length);
+        table = tmp;
     }
 }

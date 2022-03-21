@@ -89,12 +89,14 @@ public class Strings {
      * Write a function accepting a string
      * returning true if "good" appears
      * starting at index 0 or 1 in the given string.
-     * see substring() method
+     * see substring(), startsWith() methods
      */
     public static boolean goodAroundTheBeginning(String s) {
-        String a = s.substring(0, 4);
-        String b = s.substring(1, 5);
-        return a.equals("good") || b.equals("good");
+        return s.startsWith("good") || s.startsWith("good", 1);
+        // alternative version
+        // String a = s.substring(0, 4);
+        // String b = s.substring(1, 5);
+        // return a.equals("good") || b.equals("good");
     }
 
     /**
