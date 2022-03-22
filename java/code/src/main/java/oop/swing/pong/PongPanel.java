@@ -7,13 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.random.RandomGenerator;
 import java.util.random.RandomGeneratorFactory;
 
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
     Timer timer;
-    HashMap<String, GameObject> hgo;
+    HashMap<String, GameObject> gameObjects;
 
     public PongPanel() {
         super();
@@ -25,19 +24,19 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
     public void init() {
         RandomGenerator rnd = RandomGeneratorFactory.getDefault().create();
-        hgo = new HashMap<>();
+        gameObjects = new HashMap<>();
 
-        hgo.put("ball", new Ball(this, hgo,
+        gameObjects.put("ball", new Ball(this, gameObjects,
                 20, 20,
                 getWidth() / 2, getHeight() / 2,
                 rnd.nextInt(6) + 3, rnd.nextInt(6) + 3));
 
-        hgo.put("player_sx", new Player(this, hgo,
+        gameObjects.put("player_sx", new Player(this, gameObjects,
                 20, 60,
                 0, (getHeight() - 60) / 2,
                 0, 0));
 
-        hgo.put("player_dx", new Player(this, hgo,
+        gameObjects.put("player_dx", new Player(this, gameObjects,
                 20, 60,
                 getWidth() - 20, (getHeight() - 60) / 2,
                 0, 0));
@@ -48,8 +47,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Player p1 = ((Player) hgo.get("player_sx"));
-        Player p2 = ((Player) hgo.get("player_dx"));
+        Player p1 = ((Player) gameObjects.get("player_sx"));
+        Player p2 = ((Player) gameObjects.get("player_dx"));
 
         if (p1.getScore() >= 10) {
             JOptionPane.showMessageDialog(this, "Player 1 Wins!");
@@ -64,7 +63,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
         }
 
         if (e.getSource() == timer) {
-            for (GameObject go : hgo.values()) go.update();
+            for (GameObject object : gameObjects.values()) {
+                object.update();
+            }
             repaint();
         }
     }
@@ -72,11 +73,11 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (GameObject go : hgo.values()) go.paint(g);
+        for (GameObject go : gameObjects.values()) go.paint(g);
 
         String str = String.format("Player 1: %d vs Player 2: %d",
-                ((Player) hgo.get("player_sx")).getScore(),
-                ((Player) hgo.get("player_dx")).getScore());
+                ((Player) gameObjects.get("player_sx")).getScore(),
+                ((Player) gameObjects.get("player_dx")).getScore());
         g.drawChars(str.toCharArray(), 0, str.length(), 0, getHeight() - 5);
     }
 
@@ -88,19 +89,19 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         System.out.println(e);
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            hgo.get("player_dx").setSpeedY(-4);
+            gameObjects.get("player_dx").setSpeedY(-4);
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            hgo.get("player_dx").setSpeedY(4);
-        if (e.getKeyChar() == '>') hgo.get("player_sx").setSpeedY(-4);
-        if (e.getKeyChar() == '<') hgo.get("player_sx").setSpeedY(4);
+            gameObjects.get("player_dx").setSpeedY(4);
+        if (e.getKeyChar() == '>') gameObjects.get("player_sx").setSpeedY(-4);
+        if (e.getKeyChar() == '<') gameObjects.get("player_sx").setSpeedY(4);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) hgo.get("player_dx").setSpeedY(0);
+        if (e.getKeyCode() == KeyEvent.VK_UP) gameObjects.get("player_dx").setSpeedY(0);
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            hgo.get("player_dx").setSpeedY(0);
-        if (e.getKeyChar() == '>') hgo.get("player_sx").setSpeedY(0);
-        if (e.getKeyChar() == '<') hgo.get("player_sx").setSpeedY(0);
+            gameObjects.get("player_dx").setSpeedY(0);
+        if (e.getKeyChar() == '>') gameObjects.get("player_sx").setSpeedY(0);
+        if (e.getKeyChar() == '<') gameObjects.get("player_sx").setSpeedY(0);
     }
 }

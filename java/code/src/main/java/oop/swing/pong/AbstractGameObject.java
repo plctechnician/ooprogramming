@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public abstract class AbstractGameObject implements GameObject {
     JPanel parent;
-    HashMap<String, GameObject> hgo;
+    HashMap<String, GameObject> gameObjects;
     int w, h;
     int x, y;
     int speedX, speedY;

@@ -10,7 +10,7 @@ public class Player extends AbstractGameObject {
     public Player(JPanel parent, HashMap<String, GameObject> hgo,
                   int w, int h, int x, int y, int speedX, int speedY) {
         this.parent = parent;
-        this.hgo = hgo;
+        this.gameObjects = hgo;
         this.w = w;
         this.h = h;
         this.x = x;

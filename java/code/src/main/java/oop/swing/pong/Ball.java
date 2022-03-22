@@ -5,10 +5,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class Ball extends AbstractGameObject {
-    public Ball(JPanel parent, HashMap<String, GameObject> hgo,
+    public Ball(JPanel parent, HashMap<String, GameObject> gameObjects,
                 int w, int h, int x, int y, int speedX, int speedY) {
         this.parent = parent;
-        this.hgo = hgo;
+        this.gameObjects = gameObjects;
         this.w = w;
         this.h = h;
         this.x = x;
@@ -24,14 +24,14 @@ public class Ball extends AbstractGameObject {
         // left wall
         if (x < 0) {
             speedX = -speedX;
-            Player p = ((Player) hgo.get("player_dx"));
+            Player p = ((Player) gameObjects.get("player_dx"));
             p.setScore(p.getScore() + 1);
         }
 
         // right wall
         if (x > parent.getWidth() - w) {
             speedX = -speedX;
-            Player p = ((Player) hgo.get("player_sx"));
+            Player p = ((Player) gameObjects.get("player_sx"));
             p.setScore(p.getScore() + 1);
         }
 
@@ -41,11 +41,12 @@ public class Ball extends AbstractGameObject {
         }
 
         // players
-        for (GameObject go : hgo.values()) {
-            if (go != this) {
-                if (go.getBounds().intersects(getBounds())) {
-                    speedX = -speedX;
-                }
+        for (GameObject object : gameObjects.values()) {
+            if (object == this) {
+                continue;
+            }
+            if (getBounds().intersects(object.getBounds())) {
+                speedX = -speedX;
             }
         }
     }
