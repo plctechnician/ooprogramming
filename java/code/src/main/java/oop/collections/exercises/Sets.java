@@ -124,9 +124,7 @@ public class Sets {
      * Write a function to transform a set into an array
      */
     public static Integer[] toArray(Set<Integer> source) {
-        Integer[] target = new Integer[source.size()];
-        source.toArray(target);
-        return target;
+        return source.toArray(new Integer[]{});
     }
 
     /**
