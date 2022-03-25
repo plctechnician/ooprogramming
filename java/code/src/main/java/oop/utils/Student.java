@@ -73,19 +73,18 @@ public class Student implements Comparable<Student>, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, lastname, phone, average);
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Student student = (Student) o;
+        return Double.compare(student.average, average) == 0 && Objects.equals(name, student.name) && Objects.equals(lastname, student.lastname) && Objects.equals(phone, student.phone);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return Double.compare(student.average, average) == 0 &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(lastname, student.lastname) &&
-                Objects.equals(phone, student.phone);
+    public int hashCode() {
+        return Objects.hash(name, lastname, phone, average);
     }
 
     @Override
