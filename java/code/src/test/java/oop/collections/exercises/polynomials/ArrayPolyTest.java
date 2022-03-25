@@ -8,9 +8,9 @@ class ArrayPolyTest {
 
     @Test
     void testEquals() {
-        ArrayPoly p1 = new ArrayPoly(new double[]{1,2,3,4});
-        ArrayPoly p2 = new ArrayPoly(new double[]{1,2,3,4});
-        ArrayPoly p3 = new ArrayPoly(new double[]{1,2,3,5});
+        Poly p1 = new ArrayPoly(new double[]{1,2,3,4});
+        Poly p2 = new ArrayPoly(new double[]{1,2,3,4});
+        Poly p3 = new ArrayPoly(new double[]{1,2,3,5});
         assertEquals(p1, p2);
         assertNotEquals(p1, p3);
     }

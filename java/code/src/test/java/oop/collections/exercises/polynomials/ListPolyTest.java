@@ -8,9 +8,9 @@ class ListPolyTest {
 
     @Test
     void testEquals() {
-        ListPoly p1 = new ListPoly(new double[]{1,2,3,4});
-        ListPoly p2 = new ListPoly(new double[]{1,2,3,4});
-        ListPoly p3 = new ListPoly(new double[]{1,2,3,5});
+        Poly p1 = new ListPoly(new double[]{1,2,3,4});
+        Poly p2 = new ListPoly(new double[]{1,2,3,4});
+        Poly p3 = new ListPoly(new double[]{1,2,3,5});
         assertEquals(p1, p2);
         assertNotEquals(p1, p3);
     }
