@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.anphibious;
+package oop.objectoriented.exercises.amphibious;
 
 public class Boat implements WaterVehicle {
 

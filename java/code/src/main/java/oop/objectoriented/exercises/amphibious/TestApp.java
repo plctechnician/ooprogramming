@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.anphibious;
+package oop.objectoriented.exercises.amphibious;
 
 /**
  * Implement the classes described in UML inside the png file contained in this package.
@@ -17,10 +17,10 @@ public class TestApp {
         w = new Boat();
         System.out.println(w.sail());
 
-        l = new Anphibious();
+        l = new Amphibious();
         System.out.println(l.run());
 
-        w = new Anphibious();
+        w = new Amphibious();
         System.out.println(w.sail());
     }
 }

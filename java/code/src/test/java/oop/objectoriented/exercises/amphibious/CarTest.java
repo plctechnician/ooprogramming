@@ -1,4 +1,4 @@
-package oop.objectoriented.exercises.anphibious;
+package oop.objectoriented.exercises.amphibious;
 
 import org.junit.jupiter.api.Test;
 
