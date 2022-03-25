@@ -79,14 +79,14 @@ public class Lists {
     }
 
     /**
-     * Write a function to reverse the elements of a list
+     * Write a function to reverse the elements of a list (using java.util.Collections methods)
      */
     public static void reverse(ArrayList<Integer> list) {
         Collections.reverse(list);
     }
 
     /**
-     * Write a function to reverse the elements of a list (without using library functions)
+     * Write a function to reverse the elements of a list (without using java.util.Collections methods)
      */
     public static void reverseManual(ArrayList<Integer> list) {
         ArrayList<Integer> tmp = new ArrayList<>();
