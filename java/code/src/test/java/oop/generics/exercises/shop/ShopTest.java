@@ -1,5 +1,6 @@
-package oop.generics.shop;
+package oop.generics.exercises.shop;
 
+import oop.generics.exercises.shop.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

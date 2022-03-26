@@ -1,4 +1,4 @@
-package oop.generics.shop;
+package oop.generics.exercises.shop;
 
 import java.util.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author Nicola Bicocchi
  */
-public class Shop<T> {
+public class Shop<T> implements BuySell<T> {
     final Queue<T> items;
 
     public Shop() {
