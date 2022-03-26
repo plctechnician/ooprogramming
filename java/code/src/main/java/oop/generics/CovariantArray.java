@@ -2,14 +2,14 @@ package oop.generics;
 
 public class CovariantArray {
     public static void main(String[] args) {
-        Fruit[] fl = new Fruit[16];
-        Object[] ol = fl;
+        String[] strings = new String[16];
 
-        for (int i = 0; i < fl.length; i++) {
-            fl[i] = new Fruit();
+        for (int i = 0; i < strings.length; i++) {
+            strings[i] = "Hello World!";
         }
 
         // Compiles but fails at runtime!
-        ol[0] = "Hello World!";
+        Object[] objects = strings;
+        objects[0] = 1.7;
     }
 }
