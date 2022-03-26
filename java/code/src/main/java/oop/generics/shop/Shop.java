@@ -11,7 +11,7 @@ public class Shop<T> {
     final Queue<T> items;
 
     public Shop() {
-        // a queue implementing FIFO policy
+        // a queue implementing a FIFO policy
         items = new LinkedList<>();
     }
 
