@@ -1,4 +1,4 @@
-package oop.collections.exercises.myset;
+package oop.collections.exercises.mycollection;
 
 public abstract class MyAbstractSet implements MySet {
     final static int INITIAL_SIZE = 8;

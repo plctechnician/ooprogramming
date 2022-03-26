@@ -1,16 +1,18 @@
-package oop.collections.exercises.myset;
+package oop.collections.exercises.mycollection;
 
+import oop.collections.exercises.mycollection.MyArraySet;
+import oop.collections.exercises.mycollection.MySet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyHashSetTest {
+class MyArraySetTest {
     MySet s;
 
     @BeforeEach
     void setUp() {
-        s = new MyHashSet();
+        s = new MyArraySet();
     }
 
     @Test

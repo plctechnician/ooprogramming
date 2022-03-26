@@ -1,4 +1,4 @@
-package oop.collections.exercises.myset;
+package oop.collections.exercises.mycollection;
 
 public class MyHashSet extends MyAbstractSet {
     public MyHashSet() {

@@ -1,6 +1,6 @@
-package oop.collections.exercises.myset;
+package oop.collections.exercises.mycollection;
 
-public interface MySet {
+public interface MyCollection {
     void add(Object o);
     void remove(Object o);
     boolean contains(Object o);

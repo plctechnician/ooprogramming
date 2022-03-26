@@ -1,4 +1,4 @@
-package oop.collections.exercises.mylist;
+package oop.collections.exercises.mycollection;
 
 /**
  * Implementation of a single node composing the linked list

@@ -1,11 +1,11 @@
-package oop.collections.exercises.mylist;
+package oop.collections.exercises.mycollection;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class MyLinkedListTest {
+class MyArrayListTest {
     MyList l;
 
     @BeforeEach

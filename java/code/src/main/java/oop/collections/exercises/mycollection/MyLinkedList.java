@@ -1,4 +1,4 @@
-package oop.collections.exercises.mylist;
+package oop.collections.exercises.mycollection;
 
 /**
  * Implementation of a simplified LinkedList class
@@ -6,25 +6,28 @@ package oop.collections.exercises.mylist;
  * @author Nicola Bicocchi
  */
 public class MyLinkedList extends MyAbstractList {
+
     MyLinkedListNode head;
-    int size;
 
     public MyLinkedList() {
+        super();
         head = null;
-        size = 0;
-    }
-
-    private MyLinkedListNode getNodeByIndex(int index) {
-        MyLinkedListNode current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.getNext();
-        }
-        return current;
     }
 
     @Override
     public void add(Object o) {
         add(o, size);
+    }
+
+    @Override
+    public void remove(Object o) {
+        for (int i = 0; i < size; i++) {
+            MyLinkedListNode node = getNodeByIndex(i);
+            if (node.getPayload().equals(o)) {
+                remove(i);
+                return;
+            }
+        }
     }
 
     @Override
@@ -39,10 +42,12 @@ public class MyLinkedList extends MyAbstractList {
         size++;
     }
 
-    @Override
-    public Object get(int index) {
-        checkBoundaries(index, size - 1);
-        return getNodeByIndex(index).getPayload();
+    MyLinkedListNode getNodeByIndex(int index) {
+        MyLinkedListNode current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current;
     }
 
     @Override
@@ -58,7 +63,8 @@ public class MyLinkedList extends MyAbstractList {
     }
 
     @Override
-    public int size() {
-        return size;
+    public Object get(int index) {
+        checkBoundaries(index, size - 1);
+        return getNodeByIndex(index).getPayload();
     }
 }

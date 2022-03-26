@@ -1,4 +1,4 @@
-package oop.collections.exercises.mylist;
+package oop.collections.exercises.mycollection;
 
 /**
  * Implementation of a simplified ArrayList
@@ -6,21 +6,13 @@ package oop.collections.exercises.mylist;
  * @author Nicola Bicocchi
  */
 public class MyArrayList extends MyAbstractList {
+
     static final int INITIAL_SIZE = 16;
     Object[] elements;
-    int size;
 
     public MyArrayList() {
+        super();
         elements = new Object[INITIAL_SIZE];
-        size = 0;
-    }
-
-    @Override
-    public void add(Object o) {
-        if (size >= elements.length - 1) {
-            enlarge();
-        }
-        elements[size++] = o;
     }
 
     @Override
@@ -36,9 +28,27 @@ public class MyArrayList extends MyAbstractList {
     }
 
     @Override
-    public Object get(int index) {
-        checkBoundaries(index, size - 1);
-        return elements[index];
+    public void add(Object o) {
+        if (size >= elements.length - 1) {
+            enlarge();
+        }
+        elements[size++] = o;
+    }
+
+    void enlarge() {
+        Object[] tmp = new Object[elements.length * 2];
+        System.arraycopy(elements, 0, tmp, 0, elements.length);
+        elements = tmp;
+    }
+
+    @Override
+    public void remove(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i].equals(o)) {
+                remove(i);
+                return;
+            }
+        }
     }
 
     @Override
@@ -50,13 +60,8 @@ public class MyArrayList extends MyAbstractList {
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    void enlarge() {
-        Object[] tmp = new Object[elements.length * 2];
-        System.arraycopy(elements, 0, tmp, 0, elements.length);
-        elements = tmp;
+    public Object get(int index) {
+        checkBoundaries(index, size - 1);
+        return elements[index];
     }
 }
