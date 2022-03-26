@@ -6,7 +6,6 @@ package oop.collections.exercises.mycollection;
  * @author Nicola Bicocchi
  */
 public class MyArrayList extends MyAbstractList {
-
     static final int INITIAL_SIZE = 16;
     Object[] elements;
 

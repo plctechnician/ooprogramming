@@ -5,44 +5,29 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MyLinkedListTest {
-    MyList l;
-
+class MyLinkedListTest extends MyListTestBase {
     @BeforeEach
     void setUp() {
         l = new MyLinkedList();
     }
 
     @Test
-    void add() {
-        l.add("nicola");
-        assertEquals("nicola", l.get(0));
-        l.add("barbara", 0);
-        assertEquals("barbara", l.get(0));
-        assertEquals("nicola", l.get(1));
-        assertEquals(2, l.size());
+    void peek() {
+        MyLinkedList ll = new MyLinkedList();
+        ll.add("nicola");
+        ll.add("marzia");
+        assertEquals("nicola", ll.peek());
+        assertEquals("nicola", ll.peek());
+        assertEquals(2, ll.size());
     }
 
     @Test
-    void get() {
-        l.add("nicola");
-        assertEquals("nicola", l.get(0));
-    }
-
-    @Test
-    void remove() {
-        l.add("nicola");
-        assertEquals("nicola", l.get(0));
-        l.add("barbara", 0);
-        l.remove(0);
-        assertEquals("nicola", l.get(0));
-        assertEquals(1, l.size());
-    }
-
-    @Test
-    void size() {
-        assertEquals(0, l.size());
-        l.add("nicola");
-        assertEquals(1, l.size());
+    void poll() {
+        MyLinkedList ll = new MyLinkedList();
+        ll.add("nicola");
+        ll.add("marzia");
+        assertEquals("nicola", ll.poll());
+        assertEquals("marzia", ll.poll());
+        assertEquals(0, ll.size());
     }
 }

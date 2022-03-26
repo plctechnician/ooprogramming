@@ -5,8 +5,7 @@ package oop.collections.exercises.mycollection;
  *
  * @author Nicola Bicocchi
  */
-public class MyLinkedList extends MyAbstractList {
-
+public class MyLinkedList extends MyAbstractList implements MyQueue {
     MyLinkedListNode head;
 
     public MyLinkedList() {
@@ -66,5 +65,17 @@ public class MyLinkedList extends MyAbstractList {
     public Object get(int index) {
         checkBoundaries(index, size - 1);
         return getNodeByIndex(index).getPayload();
+    }
+
+    @Override
+    public Object peek() {
+        return get(0);
+    }
+
+    @Override
+    public Object poll() {
+        Object payload = get(0);
+        remove(0);
+        return payload;
     }
 }
