@@ -1,0 +1,85 @@
+package oop.exceptions.exercises;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ExceptionsTest {
+    @Test
+    void check() {
+        assertThrows(ParseException.class, () -> Exceptions.check("aab3h4z1r4"));
+        assertThrows(ParseException.class, () -> Exceptions.check("a0b3h4z1rr"));
+        assertDoesNotThrow(() -> Exceptions.check("a0b3h4z1r4"));
+        assertDoesNotThrow(() -> Exceptions.check("a0"));
+    }
+
+    @Test
+    void testCheck() {
+        List<String> src = new ArrayList<>(List.of("aab3h4z1r4", "a0b3h4z1rr", "a0b3h4z1r4", "a0"));
+        Exceptions.check(src);
+        assertEquals(List.of("a0b3h4z1r4", "a0"), src);
+    }
+
+    @Test
+    void checkInterval() {
+        assertThrows(ParseException.class, () -> Exceptions.checkInterval("15-12-2022", "17/12/2022"));
+        assertThrows(ParseException.class, () -> Exceptions.checkInterval("15/12-2022", "17/12-2022"));
+        assertThrows(ParseException.class, () -> Exceptions.checkInterval("15-32/2022", "17/12-20oo"));
+        assertDoesNotThrow(() -> Exceptions.checkInterval("15/12/2022", "17/12/2022"));
+        try {
+            assertTrue(Exceptions.checkInterval("15/12/2022", "17/12/2022"));
+            assertTrue(Exceptions.checkInterval("15/12/2022", "17/12/2122"));
+            assertFalse(Exceptions.checkInterval("15/12/2022", "17/12/1922"));
+            assertFalse(Exceptions.checkInterval("15/12/2022", "14/12/2022"));
+        } catch (ParseException ignored) {
+
+        }
+    }
+
+    @Test
+    void checkInterval_alternative() {
+        assertTrue(Exceptions.checkInterval_alternative("15/12/2022", "17/12/2022"));
+        assertTrue(Exceptions.checkInterval_alternative("15/12/2022", "17/12/2122"));
+        assertFalse(Exceptions.checkInterval_alternative("15/12/2022", "17/12/1922"));
+        assertFalse(Exceptions.checkInterval_alternative("15/12/2022", "14/12/2022"));
+        assertFalse(Exceptions.checkInterval_alternative("15-12-2022", "17/12/2022"));
+        assertFalse(Exceptions.checkInterval_alternative("15/12-2022", "17/12-2022"));
+        assertFalse(Exceptions.checkInterval_alternative("15-32/2022", "17/12-20oo"));
+    }
+
+    @Test
+    void divide() {
+        assertThrows(IllegalArgumentException.class, () -> Exceptions.divide(-1, 0));
+        assertThrows(IllegalArgumentException.class, () -> Exceptions.divide(1, 0));
+        assertEquals(2.0, Exceptions.divide(4.0, 2.0), 0.001);
+        assertEquals(-2.0, Exceptions.divide(-8.0, 4.0), 0.001);
+    }
+
+    @Test
+    void compute() {
+        assertEquals(4.0, Exceptions.compute(4.0, 2.0), 0.001);
+        assertEquals(4.0, Exceptions.compute(-8.0, 4.0), 0.001);
+        assertEquals(0.0, Exceptions.compute(4.0, 0.0), 0.001);
+        assertEquals(0.0, Exceptions.compute(-8.0, 0.0), 0.001);
+    }
+
+    @Test
+    void completeDelegation() {
+        assertThrows(IOException.class, () -> Exceptions.completeDelegation("/tmp/missing"));
+    }
+
+    @Test
+    void noDelegation() {
+        assertNull(Exceptions.noDelegation("/tmp/missing"));
+    }
+
+    @Test
+    void partialDelegation() {
+        assertThrows(RuntimeException.class, () -> Exceptions.partialDelegation("/tmp/missing"));
+    }
+}
