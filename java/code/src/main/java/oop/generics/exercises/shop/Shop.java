@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author Nicola Bicocchi
  */
-public class Shop<T> implements BuySell<T> {
+public class Shop<T> {
     final Queue<T> items;
 
     public Shop() {
