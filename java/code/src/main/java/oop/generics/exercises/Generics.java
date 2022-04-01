@@ -120,7 +120,8 @@ public class Generics {
     }
 
     /**
-     * Write a function returning a sorted copy of a generic array using Bubble Sort (without using java.util.Collections methods)
+     * Write a function returning a sorted copy of a generic array using Bubble Sort (without using java.util.Arrays
+     * methods)
      */
     public static <T extends Comparable<? super T>> T[] sort(T[] src) {
         int size = src.length;
