@@ -125,7 +125,7 @@ public class Generics {
     public static <T extends Comparable<? super T>> T[] sort(T[] src) {
         int size = src.length;
         // shallow copy! could have issues!
-        T[] dst = dst = src.clone();
+        T[] dst = src.clone();
 
         boolean changed = true;
         while (changed) {
