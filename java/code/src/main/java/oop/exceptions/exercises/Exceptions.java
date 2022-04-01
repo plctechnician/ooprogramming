@@ -158,12 +158,11 @@ public class Exceptions {
     /**
      * Write a function for filtering a List<List<String>> (a list of lists of strings). The function returns a List<List<String>>
      * comprising only those List<String> containing ONLY alternating sequences of letters and numbers (for example
-     * a0b3h4z1r4).
+     * a0b3h4z1r4). The original List should not be modified.
      * Note: Use the check() method above
      */
     public static List<List<String>> checkLists(List<List<String>> src) {
         List<List<String>> dst = new ArrayList<>();
-
         for (List<String> l : src) {
             try {
                 for (String s : l) {
@@ -174,9 +173,4 @@ public class Exceptions {
         }
         return dst;
     }
-
-
-
-
-
 }
