@@ -35,6 +35,10 @@
 * [YouTube IntelliJ](https://www.youtube.com/c/intellijidea/videos)
 * [YouTube PyCharm](https://www.youtube.com/c/PyCharmIDE/videos)
 
+## Project Design
+* [moqups](https://moqups.com/)
+* [mermaid.js](https://mermaid-js.github.io/mermaid/#/)
+
 ## Microsoft Teams
 Please use Microsoft Teams instead of emails for asking questions and discuss ideas, exercises, and home projects.
 

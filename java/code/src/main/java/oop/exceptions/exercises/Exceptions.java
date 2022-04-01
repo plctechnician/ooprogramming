@@ -1,16 +1,11 @@
 package oop.exceptions.exercises;
 
-import oop.objectoriented.exercises.library.Rent;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * You can find many more here:
@@ -26,7 +21,7 @@ public class Exceptions {
      * a0b3h4z1r4). The function delegates ParseException for notifying the caller about eventual malformations.
      * Note: Use can use Character.isDigit() and Character.isLetter() methods
      */
-    public static void check(String s) throws ParseException {
+    public static void checkString(String s) throws ParseException {
         boolean waitingLetter = true;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -41,13 +36,13 @@ public class Exceptions {
     }
 
     /**
-     * Write a function to remove from a List all the strings which are not an alternating sequence of letters and
-     * numbers (for example, a0b3h4z1r4).
+     * Write a function to remove from a List<String> all the strings which are not an alternating sequence of letters
+     * and numbers (for example, a0b3h4z1r4).
      */
-    public static void check(List<String> strings) {
+    public static void removeItems(List<String> strings) {
         for (Iterator<String> i = strings.iterator(); i.hasNext(); ) {
             try {
-                check(i.next());
+                checkString(i.next());
             } catch (ParseException e) {
                 i.remove();
             }
@@ -97,7 +92,7 @@ public class Exceptions {
      * Write a function receiving two double numbers (a, b) and returning their division squared (i.e., (a/b)^2). If
      * b == 0, the function returns 0.0
      */
-    public static double compute(double a, double b) {
+    public static double divideSquared(double a, double b) {
         try {
             return Math.pow(divide(a, b), 2);
         } catch (IllegalArgumentException e) {
@@ -142,4 +137,45 @@ public class Exceptions {
             throw new RuntimeException();
         }
     }
+
+    /**
+     * Write a function for filtering a List<String>. The function returns a List<String> comprising only those strings
+     * which are an alternating sequence of letters and numbers (for example a0b3h4z1r4).
+     * Note: Use the check() method above
+     */
+    public static List<String> checkItems(List<String> src) {
+        List<String> dst = new ArrayList<>();
+        for (String s : src) {
+            try {
+                checkString(s);
+                dst.add(s);
+            } catch (ParseException ignored) {}
+        }
+        return dst;
+    }
+
+    /**
+     * Write a function for filtering a List<List<String>> (a list of lists of strings). The function returns a List<List<String>>
+     * comprising only those List<String> containing ONLY alternating sequences of letters and numbers (for example
+     * a0b3h4z1r4).
+     * Note: Use the check() method above
+     */
+    public static List<List<String>> checkLists(List<List<String>> src) {
+        List<List<String>> dst = new ArrayList<>();
+
+        for (List<String> l : src) {
+            try {
+                for (String s : l) {
+                    checkString(s);
+                }
+                dst.add(l);
+            } catch (ParseException ignored) {}
+        }
+        return dst;
+    }
+
+
+
+
+
 }

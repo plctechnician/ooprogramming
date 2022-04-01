@@ -11,17 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExceptionsTest {
     @Test
-    void check() {
-        assertThrows(ParseException.class, () -> Exceptions.check("aab3h4z1r4"));
-        assertThrows(ParseException.class, () -> Exceptions.check("a0b3h4z1rr"));
-        assertDoesNotThrow(() -> Exceptions.check("a0b3h4z1r4"));
-        assertDoesNotThrow(() -> Exceptions.check("a0"));
+    void checkString() {
+        assertThrows(ParseException.class, () -> Exceptions.checkString("aab3h4z1r4"));
+        assertThrows(ParseException.class, () -> Exceptions.checkString("a0b3h4z1rr"));
+        assertDoesNotThrow(() -> Exceptions.checkString("a0b3h4z1r4"));
+        assertDoesNotThrow(() -> Exceptions.checkString("a0"));
     }
 
     @Test
-    void testCheck() {
+    void removeItems() {
         List<String> src = new ArrayList<>(List.of("aab3h4z1r4", "a0b3h4z1rr", "a0b3h4z1r4", "a0"));
-        Exceptions.check(src);
+        Exceptions.removeItems(src);
         assertEquals(List.of("a0b3h4z1r4", "a0"), src);
     }
 
@@ -61,11 +61,11 @@ class ExceptionsTest {
     }
 
     @Test
-    void compute() {
-        assertEquals(4.0, Exceptions.compute(4.0, 2.0), 0.001);
-        assertEquals(4.0, Exceptions.compute(-8.0, 4.0), 0.001);
-        assertEquals(0.0, Exceptions.compute(4.0, 0.0), 0.001);
-        assertEquals(0.0, Exceptions.compute(-8.0, 0.0), 0.001);
+    void divideSquared() {
+        assertEquals(4.0, Exceptions.divideSquared(4.0, 2.0), 0.001);
+        assertEquals(4.0, Exceptions.divideSquared(-8.0, 4.0), 0.001);
+        assertEquals(0.0, Exceptions.divideSquared(4.0, 0.0), 0.001);
+        assertEquals(0.0, Exceptions.divideSquared(-8.0, 0.0), 0.001);
     }
 
     @Test
@@ -82,4 +82,25 @@ class ExceptionsTest {
     void partialDelegation() {
         assertThrows(RuntimeException.class, () -> Exceptions.partialDelegation("/tmp/missing"));
     }
+
+    @Test
+    void checkItems() {
+        List<String> src = new ArrayList<>(List.of("aab3h4z1r4", "a0b3h4z1rr", "a0b3h4z1r4", "a0"));
+        List<String> dst = Exceptions.checkItems(src);
+        assertEquals(List.of("a0b3h4z1r4", "a0"), dst);
+    }
+
+    @Test
+    void checkLists() {
+        List<List<String>> src = new ArrayList<>(List.of(
+                List.of("a3b3h4z1r4", "a0b3h4z1r0", "a0b3h4z1r4"),
+                List.of("a3b3h4z1r4", "rrrrrrrrrr", "a0b3h4z1r4"),
+                List.of("a3b3h4z1r4", "a0b3h4z1r0", "0000000000"),
+                List.of("a3b3h4z1r4", "a0b3h4z1r0", "a0b3h4z1r4")));
+        List<List<String>> dst = Exceptions.checkLists(src);
+        assertEquals(List.of(
+                List.of("a3b3h4z1r4", "a0b3h4z1r0", "a0b3h4z1r4"),
+                List.of("a3b3h4z1r4", "a0b3h4z1r0", "a0b3h4z1r4")), dst);
+    }
+
 }
