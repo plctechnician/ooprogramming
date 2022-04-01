@@ -90,9 +90,10 @@ public class Generics {
     }
 
     /**
-     * Write a function to find the maximum within a generic List of Comparable objects using an external Comparator (without using java.util.Collections methods)
+     * Write a function to find the maximum within a generic List of objects using an external Comparator (without
+     * using java.util.Collections methods)
      */
-    public static <T extends Comparable<? super T>> T max(List<T> list, Comparator<T> cmp) {
+    public static <T> T max(List<T> list, Comparator<? super T> cmp) {
         T candidate = list.get(0);
         for (T next : list) {
             if (cmp.compare(candidate, next) < 0) {
