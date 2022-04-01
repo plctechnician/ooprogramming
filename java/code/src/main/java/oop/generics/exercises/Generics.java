@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Generics {
     /**
-     * Write a function to fill a generic list with the same object
+     * Write a function to fill a generic list with the same object (without using java.util.Collections methods)
      */
     public static <T> void fill(List<? super T> list, T obj) {
         for (int i = 0; i < list.size(); i++) {
@@ -21,7 +21,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to copy a generic list inside another generic list
+     * Write a function to copy a generic list inside another generic list (without using java.util.Collections methods)
      */
     public static <T> void copy(List<? super T> dest, List<? extends T> src) {
         if (src.size() != dest.size()) {
@@ -33,7 +33,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to swap 2 elements within a generic list
+     * Write a function to swap 2 elements within a generic list (without using java.util.Collections methods)
      */
     public static void swap(List<?> list, int i, int j) {
         final List l = list;
@@ -41,7 +41,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to shuffle a generic list
+     * Write a function to shuffle a generic list (without using java.util.Collections methods)
      */
     public static void shuffle(List<?> list) {
         Random rnd = new Random();
@@ -51,7 +51,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to reverse a generic list
+     * Write a function to reverse a generic list (without using java.util.Collections methods)
      */
     public static void reverse(List<?> list) {
         int size = list.size();
@@ -61,7 +61,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to find the minimum within a generic Collection of comparable objects
+     * Write a function to find the minimum within a generic Collection of comparable objects (without using java.util.Collections methods)
      * Note well: The Collection interface does not support indexing (e.g., get(index)...)!
      */
     public static <T extends Comparable<? super T>> T min(Collection<T> list) {
@@ -77,7 +77,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to find the maximum within a generic List of Comparable objects
+     * Write a function to find the maximum within a generic List of Comparable objects (without using java.util.Collections methods)
      */
     public static <T extends Comparable<? super T>> T max(List<T> list) {
         T candidate = list.get(0);
@@ -90,7 +90,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to find the maximum within a generic List of Comparable objects using an external Comparator
+     * Write a function to find the maximum within a generic List of Comparable objects using an external Comparator (without using java.util.Collections methods)
      */
     public static <T extends Comparable<? super T>> T max(List<T> list, Comparator<T> cmp) {
         T candidate = list.get(0);
@@ -103,7 +103,7 @@ public class Generics {
     }
 
     /**
-     * Write a function to sort a generic list using Bubble Sort
+     * Write a function to sort a generic list using Bubble Sort (without using java.util.Collections methods)
      */
     public static <T extends Comparable<? super T>> void sort(List<T> list) {
         int size = list.size();
@@ -120,7 +120,7 @@ public class Generics {
     }
 
     /**
-     * Write a function returning a sorted copy of a generic array using Bubble Sort
+     * Write a function returning a sorted copy of a generic array using Bubble Sort (without using java.util.Collections methods)
      */
     public static <T extends Comparable<? super T>> T[] sort(T[] src) {
         int size = src.length;
