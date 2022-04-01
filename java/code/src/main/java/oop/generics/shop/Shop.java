@@ -12,6 +12,7 @@ public class Shop<T> {
 
     public Shop() {
         // a queue implementing a FIFO policy
+        // being final, the items reference cannot be re-assigned after this point
         items = new LinkedList<>();
     }
 
