@@ -140,7 +140,8 @@ public class Exceptions {
 
     /**
      * Write a function for filtering a List<String>. The function returns a List<String> comprising only those strings
-     * which are an alternating sequence of letters and numbers (for example a0b3h4z1r4).
+     * which are an alternating sequence of letters and numbers (for example a0b3h4z1r4). The original List should
+     * not be modified.
      * Note: Use the check() method above
      */
     public static List<String> checkItems(List<String> src) {
