@@ -1,5 +1,6 @@
 package oop.generics.exercises.shop;
 
+import oop.generics.shop.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -40,9 +41,9 @@ class ShopTest {
         Shop<Fruit> fruitShop = new Shop<>();
         List<Orange> orangeList = new ArrayList<>(List.of(new Orange(), new Orange(), new Orange()));
         fruitShop.buy(orangeList);
-        assertEquals(List.of(new Orange(), new Orange(), new Apple()), fruitShop.getItems());
+        assertEquals(List.of(new Orange(), new Orange(), new Orange()), fruitShop.getItems());
         List<Product> productList = new ArrayList<>();
         fruitShop.sell(productList, 3);
-        assertEquals(List.of(new Orange(), new Orange(), new Apple()), productList);
+        assertEquals(List.of(new Orange(), new Orange(), new Orange()), productList);
     }
 }

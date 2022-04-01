@@ -1,4 +1,4 @@
-package oop.generics.exercises.animal;
+package oop.generics.animal;
 
 public class Dog extends Animal {
     double barkingRate;

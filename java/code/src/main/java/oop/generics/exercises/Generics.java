@@ -55,7 +55,7 @@ public class Generics {
      */
     public static void reverse(List<?> list) {
         int size = list.size();
-        for (int i = 0; i < Math.floor(size / 2); i++) {
+        for (int i = 0; i < Math.floor((double)size / 2); i++) {
             swap(list, i, size - i - 1);
         }
     }
@@ -64,7 +64,7 @@ public class Generics {
      * Write a function to find the minimum within a generic Collection of comparable objects
      * Note well: The Collection interface does not support indexing (e.g., get(index)...)!
      */
-    public static <T extends Comparable<T>> T min(Collection<T> list) {
+    public static <T extends Comparable<? super T>> T min(Collection<T> list) {
         Iterator<T> i = list.iterator();
         T candidate = i.next();
         while (i.hasNext()) {
@@ -77,13 +77,25 @@ public class Generics {
     }
 
     /**
-     * Write a function to find the maximum within a generic List of comparable objects
+     * Write a function to find the maximum within a generic List of Comparable objects
      */
-    public static <T extends Comparable<T>> T max(List<T> list) {
+    public static <T extends Comparable<? super T>> T max(List<T> list) {
         T candidate = list.get(0);
-        for (int i = 0; i < list.size(); i++) {
-            T next = list.get(i);
+        for (T next : list) {
             if (candidate.compareTo(next) < 0) {
+                candidate = next;
+            }
+        }
+        return candidate;
+    }
+
+    /**
+     * Write a function to find the maximum within a generic List of Comparable objects using an external Comparator
+     */
+    public static <T extends Comparable<? super T>> T max(List<T> list, Comparator<T> cmp) {
+        T candidate = list.get(0);
+        for (T next : list) {
+            if (cmp.compare(candidate, next) < 0) {
                 candidate = next;
             }
         }
@@ -93,7 +105,7 @@ public class Generics {
     /**
      * Write a function to sort a generic list using Bubble Sort
      */
-    public static <T extends Comparable<T>> void sort(List<T> list) {
+    public static <T extends Comparable<? super T>> void sort(List<T> list) {
         int size = list.size();
         boolean changed = true;
         while (changed) {
@@ -105,5 +117,55 @@ public class Generics {
                 }
             }
         }
+    }
+
+    /**
+     * Write a function returning a sorted copy of a generic array using Bubble Sort
+     */
+    public static <T extends Comparable<? super T>> T[] sort(T[] src) {
+        int size = src.length;
+        // shallow copy! could have issues!
+        T[] dst = dst = src.clone();
+
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            for (int j = 0; j < size - 1; j++) {
+                if (dst[j].compareTo(dst[j + 1]) > 0) {
+                    T tmp = dst[j];
+                    dst[j] = dst[j + 1];
+                    dst[j + 1] = tmp;
+                    changed = true;
+                }
+            }
+        }
+        return dst;
+    }
+
+    /**
+     * Write a function returning the floating point division of any two numbers regardless of their type
+     * Note: Use the java.lang.Number class
+     */
+    public static <T extends Number> double divide(T a, T b) {
+        return a.doubleValue() / b.doubleValue();
+    }
+
+    /**
+     * Write a function counting all occurrences of T within a T[]. The function should be capable of counting null
+     * values as well.
+     */
+    public static <T> int countOccurrences(T[] src, T item) {
+        int count = 0;
+        if (item == null) {
+            for (T listItem : src)
+                if (listItem == null)
+                    count++;
+        }
+        else {
+            for (T listItem : src)
+                if (item.equals(listItem))
+                    count++;
+        }
+        return count;
     }
 }

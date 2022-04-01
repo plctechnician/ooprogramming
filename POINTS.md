@@ -11,3 +11,4 @@
 * Francesca Caico +
 * Giacomo Flisi +
 * Paolo Ristori +
+* Alessandro Pansera +

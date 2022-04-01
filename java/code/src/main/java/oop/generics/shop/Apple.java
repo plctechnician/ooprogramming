@@ -1,4 +1,4 @@
-package oop.generics.exercises.shop;
+package oop.generics.shop;
 
 public class Apple extends Fruit {
 

@@ -1,4 +1,4 @@
-package oop.generics.exercises.animal;
+package oop.generics.animal;
 
 import org.jetbrains.annotations.NotNull;
 

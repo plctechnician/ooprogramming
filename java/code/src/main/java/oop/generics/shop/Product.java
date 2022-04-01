@@ -1,4 +1,4 @@
-package oop.generics.exercises.shop;
+package oop.generics.shop;
 
 import java.util.Objects;
 
