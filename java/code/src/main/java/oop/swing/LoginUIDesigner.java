@@ -28,6 +28,7 @@ public class LoginUIDesigner extends JFrame {
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        setResizable(false);
     }
 
     private boolean validCredentials(char[] user, char[] pass) {

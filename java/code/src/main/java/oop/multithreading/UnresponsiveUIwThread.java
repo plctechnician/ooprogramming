@@ -5,65 +5,61 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UnresponsiveUIwThread extends JFrame implements ActionListener {
+public class UnresponsiveUIwThread extends JFrame {
     private final JTextField tfCount;
     private final JButton btnStart;
     private final JButton btnStop;
-    private boolean running = false;
+    private boolean stoppped = false;
     private int countValue = 1;
 
     public UnresponsiveUIwThread() {
         super("Counter");
-        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        p1.add(new JLabel("Counter"));
-
         tfCount = new JTextField("" + countValue, 10);
         tfCount.setEditable(false);
-        p1.add(tfCount);
+        btnStart = new JButton("Start");
+        btnStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stoppped = false;
 
-        btnStart = new JButton("Start Counting");
-        btnStart.addActionListener(this);
-        p1.add(btnStart);
+                /* Execute the updateCounter() method in another thread. */
+                //Thread t = new Thread(this::updateCounter);
+                //t.start();
 
-        btnStop = new JButton("Stop Counting");
-        btnStop.addActionListener(this);
-        p1.add(btnStop);
+                 /* Execute the updateCounter() method in main thread. */
+                updateCounter();
+            }
+        });
 
-        add(p1);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 120);
+        btnStop = new JButton("Stop");
+        btnStop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stoppped = true;
+            }
+        });
+
+        JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        mainPanel.add(new JLabel("Counter"));
+        mainPanel.add(tfCount);
+        mainPanel.add(btnStart);
+        mainPanel.add(btnStop);
+        add(mainPanel);
+
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(250, 120);
+        setResizable(false);
         setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnStop) {
-            running = true;
-        } else if (e.getSource() == btnStart) {
-            running = false;
-
-            /*
-             * Use a separate thread for executing the updateCounter() method
-             */
-            Thread t = new Thread(this::updateCounter);
-            t.start();
-
-            /*
-             * Execute the updateCounter() method in main thread. The alternative above
-             * (execution inside thread must be commented)
-             */
-            //updateCounter();
-        }
     }
 
     void updateCounter() {
         for (int i = 0; i < 100000; i++) {
-            if (running)
+            if (stoppped)
                 break;
             tfCount.setText(Integer.valueOf(countValue).toString());
             countValue++;
         }
-
     }
 
     public static void main(String[] args) {

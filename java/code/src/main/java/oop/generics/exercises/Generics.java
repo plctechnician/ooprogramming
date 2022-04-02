@@ -38,6 +38,11 @@ public class Generics {
     public static void swap(List<?> list, int i, int j) {
         final List l = list;
         l.set(i, l.set(j, l.get(i)));
+
+        // longer version
+        // Object tmp = l.get(i);
+        // l.set(i, l.get(j));
+        // l.set(j, tmp);
     }
 
     /**

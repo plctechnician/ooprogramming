@@ -16,12 +16,12 @@ public class TestApp {
         GamePanel gamePanel = new GamePanel(properties);
         ControlPanel controlPanel = new ControlPanel(properties);
 
-        Container contentPane = frame.getContentPane();
-        contentPane.setLayout(new BorderLayout());
-        contentPane.add(gamePanel, BorderLayout.CENTER);
-        contentPane.add(controlPanel, BorderLayout.SOUTH);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(gamePanel, BorderLayout.CENTER);
+        mainPanel.add(controlPanel, BorderLayout.AFTER_LAST_LINE);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
         frame.setVisible(true);
 

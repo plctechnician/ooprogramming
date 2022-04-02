@@ -20,20 +20,20 @@ public class LayoutManager extends JFrame {
         p2.add(new JButton("J"));
         p2.add(new JButton("K"));
 
-        JPanel p3 = new JPanel();
-        p3.setLayout(new BoxLayout(p3, BoxLayout.Y_AXIS));
+        JPanel p3 = new JPanel(new GridLayout(5, 1));
         p3.add(new JButton("L"));
         p3.add(new JButton("M"));
         p3.add(new JButton("N"));
         p3.add(new JButton("O"));
         p3.add(new JButton("P"));
 
-        JPanel p4 = new JPanel(new BorderLayout());
-        p4.add(p1, BorderLayout.CENTER);
-        p4.add(p2, BorderLayout.PAGE_END);
-        p4.add(p3, BorderLayout.LINE_END);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(p1, BorderLayout.CENTER);
+        mainPanel.add(p2, BorderLayout.PAGE_END);
+        mainPanel.add(p3, BorderLayout.LINE_END);
 
-        setContentPane(p4);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setContentPane(mainPanel);
         pack();
         setVisible(true);
     }
@@ -41,5 +41,4 @@ public class LayoutManager extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(LayoutManager::new);
     }
-
 }

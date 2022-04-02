@@ -1,4 +1,4 @@
-package oop.swing;
+package oop.swing.paint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class PaintPanel extends JPanel implements MouseListener, MouseMotionListener {
     Point click, current;
     Rectangle rectangle;
     List<Rectangle> rectangleList;
 
-    public DrawPanel() {
+    public PaintPanel() {
         super();
         rectangleList = new ArrayList<>();
         addMouseListener(this);
@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.setContentPane(new DrawPanel());
+        frame.setContentPane(new PaintPanel());
         frame.setName("DrawPanel");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(640, 480);
