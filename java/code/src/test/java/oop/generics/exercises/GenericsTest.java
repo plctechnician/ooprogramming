@@ -56,7 +56,6 @@ class GenericsTest {
         List<Integer> src = new ArrayList<>(List.of(100, 20, 30, 40));
         Generics.sort(src);
         assertEquals(List.of(20, 30, 40, 100), src);
-
     }
 
     @Test
