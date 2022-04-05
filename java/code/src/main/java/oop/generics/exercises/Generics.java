@@ -127,30 +127,6 @@ public class Generics {
     }
 
     /**
-     * Write a function returning a sorted copy of a generic array using Bubble Sort (without using java.util.Arrays
-     * methods)
-     */
-    public static <T extends Comparable<? super T>> T[] sort(T[] src) {
-        int size = src.length;
-        // shallow copy! could have issues!
-        T[] dst = src.clone();
-
-        boolean changed = true;
-        while (changed) {
-            changed = false;
-            for (int j = 0; j < size - 1; j++) {
-                if (dst[j].compareTo(dst[j + 1]) > 0) {
-                    T tmp = dst[j];
-                    dst[j] = dst[j + 1];
-                    dst[j + 1] = tmp;
-                    changed = true;
-                }
-            }
-        }
-        return dst;
-    }
-
-    /**
      * Write a function returning the floating point division of any two numbers regardless of their type
      * Note: Use the java.lang.Number class
      */

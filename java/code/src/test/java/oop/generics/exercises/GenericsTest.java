@@ -59,11 +59,6 @@ class GenericsTest {
     }
 
     @Test
-    void testSort() {
-        assertArrayEquals(new Integer[]{1,2,3,4,5,6}, Generics.sort(new Integer[]{3,2,5,6,4,1}));
-    }
-
-    @Test
     void divide() {
         assertEquals(0.5, Generics.divide((Integer) 1, 2.0), 0.0001);
         assertEquals(0.5, Generics.divide((Integer)1, (Integer)2), 0.0001);

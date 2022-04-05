@@ -47,7 +47,7 @@ public class PolygonTest {
 
     @Test
     public void getArea() {
-        Point[] vertices = {new Point(0,0), new Point(10, 0), new Point(10, 10)};
+        Point[] vertices = {new Point(0, 0), new Point(10, 0), new Point(10, 10)};
         Polygon p = new Polygon(vertices);
         assertEquals(50.0, p.getArea(), 0.01);
     }
