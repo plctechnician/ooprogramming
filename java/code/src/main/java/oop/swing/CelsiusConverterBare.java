@@ -2,11 +2,11 @@ package oop.swing;
 
 import javax.swing.*;
 
-public class CelsiusConverterBareMinimum extends JFrame {
+public class CelsiusConverterBare extends JFrame {
     private final JButton FCButton, CFButton;
     private final JTextField fahrenheitTF, celsiusTF;
 
-    public CelsiusConverterBareMinimum() {
+    public CelsiusConverterBare() {
         super();
         celsiusTF = new JTextField("000");
         fahrenheitTF = new JTextField("032");
@@ -31,6 +31,6 @@ public class CelsiusConverterBareMinimum extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(CelsiusConverterBareMinimum::new);
+        SwingUtilities.invokeLater(CelsiusConverterBare::new);
     }
 }

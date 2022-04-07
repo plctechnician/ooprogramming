@@ -4,7 +4,6 @@ import oop.utils.Student;
 import org.junit.jupiter.api.BeforeEach;
 
 class PhoneBookListTest extends PhoneBookTestBase {
-
     @BeforeEach
     void setUp() {
         pb = new PhoneBookList();

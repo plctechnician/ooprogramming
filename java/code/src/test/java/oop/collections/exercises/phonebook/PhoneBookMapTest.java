@@ -2,12 +2,8 @@ package oop.collections.exercises.phonebook;
 
 import oop.utils.Student;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PhoneBookMapTest extends PhoneBookTestBase {
-
     @BeforeEach
     void setUp() {
         pb = new PhoneBookMap();
