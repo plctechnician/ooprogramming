@@ -105,7 +105,6 @@ public class Puzzle extends JFrame implements ActionListener {
             }
         }
 
-
         if ((Math.abs(clicked.currentPosition.x - empty.currentPosition.x) == 1) &&
                 (clicked.currentPosition.y == empty.currentPosition.y)) {
             swap(empty, clicked);
