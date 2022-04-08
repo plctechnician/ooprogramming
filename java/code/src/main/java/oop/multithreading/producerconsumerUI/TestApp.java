@@ -1,4 +1,4 @@
-package oop.swing.producerconsumer;
+package oop.multithreading.producerconsumerUI;
 
 import java.awt.*;
 

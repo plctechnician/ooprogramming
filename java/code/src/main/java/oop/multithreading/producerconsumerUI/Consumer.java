@@ -1,17 +1,15 @@
-package oop.swing.producerconsumer;
+package oop.multithreading.producerconsumerUI;
 
 import java.util.Queue;
 
-class Producer implements Runnable {
+class Consumer implements Runnable {
     int wait;
+    boolean running = true;
     Queue<Integer> queue;
-    int limit;
-    public boolean running = true;
 
-    public Producer(int wait, Queue<Integer> queue, int limit) {
+    public Consumer(int wait, Queue<Integer> queue) {
         this.wait = wait;
         this.queue = queue;
-        this.limit = limit;
     }
 
     @Override
@@ -20,11 +18,11 @@ class Producer implements Runnable {
             try {
                 Thread.sleep(wait);
             } catch (InterruptedException e1) {
-                // do nothing
+                e1.printStackTrace();
             }
 
-            if (queue.size() < limit) {
-                queue.add(0);
+            if (!queue.isEmpty()) {
+                queue.poll();
             }
         }
     }
