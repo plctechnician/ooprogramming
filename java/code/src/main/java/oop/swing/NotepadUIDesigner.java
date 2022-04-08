@@ -27,7 +27,7 @@ public class NotepadUIDesigner extends JFrame {
         JMenuItem save = new JMenuItem("Save...");
         save.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
-            int option = chooser.showOpenDialog(this);
+            int option = chooser.showSaveDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
                     Files.writeString(chooser.getSelectedFile().toPath(), textPanel.getText());
