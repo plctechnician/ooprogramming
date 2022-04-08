@@ -1,5 +1,7 @@
 package oop.swing.puzzle;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -53,6 +55,11 @@ public class Piece extends JButton {
     }
 
     public boolean isOK() {
-        return currentPosition == correctPosition;
+        return currentPosition.equals(correctPosition);
+    }
+
+    @Override
+    public String toString() {
+        return "Piece{" + "correctPosition=" + correctPosition + ", currentPosition=" + currentPosition + '}';
     }
 }

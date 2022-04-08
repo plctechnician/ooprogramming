@@ -37,28 +37,20 @@ public class Puzzle extends JFrame implements ActionListener {
 
     void generateMenu() {
         JMenuItem openFile = new JMenuItem("Open...");
-        openFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser open = new JFileChooser();
-                int option = open.showOpenDialog(null);
-                if (option == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        buildPuzzle(open.getSelectedFile().getAbsolutePath());
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null, "Something went wrong...");
-                    }
+        openFile.addActionListener(e -> {
+            JFileChooser open = new JFileChooser();
+            int option = open.showOpenDialog(null);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                try {
+                    buildPuzzle(open.getSelectedFile().getAbsolutePath());
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong...");
                 }
             }
         });
 
         JMenuItem closeFile = new JMenuItem("Close");
-        closeFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        closeFile.addActionListener(e -> dispose());
 
         JMenu file = new JMenu("File");
         file.add(openFile);
@@ -103,41 +95,59 @@ public class Puzzle extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Piece empty = null, clicked = null;
+        Piece clicked = (Piece) e.getSource();
+        Piece empty = null;
 
-        clicked = (Piece) e.getSource();
         for (Piece piece : pieces) {
             if (piece.isEmpty()) {
                 empty = piece;
+                break;
             }
         }
 
-        eventuallySwap(empty, clicked);
+        if ((Math.abs(clicked.currentPosition.x - empty.currentPosition.x) == 1) &&
+                (clicked.currentPosition.y == empty.currentPosition.y)) {
+            swap(empty, clicked);
+        } else if ((Math.abs(clicked.currentPosition.y - empty.currentPosition.y) == 1) &&
+                (clicked.currentPosition.x == empty.currentPosition.x)) {
+            swap(empty, clicked);
+        }
 
         updatePanel();
+
         if (isSolved()) {
-            JOptionPane.showMessageDialog(this, "Solved!");
+            JOptionPane.showMessageDialog(null, "Solved!");
         }
     }
 
+    void swap(Piece empty, Piece clicked) {
+        Point tmp = new Point(clicked.currentPosition);
+        clicked.currentPosition = empty.currentPosition;
+        empty.currentPosition = tmp;
+    }
 
-    void eventuallySwap(Piece empty, Piece clicked) {
-
-
+    void positionToOrder() {
+        pieces.sort((o1, o2) -> {
+            int cmp = (int)(o1.currentPosition.getY() - o2.currentPosition.getY());
+            if (cmp == 0) {
+                cmp = (int)(o1.currentPosition.getX() - o2.currentPosition.getX());
+            }
+            return cmp;
+        });
     }
 
     void updatePanel() {
+        positionToOrder();
         gamePanel.removeAll();
-        for (Piece p : pieces) {
-            gamePanel.add(p);
-        }
+        for (Piece p : pieces) gamePanel.add(p);
         gamePanel.validate();
     }
 
     boolean isSolved() {
         for (Piece p : pieces) {
-            if (!p.isOK())
+            if (!p.isOK()) {
                 return false;
+            }
         }
         return true;
     }
