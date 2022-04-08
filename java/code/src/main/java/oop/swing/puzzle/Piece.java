@@ -5,14 +5,14 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ImageButton extends JButton {
-    private final int correctPosition_x;
-    private final int correctPosition_y;
+public class Piece extends JButton {
+    Point correctPosition;
+    Point currentPosition;
 
-    public ImageButton(Image image, int correctPosition_x, int correctPosition_y) {
+    public Piece(Image image, Point position) {
         super(new ImageIcon(image));
-        this.correctPosition_x = correctPosition_x;
-        this.correctPosition_y = correctPosition_y;
+        correctPosition = new Point(position);
+        currentPosition = new Point(position);
 
         setBorder(BorderFactory.createLineBorder(Color.gray));
         addMouseListener(new MouseAdapter() {
@@ -37,6 +37,22 @@ public class ImageButton extends JButton {
     }
 
     public Point getCorrectPosition() {
-        return new Point(correctPosition_x, correctPosition_y);
+        return correctPosition;
+    }
+
+    public void setCorrectPosition(Point correctPosition) {
+        this.correctPosition = correctPosition;
+    }
+
+    public Point getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(Point currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public boolean isOK() {
+        return currentPosition == correctPosition;
     }
 }
