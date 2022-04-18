@@ -2,11 +2,11 @@ package oop.multithreading.lockinggranularity;
 
 public class TestApp {
     public static void main(String[] args) {
-        SharedResource sr = new SharedResource();
+        SharedResource resource = new SharedResource();
 
-        ActorA a = new ActorA(sr);
-        ActorB b = new ActorB(sr);
-        ActorC c = new ActorC(sr);
+        ActorA a = new ActorA(resource);
+        ActorB b = new ActorB(resource);
+        ActorC c = new ActorC(resource);
 
         a.start();
         b.start();

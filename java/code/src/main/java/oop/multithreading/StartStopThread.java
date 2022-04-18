@@ -1,9 +1,9 @@
 package oop.multithreading;
 
-class MyThread extends Thread {
+public class StartStopThread extends Thread {
     public boolean running = true;
 
-    public MyThread(String name) {
+    public StartStopThread(String name) {
         super(name);
     }
 
@@ -20,13 +20,10 @@ class MyThread extends Thread {
         }
         System.out.println(Thread.currentThread().getName() + " terminated");
     }
-}
-
-public class StartStopThread {
 
     public static void main(String[] args) {
-        MyThread a = new MyThread("Homer");
-        MyThread b = new MyThread("Marge");
+        StartStopThread a = new StartStopThread("Homer");
+        StartStopThread b = new StartStopThread("Marge");
 
         a.setPriority(Thread.MAX_PRIORITY);
         b.setPriority(Thread.MIN_PRIORITY);
@@ -35,9 +32,9 @@ public class StartStopThread {
         b.start();
 
         try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.sleep(100);
+        } catch (InterruptedException ignored) {
+
         }
 
         // Graceful shutdown!
@@ -47,6 +44,5 @@ public class StartStopThread {
         // Ungraceful shutdown!
         // a.interrupt();
         // b.interrupt();
-
     }
 }

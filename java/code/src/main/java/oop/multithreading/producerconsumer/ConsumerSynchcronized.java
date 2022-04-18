@@ -2,7 +2,7 @@ package oop.multithreading.producerconsumer;
 
 import java.util.Queue;
 
-class ConsumerSynchcronized<T> extends Consumer<T> {
+public class ConsumerSynchcronized<T> extends Consumer<T> {
 
     public ConsumerSynchcronized(Queue<T> q) {
         super(q);

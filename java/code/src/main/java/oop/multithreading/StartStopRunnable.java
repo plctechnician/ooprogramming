@@ -1,6 +1,6 @@
 package oop.multithreading;
 
-class MyRunnable implements Runnable {
+public class StartStopRunnable implements Runnable {
     public boolean running = true;
 
     @Override
@@ -16,12 +16,10 @@ class MyRunnable implements Runnable {
         }
         System.out.println(Thread.currentThread().getName() + " terminated");
     }
-}
 
-public class StartStopRunnable {
     public static void main(String[] args) {
-        MyRunnable r01 = new MyRunnable();
-        MyRunnable r02 = new MyRunnable();
+        StartStopRunnable r01 = new StartStopRunnable();
+        StartStopRunnable r02 = new StartStopRunnable();
 
         Thread a = new Thread(r01, "Homer");
         Thread b = new Thread(r02, "Marge");
@@ -33,9 +31,9 @@ public class StartStopRunnable {
         b.start();
 
         try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.sleep(100);
+        } catch (InterruptedException ignored) {
+
         }
 
         // Graceful shutdown!
@@ -45,6 +43,5 @@ public class StartStopRunnable {
         // Ungraceful shutdown!
         // a.interrupt();
         // b.interrupt();
-
     }
 }

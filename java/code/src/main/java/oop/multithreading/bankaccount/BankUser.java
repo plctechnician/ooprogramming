@@ -1,15 +1,15 @@
 package oop.multithreading.bankaccount;
 
+import java.util.Random;
 import java.util.random.RandomGenerator;
-import java.util.random.RandomGeneratorFactory;
 
-public class Person implements Runnable {
+public class BankUser implements Runnable {
     private final BankAccount account;
     private final RandomGenerator rnd;
 
-    public Person(BankAccount account) {
-        rnd = RandomGeneratorFactory.of("Random").create();
+    public BankUser(BankAccount account) {
         this.account = account;
+        rnd = new Random();
     }
 
     @Override
@@ -42,7 +42,6 @@ public class Person implements Runnable {
                             account.getBalance(), amount);
                     break;
                 }
-
             }
         }
     }

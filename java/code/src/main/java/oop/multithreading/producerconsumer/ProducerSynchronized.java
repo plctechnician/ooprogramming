@@ -14,7 +14,7 @@ public class ProducerSynchronized<T> extends Producer<T> {
             synchronized (q) {
                 if (q.size() < maxitems) {
                     q.add(item);
-                    System.out.printf("Producer %s pushed %d items\n", currentThread().getName(), count);
+                    System.out.printf("Producer %s pushed %d items\n", Thread.currentThread().getName(), count);
                     count += 1;
                 }
             }

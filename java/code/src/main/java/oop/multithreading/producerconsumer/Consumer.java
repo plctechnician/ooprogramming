@@ -2,10 +2,10 @@ package oop.multithreading.producerconsumer;
 
 import java.util.Queue;
 
-public abstract class Consumer<T> extends Thread {
+public abstract class Consumer<T> implements Runnable {
     public boolean running;
     int count;
-    Queue<T> q;
+    final Queue<T> q;
 
     public Consumer(Queue<T> q) {
         super();

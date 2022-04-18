@@ -3,15 +3,13 @@ package oop.swing.puzzle;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.io.*;
 import java.util.LinkedList;
 
-public class Puzzle extends JFrame implements ActionListener {
+public class Puzzle extends JFrame {
     private final int TILE_X = 3, TILE_Y = 3;
     private final int TILE_WIDTH = 150, TILE_HEIGHT = 150;
 
@@ -43,6 +41,7 @@ public class Puzzle extends JFrame implements ActionListener {
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
                     buildPuzzle(open.getSelectedFile().getAbsolutePath());
+                    updatePanel();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Something went wrong...");
                 }
@@ -73,7 +72,7 @@ public class Puzzle extends JFrame implements ActionListener {
         g.drawImage(source, 0, 0, TILE_X * TILE_WIDTH, TILE_Y * TILE_HEIGHT, null);
         g.dispose();
 
-        // split image in buttons
+        // split image in pieces
         for (int y = 0; y < TILE_Y; y++) {
             for (int x = 0; x < TILE_X; x++) {
                 Image image = createImage(
@@ -83,41 +82,41 @@ public class Puzzle extends JFrame implements ActionListener {
                                         y * TILE_HEIGHT,
                                         TILE_WIDTH,
                                         TILE_HEIGHT)));
-
-                Piece p = new Piece(image, new Point(x, y));
-                p.addActionListener(this);
-                pieces.add(p);
+                pieces.add(new Piece(image, new Point(x, y)));
             }
         }
-        pieces.peekLast().setEmpty();
-        updatePanel();
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Piece clicked = (Piece) e.getSource();
-        Piece empty = null;
-
+        // add a listener to all buttons
         for (Piece piece : pieces) {
-            if (piece.isEmpty()) {
-                empty = piece;
-                break;
-            }
+            piece.addActionListener(e -> {
+                Piece clicked = (Piece) e.getSource();
+
+                Piece empty = null;
+                for (Piece piece1 : pieces) {
+                    if (piece1.isEmpty()) {
+                        empty = piece1;
+                        break;
+                    }
+                }
+
+                if ((Math.abs(clicked.currentPosition.x - empty.currentPosition.x) == 1) &&
+                        (clicked.currentPosition.y == empty.currentPosition.y)) {
+                    swap(empty, clicked);
+                } else if ((Math.abs(clicked.currentPosition.y - empty.currentPosition.y) == 1) &&
+                        (clicked.currentPosition.x == empty.currentPosition.x)) {
+                    swap(empty, clicked);
+                }
+
+                updatePanel();
+
+                if (isSolved()) {
+                    JOptionPane.showMessageDialog(null, "Solved!");
+                }
+            });
         }
 
-        if ((Math.abs(clicked.currentPosition.x - empty.currentPosition.x) == 1) &&
-                (clicked.currentPosition.y == empty.currentPosition.y)) {
-            swap(empty, clicked);
-        } else if ((Math.abs(clicked.currentPosition.y - empty.currentPosition.y) == 1) &&
-                (clicked.currentPosition.x == empty.currentPosition.x)) {
-            swap(empty, clicked);
-        }
-
-        updatePanel();
-
-        if (isSolved()) {
-            JOptionPane.showMessageDialog(null, "Solved!");
-        }
+        // the last piece is set empty
+        pieces.peekLast().setEmpty();
     }
 
     void swap(Piece empty, Piece clicked) {
@@ -126,7 +125,7 @@ public class Puzzle extends JFrame implements ActionListener {
         empty.currentPosition = tmp;
     }
 
-    void positionToOrder() {
+    void orderPiecesByPosition() {
         pieces.sort((o1, o2) -> {
             int cmp = (int)(o1.currentPosition.getY() - o2.currentPosition.getY());
             if (cmp == 0) {
@@ -137,17 +136,17 @@ public class Puzzle extends JFrame implements ActionListener {
     }
 
     void updatePanel() {
-        positionToOrder();
+        orderPiecesByPosition();
         gamePanel.removeAll();
-        for (Piece p : pieces) gamePanel.add(p);
+        for (Piece p : pieces) {
+            gamePanel.add(p);
+        }
         gamePanel.validate();
     }
 
     boolean isSolved() {
         for (Piece p : pieces) {
-            if (!p.isOK()) {
-                return false;
-            }
+            if (!p.isOK()) return false;
         }
         return true;
     }

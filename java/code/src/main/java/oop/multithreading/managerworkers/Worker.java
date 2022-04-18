@@ -1,47 +1,75 @@
 package oop.multithreading.managerworkers;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Worker implements Runnable {
-    Manager manager;
-    int start;
-    int range;
-    boolean running = true;
-    List<Integer> results;
+public class Worker {
+    public enum WorkerState {
+        NEW, RUNNING, PAUSED, COMPLETED
+    }
 
-    public Worker(Manager manager, int start, int range) {
-        this.manager = manager;
+    int start, range;
+    WorkerState state;
+    final PropertyChangeSupport support;
+
+    public Worker(int start, int range) {
         this.start = start;
         this.range = range;
-        results = new ArrayList<>();
+        state = WorkerState.NEW;
+        support = new PropertyChangeSupport(this);
     }
 
-    public boolean isRunning() {
-        return running;
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
 
-    @Override
-    public void run() {
-        System.out.printf("[%s] Analyzing range: %d - %d\n", Thread.currentThread().getName(), start, start + range);
-
-        for (int i = start; i < (start + range); i++) {
-            if (isPrime(i))
-                results.add(i);
-        }
-
-        /* Callback to PrimeProducer for sending results */
-        manager.listen(Thread.currentThread(), results);
-        running = false;
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
     }
 
-    private boolean isPrime(int n) {
-        if (n == 1)
-            return true;
+    public WorkerState getState() {
+        return state;
+    }
+
+    public void setState(WorkerState state) {
+        this.state = state;
+    }
+
+    public void search() {
+        Thread t = new Thread(() -> {
+            state = WorkerState.RUNNING;
+            List<Integer> results = new ArrayList<>();
+            for (int i = start; i < (start + range); i++) {
+                if (isPrime(i)) {
+                    results.add(i);
+                }
+
+                // observability
+                if (i % (range / 25) == 0) {
+                    support.firePropertyChange("progress", null, (100*(i-start))/range);
+                }
+
+                // pause
+                while (state == WorkerState.PAUSED) {
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException ignored) {
+
+                    }
+                }
+            }
+            state = WorkerState.COMPLETED;
+            support.firePropertyChange("results", null, results);
+        });
+        t.start();
+    }
+
+    boolean isPrime(int n) {
+        if (n == 1) return true;
         int i = 2;
-        while (n % i > 0)
-            i++;
+        while (n % i > 0) i++;
         return i == n;
     }
-
 }
