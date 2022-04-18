@@ -11,7 +11,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:22.0.0'
     implementation 'joda-time:joda-time:2.10.13'
     implementation 'org.xerial:sqlite-jdbc:3.36.0.2'
-    implementation 'mysql:mysql-connector-java:8.0.25'
+    implementation 'mysql:mysql-connector-java:8.0.28'
     implementation 'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre17'
     implementation 'com.sparkjava:spark-core:2.9.3'
     implementation 'org.slf4j:slf4j-api:1.7.35'

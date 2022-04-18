@@ -95,8 +95,8 @@ Both slides and code examples might be updated or bug-fixed during the course. A
 
 * Anonymous classes
 * Lambda expressions
-* Functional interfaces
-* Method references
+* ~~Functional interfaces~~
+* ~~Method references~~
 
 [M7] Exceptions
 

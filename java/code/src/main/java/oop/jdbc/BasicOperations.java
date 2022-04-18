@@ -15,19 +15,20 @@ public class BasicOperations {
 
     public BasicOperations() throws SQLException {
 
+        /*
         DBManager.setConnection(
                 DBManager.JDBC_Driver_SQLite,
                 DBManager.JDBC_URL_SQLite);
         statement = DBManager.getConnection().createStatement();
+        */
 
-        /* MySQL connection
+        /* MySQL connection */
         DBManager.setConnection(
                 DBManager.JDBC_Driver_MySQL,
                 DBManager.JDBC_URL_MySQL);
         statement = DBManager.getConnection().createStatement(
                 ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);
-        */
 
         try {
             /*
