@@ -1,6 +1,6 @@
 package oop.jdbc.sausagemanager;
 
-import oop.jdbc.DBManager;
+import oop.utils.DBManager;
 
 import javax.swing.table.AbstractTableModel;
 import java.sql.ResultSet;

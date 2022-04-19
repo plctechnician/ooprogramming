@@ -1,8 +1,10 @@
-package oop.swing.planemanager;
+package oop.utils;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Plane {
+    UUID uuid;
     String name;
     double length;
     double wingspan;
@@ -10,11 +12,29 @@ public class Plane {
     String category;
 
     public Plane(String name, double length, double wingspan, LocalDate firstFlight, String category) {
+        this.uuid = UUID.randomUUID();
         this.name = name;
         this.length = length;
         this.wingspan = wingspan;
         this.firstFlight = firstFlight;
         this.category = category;
+    }
+
+    public Plane(UUID uuid, String name, double length, double wingspan, LocalDate firstFlight, String category) {
+        this.uuid = uuid;
+        this.name = name;
+        this.length = length;
+        this.wingspan = wingspan;
+        this.firstFlight = firstFlight;
+        this.category = category;
+    }
+
+    public UUID getUUID() {
+        return uuid;
+    }
+
+    public void setUUID(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -63,6 +83,6 @@ public class Plane {
 
     @Override
     public String toString() {
-        return "Plane{" + "name='" + name + '\'' + ", length=" + length + ", wingspan=" + wingspan + ", firstFlight=" + firstFlight + ", category='" + category + '\'' + '}';
+        return "Plane{" + "uuid=" + uuid + ", name='" + name + '\'' + ", length=" + length + ", wingspan=" + wingspan + ", firstFlight=" + firstFlight + ", category='" + category + '\'' + '}';
     }
 }

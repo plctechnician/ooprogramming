@@ -1,5 +1,7 @@
 package oop.jdbc;
 
+import oop.utils.DBManager;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

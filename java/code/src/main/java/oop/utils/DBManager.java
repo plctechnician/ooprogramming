@@ -1,4 +1,4 @@
-package oop.jdbc;
+package oop.utils;
 
 import oop.utils.Utils;
 

@@ -2,7 +2,7 @@ package oop.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import oop.utils.Sausage;
-import oop.jdbc.DBManager;
+import oop.utils.DBManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

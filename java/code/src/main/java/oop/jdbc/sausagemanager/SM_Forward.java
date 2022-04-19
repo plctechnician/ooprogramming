@@ -1,7 +1,7 @@
 package oop.jdbc.sausagemanager;
 
 import oop.utils.Sausage;
-import oop.jdbc.DBManager;
+import oop.utils.DBManager;
 
 import javax.swing.*;
 import java.awt.*;

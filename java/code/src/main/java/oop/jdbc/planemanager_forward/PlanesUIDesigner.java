@@ -1,10 +1,12 @@
-package oop.swing.planemanager;
+package oop.jdbc.planemanager_forward;
 
+import oop.utils.DBManager;
 import oop.utils.Plane;
 import oop.utils.PlaneStorage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +28,14 @@ public class PlanesUIDesigner extends JFrame {
     public PlanesUIDesigner() {
         super();
 
-        initData();
-
         btPrevious.addActionListener(e -> {
             selected = Math.max(0, selected - 1);
-            setData();
+            update();
         });
 
         btNext.addActionListener(e -> {
             selected = Math.min(planes.size() - 1, selected + 1);
-            setData();
+            update();
         });
 
         btInsert.addActionListener(e -> {
@@ -43,7 +43,7 @@ public class PlanesUIDesigner extends JFrame {
             Plane plane = new Plane(v[0], Double.parseDouble(v[1]), Double.parseDouble(v[2]), LocalDate.parse(v[3]),
                     v[4]);
             planes.add(selected, plane);
-            setData();
+            update();
         });
 
         btRemove.addActionListener(e -> {
@@ -52,7 +52,7 @@ public class PlanesUIDesigner extends JFrame {
             }
             planes.remove(selected);
             selected = Math.max(0, selected - 1);
-            setData();
+            update();
         });
 
         tfName.addActionListener(e -> getSelected().setName(tfName.getText()));
@@ -72,6 +72,17 @@ public class PlanesUIDesigner extends JFrame {
         setSize(370, 270);
         setResizable(false);
         setVisible(true);
+
+        try {
+            DBManager.setConnection(
+                    DBManager.JDBC_Driver_SQLite,
+                    DBManager.JDBC_URL_SQLite);
+            initData(PlaneStorage.loadFromDB());
+        } catch (SQLException e) {
+            initData();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        update();
     }
 
     private void initData() {
@@ -84,7 +95,7 @@ public class PlanesUIDesigner extends JFrame {
         selected = 0;
     }
 
-    private void setData() {
+    private void update() {
         Plane plane = getSelected();
         if (plane == null) {
             tfName.setText("");
@@ -109,36 +120,25 @@ public class PlanesUIDesigner extends JFrame {
     }
 
     private JMenuBar generateMenu() {
-        JMenuItem open = new JMenuItem("Open...");
-        JMenuItem save = new JMenuItem("Save...");
+        JMenuItem fill = new JMenuItem("Fill DB...");
         JMenuItem quit = new JMenuItem("Quit");
         JMenu file = new JMenu("File");
-        file.add(open);
-        file.add(save);
+        file.add(fill);
         file.add(quit);
         JMenuBar menu = new JMenuBar();
         menu.add(file);
-        open.addActionListener(e -> {
+        fill.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             int option = chooser.showOpenDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
-                    initData(PlaneStorage.loadFromFile(chooser.getSelectedFile().toPath()));
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Reading file failed!");
+                    List<Plane> planes = PlaneStorage.loadFromFile(chooser.getSelectedFile().toPath());
+                    PlaneStorage.saveToDB(planes);
+                    initData(PlaneStorage.loadFromDB());
+                } catch (IOException|SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                setData();
-            }
-        });
-        save.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
-            int option = chooser.showSaveDialog(this);
-            if (option == JFileChooser.APPROVE_OPTION) {
-                try {
-                    PlaneStorage.saveToFile(planes, chooser.getSelectedFile().toPath());
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Writing file failed!");
-                }
+                update();
             }
         });
         quit.addActionListener(e -> dispose());
