@@ -46,7 +46,7 @@ public class Worker {
                     results.add(i);
                 }
 
-                // observability
+                // observability (25 times each range)
                 if (i % (range / 25) == 0) {
                     support.firePropertyChange("progress", null, (100*(i-start))/range);
                 }
@@ -67,9 +67,11 @@ public class Worker {
     }
 
     boolean isPrime(int n) {
-        if (n == 1) return true;
+        if (n == 1) {
+            return true;
+        }
         int i = 2;
-        while (n % i > 0) i++;
+        for (; n % i != 0; i++);
         return i == n;
     }
 }

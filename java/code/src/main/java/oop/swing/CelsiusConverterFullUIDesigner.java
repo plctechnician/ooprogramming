@@ -12,10 +12,6 @@ public class CelsiusConverterFullUIDesigner extends JFrame {
 
     public CelsiusConverterFullUIDesigner() throws HeadlessException {
         super("CelsiusConverterFullUIDesigner");
-        setContentPane(mainPanel);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
 
         btCelsius.addActionListener(e -> {
             double tempFahrenheit = Double.parseDouble(tfCelsius.getText()) * 1.8 + 32;
@@ -32,6 +28,11 @@ public class CelsiusConverterFullUIDesigner extends JFrame {
                 JOptionPane.showMessageDialog(null, "Water freezes here!", "Temperature Warning", JOptionPane.WARNING_MESSAGE);
             }
         });
+
+        setContentPane(mainPanel);
+        pack();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
