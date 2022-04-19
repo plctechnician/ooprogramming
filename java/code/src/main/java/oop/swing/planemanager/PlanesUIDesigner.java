@@ -16,7 +16,7 @@ public class PlanesUIDesigner extends JFrame {
     private JTextField tfLength;
     private JTextField tfWingspan;
     private JTextField tfFirstFlight;
-    private JComboBox cbCategory;
+    private JComboBox<String> cbCategory;
     private List<Plane> planes;
     private int selected;
 
@@ -62,8 +62,8 @@ public class PlanesUIDesigner extends JFrame {
 
         cbCategory.addActionListener(e -> getSelected().setCategory(cbCategory.getSelectedItem().toString()));
 
-        JMenuBar jmenu = generateMenu();
-        setJMenuBar(jmenu);
+        JMenuBar menu = generateMenu();
+        setJMenuBar(menu);
         setContentPane(mainPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(370, 270);
