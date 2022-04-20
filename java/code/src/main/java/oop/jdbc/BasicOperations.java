@@ -15,22 +15,49 @@ public class BasicOperations {
     Statement statement;
 
     public BasicOperations() throws SQLException {
+        //SQLiteConnection();
+        MySQLConnection();
+        testDB();
 
-        /*
+        System.out.println("\n- testSelect()...");
+        testSelect();
+
+        System.out.println("\n- testUpdate()...");
+        testUpdate();
+
+        System.out.println("\n- testSelect()...");
+        testSelect();
+
+        System.out.println("\n- testScrollable()...");
+        testScrollable();
+
+        System.out.println("\n- testUpdateable()...");
+        testUpdateable();
+
+        System.out.println("\n- testSelect()...");
+        testSelect();
+
+        System.out.println("\n- testSensitive()...");
+        testSensitive();
+    }
+
+    public void SQLiteConnection() throws SQLException {
         DBManager.setConnection(
                 DBManager.JDBC_Driver_SQLite,
                 DBManager.JDBC_URL_SQLite);
         statement = DBManager.getConnection().createStatement();
-        */
+    }
 
-        /* MySQL connection */
+    public void MySQLConnection() throws SQLException {
         DBManager.setConnection(
                 DBManager.JDBC_Driver_MySQL,
                 DBManager.JDBC_URL_MySQL);
         statement = DBManager.getConnection().createStatement(
                 ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);
+    }
 
+    public void testDB() throws SQLException {
         try {
             /*
              * Simple query for testing that everything is OK. If an exception raised, the
@@ -51,64 +78,6 @@ public class BasicOperations {
         }
     }
 
-    public void run() {
-        try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- updating database...");
-            testUpdate();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test scrollable...");
-            testScrollable();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test updateable...");
-            testUpdateable();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test sensitive...");
-            testSensitive();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- closing database...");
-            DBManager.close();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-    }
-
     /**
      * Reads the content of the person table Results are limited using "LIMIT
      * 100" This is useful for very large tables
@@ -116,7 +85,7 @@ public class BasicOperations {
     public void testSelect() throws SQLException {
         ResultSet rs = statement.executeQuery("SELECT * FROM book LIMIT 100");
         while (rs.next()) {
-            printRow(rs);
+            System.out.println(rowToString(rs));
         }
     }
 
@@ -125,7 +94,7 @@ public class BasicOperations {
      */
     public void testUpdate() throws SQLException {
         statement.executeUpdate(
-                "UPDATE book SET title='Il Principe', " + "author='Macchiavelli', " + "pages=176 " + "WHERE id=1");
+                "UPDATE book SET pages=176 WHERE id=1");
     }
 
     /**
@@ -134,16 +103,16 @@ public class BasicOperations {
     public void testScrollable() throws SQLException {
         ResultSet rs = statement.executeQuery("SELECT * FROM book LIMIT 100 OFFSET 0");
         // Third record
-        rs.absolute(3);
-        printRow(rs);
+        rs.absolute(2);
+        System.out.println(rowToString(rs));
 
         // Previous record
         rs.previous();
-        printRow(rs);
+        System.out.println(rowToString(rs));
 
         // +2 records from current position
         rs.relative(2);
-        printRow(rs);
+        System.out.println(rowToString(rs));
     }
 
     /**
@@ -153,7 +122,7 @@ public class BasicOperations {
         ResultSet rs = statement.executeQuery("SELECT * FROM book LIMIT 100 OFFSET 0");
         while (rs.next()) {
             int pages = rs.getInt("pages");
-            rs.updateInt("pages", pages + 1);
+            rs.updateInt("pages", pages + 10);
             rs.updateRow();
         }
     }
@@ -164,32 +133,33 @@ public class BasicOperations {
     public void testSensitive() throws SQLException {
         ResultSet rs = statement.executeQuery("SELECT * FROM book LIMIT 100 OFFSET 0");
         for (int retry = 0; retry < 10; retry++) {
+            System.out.printf("\n[%d] awaiting for external changes 10s...\n", retry);
+            rs.beforeFirst();
             while (rs.next()) {
                 rs.refreshRow();
-                printRow(rs);
+                System.out.println(rowToString(rs));
             }
-            System.out.printf("\n[%d] awaiting for external changes 6s...", retry);
+
             try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                // do nothing
-            }
-            rs.beforeFirst();
+                Thread.sleep(10000);
+            } catch (InterruptedException ignored) {}
         }
     }
 
     /**
      * Prints the current ResultSet row
      */
-    public void printRow(ResultSet rs) throws SQLException {
-        System.out.println("id=" + rs.getInt("id") + ", title=" + rs.getString("title") + ", author="
-                + rs.getString("author") + ", pages=" + rs.getInt("pages"));
-
+    public String rowToString(ResultSet rs) throws SQLException {
+        return String.format("id=%d, title=%s, author=%s, pages=%d",
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getInt("pages"));
     }
 
     public static void main(String[] args) {
         try {
-            new BasicOperations().run();
+            new BasicOperations();
         } catch (SQLException e) {
             e.printStackTrace();
         }

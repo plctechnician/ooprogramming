@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Utils {
     public static String ooprogrammingdir() {
         String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),
-                "Desktop", System.getProperty("file.separator"), "ooprgramming");
+                "Desktop", System.getProperty("file.separator"), "ooprogramming");
         new File(path).mkdirs();
         return path;
     }
