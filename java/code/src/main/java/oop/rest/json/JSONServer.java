@@ -1,4 +1,4 @@
-package oop.rest;
+package oop.rest.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,7 +22,7 @@ public class JSONServer {
 
         // Configure resources
         get("/all", (request, response) -> {
-            List<oop.utils.TimeZone> l = new ArrayList<>();
+            List<TimeZone> l = new ArrayList<>();
             for (String tz : map.values()) {
                 l.add(getTimeZone(tz));
             }
@@ -36,9 +36,9 @@ public class JSONServer {
 
     }
 
-    oop.utils.TimeZone getTimeZone(String name) {
+    TimeZone getTimeZone(String name) {
         Calendar c = Calendar.getInstance(java.util.TimeZone.getTimeZone(name));
-        return new oop.utils.TimeZone(name, c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
+        return new TimeZone(name, c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
     }
 
     public static void main(String[] args) {

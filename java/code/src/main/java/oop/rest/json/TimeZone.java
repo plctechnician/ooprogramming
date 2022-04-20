@@ -1,4 +1,4 @@
-package oop.utils;
+package oop.rest.json;
 
 public class TimeZone {
     String name;

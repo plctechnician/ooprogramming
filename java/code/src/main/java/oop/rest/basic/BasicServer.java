@@ -1,9 +1,9 @@
-package oop.rest;
+package oop.rest.basic;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
 
-public class FirstServer {
+public class BasicServer {
 
     public void run() {
         // Start embedded server at this port
@@ -14,6 +14,6 @@ public class FirstServer {
     }
 
     public static void main(String[] args) {
-        new FirstServer().run();
+        new BasicServer().run();
     }
 }

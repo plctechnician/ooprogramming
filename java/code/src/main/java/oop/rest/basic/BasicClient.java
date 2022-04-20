@@ -1,4 +1,4 @@
-package oop.rest;
+package oop.rest.basic;
 
 import kong.unirest.Unirest;
 import org.slf4j.Logger;
@@ -8,8 +8,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class FirstClient implements Runnable {
-    static Logger logger = LoggerFactory.getLogger(FirstClient.class);
+public class BasicClient implements Runnable {
+    static Logger logger = LoggerFactory.getLogger(BasicClient.class);
 
     @Override
     public void run() {
@@ -20,6 +20,6 @@ public class FirstClient implements Runnable {
 
     public static void main(String[] args) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(new FirstClient(), 0, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new BasicClient(), 0, 5, TimeUnit.SECONDS);
     }
 }

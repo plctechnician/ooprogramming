@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * A class for testing basic operations with JDBC It supports both MySQL and
- * SQLite
+ * A class for testing basic operations with JDBC It supports both MySQL and SQLite
  *
  * @author Nicola Bicocchi
  */
@@ -35,17 +34,16 @@ public class BasicOperations {
         try {
             /*
              * Simple query for testing that everything is OK. If an exception raised, the
-             * db is deleted and created from scratch.
+             * db is deleted and created from scratch. For testing only!
              */
             statement.executeQuery("SELECT * FROM book LIMIT 1");
         } catch (SQLException e) {
             statement.executeUpdate("DROP TABLE IF EXISTS book");
-            statement.executeUpdate("CREATE TABLE book (" + "id INTEGER PRIMARY KEY, " + "title VARCHAR(30), "
-                    + "author VARCHAR(30), " + "pages INTEGER)");
-
+            statement.executeUpdate("CREATE TABLE book (id INTEGER PRIMARY KEY, title VARCHAR(30), author VARCHAR(30), pages INTEGER)");
             statement.executeUpdate(
                     "INSERT INTO book (id, title, author, pages) VALUES(1, 'The Lord of the Rings', 'Tolkien', 241)");
-            statement.executeUpdate("INSERT INTO book (id, title, author, pages) VALUES(2, 'Fight Club', 'Palahniuk', 212)");
+            statement.executeUpdate(
+                    "INSERT INTO book (id, title, author, pages) VALUES(2, 'Fight Club', 'Palahniuk', 212)");
             statement.executeUpdate(
                     "INSERT INTO book (id, title, author, pages) VALUES(3, 'Computer Networks', 'Tanenbaum', 313)");
             statement.executeUpdate(

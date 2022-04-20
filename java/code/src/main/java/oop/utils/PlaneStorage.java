@@ -13,9 +13,8 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class PlaneStorage {
-    public static List<Plane> loadFromDB() throws SQLException {
+    public static List<Plane> loadFromDB(Statement statement) throws SQLException {
         List<Plane> planes = new ArrayList<>();
-        Statement statement = DBManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT * FROM planes");
         while (rs.next()) {
             planes.add(new Plane(UUID.fromString(rs.getString("uuid")),
@@ -25,12 +24,10 @@ public class PlaneStorage {
                     LocalDate.parse(rs.getString("firstFlight")),
                     rs.getString("category")));
         }
-        statement.close();
         return planes;
     }
 
-    public static void saveToDB(List<Plane> planes) throws SQLException {
-        Statement statement = DBManager.getConnection().createStatement();
+    public static void saveToDB(List<Plane> planes, Statement statement) throws SQLException {
         statement.executeUpdate("DROP TABLE IF EXISTS planes");
         statement.executeUpdate("CREATE TABLE planes (uuid VARCHAR(50) PRIMARY KEY, name VARCHAR(50), length REAL, " +
                 "wingspan REAL, firstFlight DATE, category VARCHAR(50))");
@@ -46,8 +43,6 @@ public class PlaneStorage {
                     plane.getCategory());
             statement.executeUpdate(sql);
         }
-
-        statement.close();
     }
 
     public static List<Plane> loadFromFile(Path path) throws IOException {

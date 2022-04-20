@@ -7,6 +7,7 @@ import oop.utils.PlaneStorage;
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +40,25 @@ public class PlanesUIDesigner extends JFrame {
         });
 
         btInsert.addActionListener(e -> {
-            String[] v = JOptionPane.showInputDialog(this, "Insert plane (width;height;wings;code)").split(";");
-            Plane plane = new Plane(v[0], Double.parseDouble(v[1]), Double.parseDouble(v[2]), LocalDate.parse(v[3]),
-                    v[4]);
-            planes.add(selected, plane);
+            String[] v = JOptionPane.showInputDialog(this, "Insert plane (name, length, wingspan, firstFlight, category)").split(";");
+            Plane plane = new Plane(v[0], Double.parseDouble(v[1]), Double.parseDouble(v[2]), LocalDate.parse(v[3]), v[4]);
+
+            try {
+                String sql = String.format("INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES ('%s', '%s', %f, %f, '%s', '%s')",
+                        plane.getUUID(),
+                        plane.getName(),
+                        plane.getLength(),
+                        plane.getWingspan(),
+                        plane.getFirstFlight().toString(),
+                        plane.getCategory());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                planes.add(plane);
+                selected = planes.size() - 1;
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
             update();
         });
 
@@ -50,20 +66,84 @@ public class PlanesUIDesigner extends JFrame {
             if (planes.isEmpty()) {
                 return;
             }
-            planes.remove(selected);
-            selected = Math.max(0, selected - 1);
+
+            try {
+                String sql = String.format("DELETE FROM planes WHERE uuid='%s'", getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                planes.remove(selected);
+                selected = Math.max(0, selected - 1);
+            } catch (IndexOutOfBoundsException | SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
             update();
         });
 
-        tfName.addActionListener(e -> getSelected().setName(tfName.getText()));
+        tfName.addActionListener(e -> {
+            try {
+                String sql = String.format("UPDATE planes SET name='%s' WHERE uuid='%s'",
+                        tfName.getText(), getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                getSelected().setName(tfName.getText());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-        tfLength.addActionListener(e -> getSelected().setLength(Double.parseDouble(tfLength.getText())));
+        tfLength.addActionListener(e -> {
+            try {
+                String sql = String.format("UPDATE planes SET length=%s WHERE uuid='%s'",
+                        tfLength.getText(), getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                getSelected().setLength(Double.parseDouble(tfLength.getText()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-        tfWingspan.addActionListener(e -> getSelected().setWingspan(Double.parseDouble(tfWingspan.getText())));
+        tfWingspan.addActionListener(e -> {
+            try {
+                String sql = String.format("UPDATE planes SET wingspan=%s WHERE uuid='%s'",
+                        tfWingspan.getText(), getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                getSelected().setLength(Double.parseDouble(tfWingspan.getText()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-        tfFirstFlight.addActionListener(e -> getSelected().setFirstFlight(LocalDate.parse(tfFirstFlight.getText())));
+        tfFirstFlight.addActionListener(e -> {
+            try {
+                String sql = String.format("UPDATE planes SET firstFlight='%s' WHERE uuid='%s'",
+                        tfFirstFlight.getText(), getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                getSelected().setFirstFlight(LocalDate.parse(tfFirstFlight.getText()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-        cbCategory.addActionListener(e -> getSelected().setCategory(cbCategory.getSelectedItem().toString()));
+        cbCategory.addActionListener(e -> {
+            try {
+                String sql = String.format("UPDATE planes SET category='%s' WHERE uuid='%s'",
+                        cbCategory.getSelectedItem().toString(), getSelected().getUUID());
+                Statement statement = DBManager.getConnection().createStatement();
+                statement.executeUpdate(sql);
+                statement.close();
+                getSelected().setCategory(cbCategory.getSelectedItem().toString());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         JMenuBar menu = generateMenu();
         setJMenuBar(menu);
@@ -77,10 +157,13 @@ public class PlanesUIDesigner extends JFrame {
             DBManager.setConnection(
                     DBManager.JDBC_Driver_SQLite,
                     DBManager.JDBC_URL_SQLite);
-            initData(PlaneStorage.loadFromDB());
+            Statement statement = DBManager.getConnection().createStatement();
+            List<Plane> l = PlaneStorage.loadFromDB(statement);
+            initData(l);
+            statement.close();
         } catch (SQLException e) {
-            initData();
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            initData();
         }
         update();
     }
@@ -132,9 +215,11 @@ public class PlanesUIDesigner extends JFrame {
             int option = chooser.showOpenDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
+                    Statement statement = DBManager.getConnection().createStatement();
                     List<Plane> planes = PlaneStorage.loadFromFile(chooser.getSelectedFile().toPath());
-                    PlaneStorage.saveToDB(planes);
-                    initData(PlaneStorage.loadFromDB());
+                    PlaneStorage.saveToDB(planes, statement);
+                    initData(planes);
+                    statement.close();
                 } catch (IOException|SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }

@@ -1,8 +1,7 @@
-package oop.rest;
+package oop.rest.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.Unirest;
-import oop.utils.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
