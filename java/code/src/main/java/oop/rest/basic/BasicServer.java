@@ -10,7 +10,9 @@ public class BasicServer {
         port(8080);
 
         // Configure resources
-        get("/", (request, response) -> "Hello World!");
+        get("/italian", (request, response) -> "Ciao Mondo!");
+        get("/english", (request, response) -> "Hello World!");
+        get("/german", (request, response) -> "Hallo Welt!");
     }
 
     public static void main(String[] args) {

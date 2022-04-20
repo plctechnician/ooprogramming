@@ -1,6 +1,7 @@
 package oop.rest.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.util.*;
 
@@ -8,37 +9,40 @@ import static spark.Spark.get;
 import static spark.Spark.port;
 
 public class JSONServer {
-    ObjectMapper om = new ObjectMapper();
+    ObjectMapper mapper;
 
     public void run() {
-        // Fill map
-        Map<String, String> map = new HashMap<>();
-        map.put("Rome", "Europe/Rome");
-        map.put("Delhi", "India/Delhi");
-        map.put("NewYork", "America/New_York");
+        mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.findAndRegisterModules();
+
+        Map<String, String> map = new HashMap<>(Map.of(
+                "rome", "Europe/Rome",
+                "delhi", "India/Delhi",
+                "new_york", "America/New_York"
+        ));
 
         // Start embedded server at this port
         port(8080);
 
         // Configure resources
-        get("/all", (request, response) -> {
-            List<TimeZone> l = new ArrayList<>();
+        get("/timezone", (request, response) -> {
+            List<LocalTime> localTimes = new ArrayList<>();
             for (String tz : map.values()) {
-                l.add(getTimeZone(tz));
+                localTimes.add(getTimeZone(tz));
             }
-            return om.writeValueAsString(l);
+            return mapper.writeValueAsString(localTimes);
         });
 
-        get("/:id", (request, response) -> {
+        get("/timezone/:id", (request, response) -> {
             String id = request.params(":id");
-            return om.writeValueAsString(getTimeZone(map.get(id)));
+            return mapper.writeValueAsString(getTimeZone(map.get(id)));
         });
 
     }
 
-    TimeZone getTimeZone(String name) {
-        Calendar c = Calendar.getInstance(java.util.TimeZone.getTimeZone(name));
-        return new TimeZone(name, c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
+    LocalTime getTimeZone(String name) {
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone(name));
+        return new LocalTime(name, c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
     }
 
     public static void main(String[] args) {

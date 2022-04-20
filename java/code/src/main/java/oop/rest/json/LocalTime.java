@@ -1,16 +1,16 @@
 package oop.rest.json;
 
-public class TimeZone {
+public class LocalTime {
     String name;
     int hour;
     int minute;
     int second;
 
-    public TimeZone() {
+    public LocalTime() {
         super();
     }
 
-    public TimeZone(String name, int hour, int minute, int second) {
+    public LocalTime(String name, int hour, int minute, int second) {
         super();
         this.name = name;
         this.hour = hour;
