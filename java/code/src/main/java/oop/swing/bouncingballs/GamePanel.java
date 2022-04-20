@@ -48,8 +48,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
             // eventually update fps
             int delay = 1000 / Integer.parseInt(properties.getProperty("fps"));
-            timer = new Timer(delay, this);
-            timer.start();
+            timer.setDelay(delay);
 
             // pause
             if (properties.getProperty("pause").equals("on")) {
