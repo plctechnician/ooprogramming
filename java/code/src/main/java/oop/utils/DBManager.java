@@ -37,7 +37,7 @@ public class DBManager {
             try {
                 Class.forName(JDBC_Driver);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new SQLException(e.getMessage());
             }
             connection = DriverManager.getConnection(JDBC_URL);
             showMetadata();
