@@ -32,13 +32,15 @@ public class DBManager {
     public static Connection getConnection() throws SQLException {
         if (connection == null) {
             if (JDBC_Driver == null || JDBC_URL == null) {
-                throw new IllegalStateException("Illegal request. Call setConnection() before.");
+                throw new SQLException("Illegal request. Call setConnection() before.");
             }
+
             try {
                 Class.forName(JDBC_Driver);
             } catch (ClassNotFoundException e) {
                 throw new SQLException(e.getMessage());
             }
+
             connection = DriverManager.getConnection(JDBC_URL);
             showMetadata();
         }
