@@ -14,3 +14,4 @@
 * Alessandro Pansera +
 * Bertacchini Mattia +
 * Matteo di Bari +
+* Davide Agostini +
