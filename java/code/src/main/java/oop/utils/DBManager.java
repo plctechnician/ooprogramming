@@ -1,9 +1,8 @@
 package oop.utils;
 
-import oop.utils.Utils;
-
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -25,6 +24,7 @@ public class DBManager {
     static Connection connection;
 
     public static void setConnection(String Driver, String URL) {
+        Locale.setDefault(new Locale("us", "US"));
         JDBC_Driver = Driver;
         JDBC_URL = URL;
     }
