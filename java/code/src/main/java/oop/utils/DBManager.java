@@ -2,7 +2,6 @@ package oop.utils;
 
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -24,7 +23,6 @@ public class DBManager {
     static Connection connection;
 
     public static void setConnection(String Driver, String URL) {
-        Locale.setDefault(new Locale("us", "US"));
         JDBC_Driver = Driver;
         JDBC_URL = URL;
     }
@@ -49,7 +47,7 @@ public class DBManager {
 
     public static void showMetadata() throws SQLException {
         if (connection == null) {
-            throw new IllegalStateException("Illegal request. Connection not established");
+            throw new SQLException("Illegal request. Connection not established");
         }
 
         DatabaseMetaData md = connection.getMetaData();

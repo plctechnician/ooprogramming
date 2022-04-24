@@ -5,14 +5,12 @@ import oop.utils.Plane;
 import oop.utils.PlaneStorage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 public class PlanesUIDesigner extends JFrame {
     private JPanel mainPanel;
@@ -82,20 +80,29 @@ public class PlanesUIDesigner extends JFrame {
 
         try {
             initData();
+            update();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            setPanelEnabled(mainPanel, false);
         }
-        update();
     }
 
     private void initData() throws SQLException {
         DBManager.setConnection(
                 DBManager.JDBC_Driver_MySQL,
                 DBManager.JDBC_URL_MySQL);
-        Statement statement = DBManager.getConnection().createStatement(
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE);
-        planes = new PlanesModel(statement);
+        planes = new PlanesModel(DBManager.getConnection());
+    }
+
+    void setPanelEnabled(JPanel panel, Boolean isEnabled) {
+        panel.setEnabled(isEnabled);
+        Component[] components = panel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JPanel) {
+                setPanelEnabled((JPanel) component, isEnabled);
+            }
+            component.setEnabled(isEnabled);
+        }
     }
 
     private void update() {
@@ -128,18 +135,22 @@ public class PlanesUIDesigner extends JFrame {
             int option = chooser.showOpenDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
-                    Statement statement = DBManager.getConnection().createStatement();
                     List<Plane> planes = PlaneStorage.loadFromFile(chooser.getSelectedFile().toPath());
-                    PlaneStorage.saveToDB(planes, statement);
+                    PlaneStorage.saveToDB(planes, DBManager.getConnection());
                     initData();
-                    statement.close();
+                    setPanelEnabled(mainPanel, true);
+                    update();
                 } catch (IOException|SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                update();
             }
         });
-        quit.addActionListener(e -> dispose());
+        quit.addActionListener(e -> {
+            try {
+                DBManager.close();
+            } catch (SQLException ignored) {}
+            dispose();
+        });
         return menu;
     }
 }

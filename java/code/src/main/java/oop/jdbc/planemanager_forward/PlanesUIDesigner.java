@@ -5,11 +5,12 @@ import oop.utils.Plane;
 import oop.utils.PlaneStorage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlanesUIDesigner extends JFrame {
@@ -43,17 +44,15 @@ public class PlanesUIDesigner extends JFrame {
             String[] v = JOptionPane.showInputDialog(this, "Insert plane (name, length, wingspan, firstFlight, category)").split(";");
             Plane plane = new Plane(v[0], Double.parseDouble(v[1]), Double.parseDouble(v[2]), LocalDate.parse(v[3]), v[4]);
 
-            try {
-                String sql = String.format("INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES ('%s', '%s', %f, %f, '%s', '%s')",
-                        plane.getUUID(),
-                        plane.getName(),
-                        plane.getLength(),
-                        plane.getWingspan(),
-                        plane.getFirstFlight().toString(),
-                        plane.getCategory());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement insertPlane = DBManager.getConnection().prepareStatement(
+                    "INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES (?, ?, ?, ?, ?, ?)")) {
+                insertPlane.setString(1, plane.getUUID().toString());
+                insertPlane.setString(2, plane.getName());
+                insertPlane.setDouble(3, plane.getLength());
+                insertPlane.setDouble(4, plane.getWingspan());
+                insertPlane.setDate(5, Date.valueOf(plane.getFirstFlight()));
+                insertPlane.setString(6, plane.getCategory());
+                insertPlane.executeUpdate();
                 planes.add(plane);
                 selected = planes.size() - 1;
             } catch (SQLException ex) {
@@ -67,11 +66,10 @@ public class PlanesUIDesigner extends JFrame {
                 return;
             }
 
-            try {
-                String sql = String.format("DELETE FROM planes WHERE uuid='%s'", getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement deletePlane = DBManager.getConnection().prepareStatement(
+                    "DELETE FROM planes WHERE uuid=?")) {
+                deletePlane.setString(1, getSelected().getUUID().toString());
+                deletePlane.executeUpdate();
                 planes.remove(selected);
                 selected = Math.max(0, selected - 1);
             } catch (IndexOutOfBoundsException | SQLException ex) {
@@ -81,12 +79,11 @@ public class PlanesUIDesigner extends JFrame {
         });
 
         tfName.addActionListener(e -> {
-            try {
-                String sql = String.format("UPDATE planes SET name='%s' WHERE uuid='%s'",
-                        tfName.getText(), getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement updatePlane = DBManager.getConnection().prepareStatement(
+                    "UPDATE planes SET name=? WHERE uuid=?")) {
+                updatePlane.setString(1, tfName.getText());
+                updatePlane.setString(2, getSelected().getUUID().toString());
+                updatePlane.executeUpdate();
                 getSelected().setName(tfName.getText());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -94,12 +91,11 @@ public class PlanesUIDesigner extends JFrame {
         });
 
         tfLength.addActionListener(e -> {
-            try {
-                String sql = String.format("UPDATE planes SET length=%s WHERE uuid='%s'",
-                        tfLength.getText(), getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement updatePlane = DBManager.getConnection().prepareStatement(
+                    "UPDATE planes SET length=? WHERE uuid=?")) {
+                updatePlane.setDouble(1, Double.parseDouble(tfLength.getText()));
+                updatePlane.setString(2, getSelected().getUUID().toString());
+                updatePlane.executeUpdate();
                 getSelected().setLength(Double.parseDouble(tfLength.getText()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -107,25 +103,23 @@ public class PlanesUIDesigner extends JFrame {
         });
 
         tfWingspan.addActionListener(e -> {
-            try {
-                String sql = String.format("UPDATE planes SET wingspan=%s WHERE uuid='%s'",
-                        tfWingspan.getText(), getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
-                getSelected().setLength(Double.parseDouble(tfWingspan.getText()));
+            try (PreparedStatement updatePlane = DBManager.getConnection().prepareStatement(
+                    "UPDATE planes SET wingspan=? WHERE uuid=?")) {
+                updatePlane.setDouble(1, Double.parseDouble(tfWingspan.getText()));
+                updatePlane.setString(2, getSelected().getUUID().toString());
+                updatePlane.executeUpdate();
+                getSelected().setWingspan(Double.parseDouble(tfWingspan.getText()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
         tfFirstFlight.addActionListener(e -> {
-            try {
-                String sql = String.format("UPDATE planes SET firstFlight='%s' WHERE uuid='%s'",
-                        tfFirstFlight.getText(), getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement updatePlane = DBManager.getConnection().prepareStatement(
+                    "UPDATE planes SET firstFlight=? WHERE uuid=?")) {
+                updatePlane.setDate(1, Date.valueOf(tfFirstFlight.getText()));
+                updatePlane.setString(2, getSelected().getUUID().toString());
+                updatePlane.executeUpdate();
                 getSelected().setFirstFlight(LocalDate.parse(tfFirstFlight.getText()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -133,17 +127,29 @@ public class PlanesUIDesigner extends JFrame {
         });
 
         cbCategory.addActionListener(e -> {
-            try {
-                String sql = String.format("UPDATE planes SET category='%s' WHERE uuid='%s'",
-                        cbCategory.getSelectedItem().toString(), getSelected().getUUID());
-                Statement statement = DBManager.getConnection().createStatement();
-                statement.executeUpdate(sql);
-                statement.close();
+            try (PreparedStatement updatePlane = DBManager.getConnection().prepareStatement(
+                    "UPDATE planes SET category=? WHERE uuid=?")) {
+                updatePlane.setString(1, cbCategory.getSelectedItem().toString());
+                updatePlane.setString(2, getSelected().getUUID().toString());
+                updatePlane.executeUpdate();
                 getSelected().setCategory(cbCategory.getSelectedItem().toString());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        try {
+            DBManager.setConnection(
+                    DBManager.JDBC_Driver_SQLite,
+                    DBManager.JDBC_URL_SQLite);
+            List<Plane> planes = PlaneStorage.loadFromDB(DBManager.getConnection());
+            initData(planes);
+            setPanelEnabled(mainPanel, true);
+            update();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            setPanelEnabled(mainPanel, false);
+        }
 
         JMenuBar menu = generateMenu();
         setJMenuBar(menu);
@@ -152,30 +158,22 @@ public class PlanesUIDesigner extends JFrame {
         setSize(370, 270);
         setResizable(false);
         setVisible(true);
-
-        try {
-            DBManager.setConnection(
-                    DBManager.JDBC_Driver_SQLite,
-                    DBManager.JDBC_URL_SQLite);
-            Statement statement = DBManager.getConnection().createStatement();
-            List<Plane> l = PlaneStorage.loadFromDB(statement);
-            initData(l);
-            statement.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            initData();
-        }
-        update();
-    }
-
-    private void initData() {
-        planes = new ArrayList<>();
-        selected = 0;
     }
 
     private void initData(List<Plane> l) {
         planes = l;
         selected = 0;
+    }
+
+    void setPanelEnabled(JPanel panel, Boolean isEnabled) {
+        panel.setEnabled(isEnabled);
+        Component[] components = panel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JPanel) {
+                setPanelEnabled((JPanel) component, isEnabled);
+            }
+            component.setEnabled(isEnabled);
+        }
     }
 
     private void update() {
@@ -215,18 +213,22 @@ public class PlanesUIDesigner extends JFrame {
             int option = chooser.showOpenDialog(this);
             if (option == JFileChooser.APPROVE_OPTION) {
                 try {
-                    Statement statement = DBManager.getConnection().createStatement();
                     List<Plane> planes = PlaneStorage.loadFromFile(chooser.getSelectedFile().toPath());
-                    PlaneStorage.saveToDB(planes, statement);
+                    PlaneStorage.saveToDB(planes, DBManager.getConnection());
                     initData(planes);
-                    statement.close();
+                    setPanelEnabled(mainPanel, true);
+                    update();
                 } catch (IOException|SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                update();
             }
         });
-        quit.addActionListener(e -> dispose());
+        quit.addActionListener(e -> {
+            try {
+                DBManager.close();
+            } catch (SQLException ignored) {}
+            dispose();
+        });
         return menu;
     }
 }

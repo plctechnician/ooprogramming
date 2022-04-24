@@ -3,18 +3,19 @@ package oop.jdbc.planemanager_updatable_model;
 import oop.utils.DBManager;
 import oop.utils.Plane;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class PlanesModel {
     ResultSet planes;
 
-    public PlanesModel(Statement statement) throws SQLException {
-        planes = statement.executeQuery("SELECT * FROM planes");
+    public PlanesModel(Connection connection) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM planes",
+                ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_UPDATABLE);
+        planes = statement.executeQuery();
         planes.first();
     }
 

@@ -3,58 +3,68 @@ package oop.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
 public class PlaneStorage {
-    public static List<Plane> loadFromDB(Statement statement) throws SQLException {
+    public static LocalDate convertSQLDateToLocalDate(Date SQLDate) {
+        java.util.Date date = new java.util.Date(SQLDate.getTime());
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static List<Plane> loadFromDB(Connection connection) throws SQLException {
         List<Plane> planes = new ArrayList<>();
-        ResultSet rs = statement.executeQuery("SELECT * FROM planes");
-        while (rs.next()) {
-            planes.add(new Plane(UUID.fromString(rs.getString("uuid")),
-                    rs.getString("name"),
-                    rs.getDouble("length"),
-                    rs.getDouble("wingspan"),
-                    LocalDate.parse(rs.getString("firstFlight")),
-                    rs.getString("category")));
+        try (PreparedStatement getPlanes = connection.prepareStatement("SELECT * FROM planes")) {
+            try (ResultSet rs = getPlanes.executeQuery()) {
+                while (rs.next()) {
+                    planes.add(new Plane(UUID.fromString(rs.getString("uuid")),
+                            rs.getString("name"),
+                            rs.getDouble("length"),
+                            rs.getDouble("wingspan"),
+                            convertSQLDateToLocalDate(rs.getDate("firstFlight")),
+                            rs.getString("category")));
+                }
+            }
         }
         return planes;
     }
 
-    public static void saveToDB(List<Plane> planes, Statement statement) throws SQLException {
-        statement.executeUpdate("DROP TABLE IF EXISTS planes");
-        statement.executeUpdate("CREATE TABLE planes (uuid VARCHAR(50) PRIMARY KEY, name VARCHAR(50), length REAL, " +
-                "wingspan REAL, firstFlight DATE, category VARCHAR(50))");
+    public static void saveToDB(List<Plane> planes, Connection connection) throws SQLException {
+        try (PreparedStatement dropTable = connection.prepareStatement("DROP TABLE IF EXISTS planes")) {
+            dropTable.executeUpdate();
+        }
 
-        for (Plane plane : planes) {
-            String sql = String.format("INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES " +
-                            "('%s', '%s', %f, %f, '%s', '%s')",
-                    plane.getUUID(),
-                    plane.getName(),
-                    plane.getLength(),
-                    plane.getWingspan(),
-                    plane.getFirstFlight().toString(),
-                    plane.getCategory());
-            statement.executeUpdate(sql);
+        try (PreparedStatement createTable = connection.prepareStatement("CREATE TABLE planes (uuid VARCHAR(50) " +
+                "PRIMARY KEY, name VARCHAR(50), length REAL, wingspan REAL, firstFlight DATE, category VARCHAR(50))")) {
+            createTable.executeUpdate();
+        }
+
+        try (PreparedStatement insertPlane = connection.prepareStatement("INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES (?, ?, ?, ?, ?, ?)")) {
+            for (Plane plane : planes) {
+                insertPlane.setString(1, plane.getUUID().toString());
+                insertPlane.setString(2, plane.getName());
+                insertPlane.setDouble(3, plane.getLength());
+                insertPlane.setDouble(4, plane.getWingspan());
+                insertPlane.setDate(5, Date.valueOf(plane.getFirstFlight()));
+                insertPlane.setString(6, plane.getCategory());
+                insertPlane.executeUpdate();
+            }
         }
     }
 
     public static List<Plane> loadFromFile(Path path) throws IOException {
         List<Plane> planes = new ArrayList<>();
-        Scanner scanner = new Scanner(path);
-        while (scanner.hasNextLine()) {
-            String[] fields = scanner.nextLine().split(";");
-            planes.add(new Plane(fields[0], Double.parseDouble(fields[1]),
-                    Double.parseDouble(fields[2]), LocalDate.parse(fields[3]),
-                    fields[4]));
+        try (Scanner scanner = new Scanner(path)) {
+            while (scanner.hasNextLine()) {
+                String[] fields = scanner.nextLine().split(";");
+                planes.add(new Plane(fields[0], Double.parseDouble(fields[1]), Double.parseDouble(fields[2]), LocalDate.parse(fields[3]), fields[4]));
+            }
         }
-        scanner.close();
         return planes;
     }
 
