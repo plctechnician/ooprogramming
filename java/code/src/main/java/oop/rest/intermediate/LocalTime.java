@@ -1,4 +1,4 @@
-package oop.rest.json;
+package oop.rest.intermediate;
 
 public class LocalTime {
     String name;

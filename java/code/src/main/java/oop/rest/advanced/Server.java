@@ -1,4 +1,4 @@
-package oop.rest.jdbc;
+package oop.rest.advanced;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -20,22 +20,11 @@ import java.util.UUID;
 
 import static spark.Spark.*;
 
-public class JDBCServer {
+public class Server {
     static final String SUCCESS = "{status: ok}";
     static final String FAILURE = "{status: failed}";
-    static Logger logger = LoggerFactory.getLogger(JDBCServer.class);
+    static Logger logger = LoggerFactory.getLogger(Server.class);
     ObjectMapper mapper;
-
-    private boolean isUUIDAvailable(UUID uuid) throws SQLException {
-        boolean isUUIDAvailable;
-        try (PreparedStatement statement = DBManager.getConnection().prepareStatement("SELECT * FROM planes WHERE uuid=?")) {
-            statement.setString(1, uuid.toString());
-            try (ResultSet rs = statement.executeQuery()) {
-                isUUIDAvailable = rs.next();
-            }
-            return isUUIDAvailable;
-        }
-    }
 
     public void run() {
         mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -164,6 +153,17 @@ public class JDBCServer {
         });
     }
 
+    private boolean isUUIDAvailable(UUID uuid) throws SQLException {
+        boolean isUUIDAvailable;
+        try (PreparedStatement statement = DBManager.getConnection().prepareStatement("SELECT * FROM planes WHERE uuid=?")) {
+            statement.setString(1, uuid.toString());
+            try (ResultSet rs = statement.executeQuery()) {
+                isUUIDAvailable = rs.next();
+            }
+        }
+        return isUUIDAvailable;
+    }
+
     public static void main(String[] args) throws IOException, SQLException {
         DBManager.setConnection(
                 DBManager.JDBC_Driver_SQLite,
@@ -171,6 +171,6 @@ public class JDBCServer {
         String planesPath = "java/code/src/main/resources/text/planes.csv";
         List<Plane> planes = PlaneStorage.loadFromFile(Path.of(planesPath));
         PlaneStorage.saveToDB(planes, DBManager.getConnection());
-        new JDBCServer().run();
+        new Server().run();
     }
 }

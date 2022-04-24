@@ -1,4 +1,4 @@
-package oop.rest.basic;
+package oop.rest.simple;
 
 import kong.unirest.Unirest;
 import org.slf4j.Logger;
@@ -10,8 +10,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 
-public class BasicClient implements Runnable {
-    static Logger logger = LoggerFactory.getLogger(BasicClient.class);
+public class Client implements Runnable {
+    static Logger logger = LoggerFactory.getLogger(Client.class);
     RandomGenerator rnd = new Random();
     String[] languages = {"italian", "english", "german"};
 
@@ -24,6 +24,6 @@ public class BasicClient implements Runnable {
 
     public static void main(String[] args) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(new BasicClient(), 0, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new Client(), 0, 5, TimeUnit.SECONDS);
     }
 }

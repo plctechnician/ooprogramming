@@ -40,7 +40,6 @@ public class DBManager {
             }
 
             connection = DriverManager.getConnection(JDBC_URL);
-            showMetadata();
         }
         return connection;
     }
