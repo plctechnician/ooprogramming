@@ -11,6 +11,10 @@ public class Plane {
     LocalDate firstFlight;
     String category;
 
+    public Plane() {
+
+    }
+
     public Plane(String name, double length, double wingspan, LocalDate firstFlight, String category) {
         this.uuid = UUID.randomUUID();
         this.name = name;

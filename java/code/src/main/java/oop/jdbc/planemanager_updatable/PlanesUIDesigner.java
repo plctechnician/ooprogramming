@@ -122,9 +122,7 @@ public class PlanesUIDesigner extends JFrame {
     }
 
     private void initData() throws SQLException {
-        DBManager.setConnection(
-                DBManager.JDBC_Driver_MySQL,
-                DBManager.JDBC_URL_MySQL);
+        DBManager.setConnection(DBManager.JDBC_Driver_MySQL, DBManager.JDBC_URL_MySQL);
         PreparedStatement statement = DBManager.getConnection().prepareStatement(
                 "SELECT * FROM planes",
                 ResultSet.TYPE_SCROLL_SENSITIVE,
