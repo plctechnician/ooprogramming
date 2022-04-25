@@ -29,7 +29,6 @@ public class Server {
     public void run() {
         mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         mapper.findAndRegisterModules();
-
         // Start embedded server at this port
         port(8080);
 
@@ -37,8 +36,7 @@ public class Server {
         // curl -X POST -d name=xyz -d length=1.0 -d wingspan=1.0 -d firstFlight=2020-01-01 -d category=Airliner
         // http://localhost:8080/plane/add
         post("/plane/add", (request, response) -> {
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES (?, ?, ?, ?, ?, ?)")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("INSERT INTO planes (uuid, name, length, wingspan, firstFlight, category) VALUES (?, ?, ?, ?, ?, ?)")) {
                 statement.setString(1, UUID.randomUUID().toString());
                 statement.setString(2, request.queryParams("name"));
                 statement.setDouble(3, Double.parseDouble(request.queryParams("length")));
@@ -59,15 +57,14 @@ public class Server {
                 response.status(404);
                 return mapper.writeValueAsString(FAILURE);
             }
-
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "UPDATE planes SET name=?, length=?, wingspan=?, firstFlight=?, category=? WHERE uuid=?")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("UPDATE planes SET " +
+                            "name=?, length=?, wingspan=?, firstFlight=?, category=? WHERE uuid=?")) {
                 statement.setString(1, request.queryParams("name"));
                 statement.setDouble(2, Double.parseDouble(request.queryParams("length")));
                 statement.setDouble(3, Double.parseDouble(request.queryParams("wingspan")));
                 statement.setDate(4, Date.valueOf(request.queryParams("firstFlight")));
                 statement.setString(5, request.queryParams("category"));
-                statement.setString(1, uuid.toString());
+                statement.setString(6, uuid.toString());
                 statement.executeUpdate();
             }
             return mapper.writeValueAsString(SUCCESS);
@@ -81,9 +78,7 @@ public class Server {
                 response.status(404);
                 return mapper.writeValueAsString(FAILURE);
             }
-
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "DELETE FROM planes WHERE uuid=?")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("DELETE FROM planes WHERE uuid=?")) {
                 statement.setString(1, uuid.toString());
                 statement.executeUpdate();
             }
@@ -92,10 +87,9 @@ public class Server {
 
         // GET - get all
         // curl -X GET http://localhost:8080/plane
-        get("/plane", (request, response) -> {
+        get("/plane/all", (request, response) -> {
             List<Plane> planes = new ArrayList<>();
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "SELECT * FROM planes")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("SELECT * FROM planes")) {
                 try (ResultSet rs = statement.executeQuery()) {
                     while (rs.next()) {
                         planes.add(new Plane(UUID.fromString(rs.getString("uuid")), rs.getString("name"), rs.getDouble("length"), rs.getDouble("wingspan"), PlaneStorage.convertSQLDateToLocalDate(rs.getDate("firstFlight")), rs.getString("category")));
@@ -109,18 +103,12 @@ public class Server {
         // curl -X GET "http://localhost:8080/plane/length?min=30&max=40"
         get("/plane/length", (request, response) -> {
             List<Plane> planes = new ArrayList<>();
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "SELECT * FROM planes WHERE length BETWEEN ? AND ? ORDER BY length")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("SELECT * FROM planes WHERE length BETWEEN ? AND ? ORDER BY length")) {
                 statement.setString(1, request.queryParams("min"));
                 statement.setString(2, request.queryParams("max"));
                 try (ResultSet rs = statement.executeQuery()) {
                     while (rs.next()) {
-                        planes.add(new Plane(UUID.fromString(rs.getString("uuid")),
-                                rs.getString("name"),
-                                rs.getDouble("length"),
-                                rs.getDouble("wingspan"),
-                                PlaneStorage.convertSQLDateToLocalDate(rs.getDate("firstFlight")),
-                                rs.getString("category")));
+                        planes.add(new Plane(UUID.fromString(rs.getString("uuid")), rs.getString("name"), rs.getDouble("length"), rs.getDouble("wingspan"), PlaneStorage.convertSQLDateToLocalDate(rs.getDate("firstFlight")), rs.getString("category")));
                     }
                 }
             }
@@ -135,18 +123,11 @@ public class Server {
                 response.status(404);
                 return mapper.writeValueAsString(FAILURE);
             }
-
             Plane plane;
-            try (PreparedStatement statement = DBManager.getConnection().prepareStatement(
-                    "SELECT * FROM planes WHERE uuid=?")) {
+            try (PreparedStatement statement = DBManager.getConnection().prepareStatement("SELECT * FROM planes WHERE uuid=?")) {
                 statement.setString(1, uuid.toString());
                 try (ResultSet rs = statement.executeQuery()) {
-                    plane = new Plane(UUID.fromString(rs.getString("uuid")),
-                            rs.getString("name"),
-                            rs.getDouble("length"),
-                            rs.getDouble("wingspan"),
-                            PlaneStorage.convertSQLDateToLocalDate(rs.getDate("firstFlight")),
-                            rs.getString("category"));
+                    plane = new Plane(UUID.fromString(rs.getString("uuid")), rs.getString("name"), rs.getDouble("length"), rs.getDouble("wingspan"), PlaneStorage.convertSQLDateToLocalDate(rs.getDate("firstFlight")), rs.getString("category"));
                 }
             }
             return mapper.writeValueAsString(plane);
