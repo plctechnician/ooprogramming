@@ -26,14 +26,6 @@ public class Server {
         port(8080);
 
         // Configure resources
-        get("/timezone", (request, response) -> {
-            List<LocalTime> localTimes = new ArrayList<>();
-            for (String timezone : map.values()) {
-                localTimes.add(getTimeZone(timezone));
-            }
-            return mapper.writeValueAsString(localTimes);
-        });
-
         get("/timezone/:id", (request, response) -> {
             String id = request.params(":id");
             String timezone = map.get(id);

@@ -26,7 +26,9 @@ public class Client implements Runnable {
     public void run() {
         String[] cities = {"rome", "delhi", "new_york", "perth", "montevideo"};
         String url = "http://localhost:8080/timezone/" + cities[rnd.nextInt(cities.length)];
-        String json = Unirest.get(url).asString().getBody();
+        String json = Unirest.get(url)
+                .asString()
+                .getBody();
 
         try {
             logger.info(json);

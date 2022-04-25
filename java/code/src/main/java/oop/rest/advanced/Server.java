@@ -29,6 +29,7 @@ public class Server {
     public void run() {
         mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         mapper.findAndRegisterModules();
+
         // Start embedded server at this port
         port(8080);
 
