@@ -25,7 +25,12 @@ public class UnresponsiveUIwThread extends JFrame {
         btStartMultiThread = new JButton("Start (2T)");
         btStartMultiThread.addActionListener(e -> {
             stoppped = false;
-            Thread t = new Thread(() -> updateCounter());
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    updateCounter();
+                }
+            });
             t.start();
         });
 

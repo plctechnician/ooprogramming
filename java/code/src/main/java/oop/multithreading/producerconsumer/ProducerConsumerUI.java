@@ -54,14 +54,12 @@ public class ProducerConsumerUI extends JFrame {
         t1.start();
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {
-        }
+        } catch (InterruptedException ignored) {}
         p.running = false;
         c.running = false;
         try {
             t0.join();
             t1.join();
-        } catch (InterruptedException ignored) {
-        }
+        } catch (InterruptedException ignored) {}
     }
 }

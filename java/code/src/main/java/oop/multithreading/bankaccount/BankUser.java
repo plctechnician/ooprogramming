@@ -42,6 +42,7 @@ public class BankUser implements Runnable {
                             account.getBalance(), amount);
                     break;
                 }
+                Thread.yield();
             }
         }
     }

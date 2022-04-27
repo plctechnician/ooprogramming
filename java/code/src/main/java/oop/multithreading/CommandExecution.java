@@ -13,11 +13,11 @@ public class CommandExecution {
         /* p = Runtime.getRuntime().exec("/bin/ls -al /"); */
         p = (new ProcessBuilder("/bin/ls", "-al", "/")).start();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        while ((line = in.readLine()) != null) {
-            System.out.println(line);
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
         }
-        in.close();
         System.out.println(p.exitValue());
     }
 }

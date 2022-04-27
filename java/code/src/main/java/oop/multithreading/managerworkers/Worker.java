@@ -55,9 +55,7 @@ public class Worker {
                 while (state == WorkerState.PAUSED) {
                     try {
                         Thread.sleep(250);
-                    } catch (InterruptedException ignored) {
-
-                    }
+                    } catch (InterruptedException ignored) {}
                 }
             }
             state = WorkerState.COMPLETED;
