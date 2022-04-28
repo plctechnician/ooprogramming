@@ -15,7 +15,9 @@ public class CheckPreemption implements Runnable {
 
     public static void main(String[] argv) {
         CheckPreemption c = new CheckPreemption();
-        new Thread(c, "... to be").start();
+        new Thread(c, "... to be");
         new Thread(c, "not to be").start();
+
+
     }
 }
