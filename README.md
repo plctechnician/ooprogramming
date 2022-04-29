@@ -20,6 +20,7 @@
 * https://www.baeldung.com/
 * http://www.pythontutor.com/
 * https://pynative.com/
+* https://github.com/TheAlgorithms/Java
 * https://github.com/mtdvio/every-programmer-should-know
 * https://github.com/charlax/professional-programming
 
@@ -36,8 +37,8 @@
 * [YouTube PyCharm](https://www.youtube.com/c/PyCharmIDE/videos)
 
 ## Project Design
+* [StarUML](https://staruml.io/)
 * [moqups](https://moqups.com/)
-* [mermaid.js](https://mermaid-js.github.io/mermaid/#/)
 
 ## Microsoft Teams
 Please use Microsoft Teams instead of emails for asking questions and discuss ideas, exercises, and home projects.
