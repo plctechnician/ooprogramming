@@ -11,7 +11,7 @@ import java.util.Properties;
 public class ManagerWorkersUI extends JFrame implements PropertyChangeListener {
     private JPanel mainPanel;
     private JButton btStart;
-    private JButton btStop;
+    private JButton btPause;
     private JProgressBar pbThread0;
     private JProgressBar pbThread1;
     private JProgressBar pbThread2;
@@ -22,26 +22,26 @@ public class ManagerWorkersUI extends JFrame implements PropertyChangeListener {
     Properties settings;
 
     public ManagerWorkersUI() throws HeadlessException {
-        super("Manager-Workers");
+        super("Manager - Workers");
+        createAndShowGUI();
+    }
 
-        initSettings();
-        initWorkers();
-
+    void createAndShowGUI() {
         btStart.addActionListener(e -> {
-            clearGUI();
             initSettings();
+            initGUI();
             initWorkers();
-            runInactiveWorkers();
+            runNewWorkers();
         });
 
-        btStop.addActionListener(e -> {
+        btPause.addActionListener(e -> {
             if (settings.getProperty("paused").equals("false")) {
                 pauseWorkers();
-                btStop.setText("Resume");
+                btPause.setText("Resume");
                 settings.setProperty("paused", "true");
             } else if (settings.getProperty("paused").equals("true")) {
                 resumeWorkers();
-                btStop.setText("Pause");
+                btPause.setText("Pause");
                 settings.setProperty("paused", "false");
             }
         });
@@ -53,21 +53,21 @@ public class ManagerWorkersUI extends JFrame implements PropertyChangeListener {
         setVisible(true);
     }
 
-    void clearGUI() {
+    void initSettings() {
+        settings = new Properties();
+        settings.setProperty("blocksize", "1000000");
+        settings.setProperty("workerCount", "0");
+        settings.setProperty("paused", "false");
+    }
+
+    void initGUI() {
         pbThread0.setValue(0);
         pbThread1.setValue(0);
         pbThread2.setValue(0);
         pbThread3.setValue(0);
-        btStop.setText("Start");
-        btStop.setText("Pause");
+        btStart.setText("Start");
+        btPause.setText("Pause");
         taLog.setText("");
-    }
-
-    void initSettings() {
-        settings = new Properties();
-        settings.setProperty("blocksize", "10000");
-        settings.setProperty("workerCount", "0");
-        settings.setProperty("paused", "false");
     }
 
     void initWorkers() {
@@ -96,7 +96,7 @@ public class ManagerWorkersUI extends JFrame implements PropertyChangeListener {
         }
     }
 
-    void runInactiveWorkers() {
+    void runNewWorkers() {
         for (int i = 0; i < 4; i++) {
             if (workers.get(i).getState() == Worker.WorkerState.NEW) {
                 workers.get(i).search();
@@ -134,11 +134,10 @@ public class ManagerWorkersUI extends JFrame implements PropertyChangeListener {
             }
         }
         if (evt.getPropertyName().equals("results")) {
-            for (int i : (List<Integer>)evt.getNewValue()) {
-                taLog.append(String.format("%d,", i));
-            }
+            String str = String.format("%s...\n", evt.getNewValue().toString().substring(1, 100));
+            taLog.append(str);
             replaceCompletedWorkers();
-            runInactiveWorkers();
+            runNewWorkers();
         }
     }
 }

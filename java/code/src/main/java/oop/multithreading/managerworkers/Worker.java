@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Worker {
-    public enum WorkerState {
-        NEW, RUNNING, PAUSED, COMPLETED
-    }
-
+    final PropertyChangeSupport support;
     int start, range;
     WorkerState state;
-    final PropertyChangeSupport support;
 
     public Worker(int start, int range) {
         this.start = start;
@@ -39,37 +35,30 @@ public class Worker {
 
     public void search() {
         Thread t = new Thread(() -> {
+            PrimeSearcher ps = new PrimeSearcherFast();
+            List<Integer> primes = new ArrayList<>();
             state = WorkerState.RUNNING;
-            List<Integer> results = new ArrayList<>();
+
             for (int i = start; i < (start + range); i++) {
-                if (isPrime(i)) {
-                    results.add(i);
+                if (ps.isPrime(i)) {
+                    primes.add(i);
+                    support.firePropertyChange("progress", null, (100 * (i - start)) / range);
                 }
-
-                // observability (25 times each range)
-                if (i % (range / 25) == 0) {
-                    support.firePropertyChange("progress", null, (100*(i-start))/range);
-                }
-
-                // pause
                 while (state == WorkerState.PAUSED) {
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException ignored) {}
                 }
             }
+
             state = WorkerState.COMPLETED;
-            support.firePropertyChange("results", null, results);
+            support.firePropertyChange("progress", null, 100);
+            support.firePropertyChange("results", null, primes);
         });
         t.start();
     }
 
-    boolean isPrime(int n) {
-        if (n == 1) {
-            return true;
-        }
-        int i = 2;
-        for (; n % i != 0; i++);
-        return i == n;
+    public enum WorkerState {
+        NEW, RUNNING, PAUSED, COMPLETED
     }
 }
