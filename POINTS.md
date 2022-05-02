@@ -1,7 +1,7 @@
 # Object Oriented Programming (DIEF, UNIMORE)
 
 * Ayoub Imad +
-* Alex Lenzi ++
+* Alex Lenzi +++
 * Monssef Rahlan +
 * Pietro Moriello ++
 * Federico Melis +
